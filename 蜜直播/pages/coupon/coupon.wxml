@@ -1,0 +1,106 @@
+ <!-- 跳转到链接页面 https://mp.weixin.qq.com/s/yRrIYAnp6eTxdceLVOTVMQ -->
+<!-- <view class='coupon-bgv'>
+  <view class='msg-bg-view'>
+      <view class='msg-view'>
+            <text class='cou-msg cou-msg-a'>满200减50</text>
+            <text class='cou-msg cou-msg-b'>使用规则,期限使用规则,期限使用规则,期限使用规则,期限</text>
+      </view> 
+
+      <view class='use-view'>
+          <text class='cou-msg cou-msg-c'>不可用</text>
+      </view>
+  </view>
+
+  <view class='rule-bg-view'>
+     
+     <text class='cou-msg cou-msg-d'>使用规则,期限</text>
+  </view>
+
+</view>
+
+
+<view class='coupon-bgv stamp01'>
+  <view class='msg-bg-view'>
+      <view class='msg-view'>
+            <text class='cou-msg cou-msg-a'>满200减50</text>
+            <text class='cou-msg cou-msg-b'>使用规则,期限使用规则,期限使用规则,期限使用规则,期限</text>
+      </view> 
+
+      <view class='use-view'>
+          <text class='cou-msg cou-msg-c'>不可用</text>
+      </view>
+  </view>
+
+  <view class='rule-bg-view'>
+     
+     <text class='cou-msg cou-msg-d'>使用规则,期限</text>
+  </view>
+
+</view> -->
+
+<!--pages/coupon/index.wxml-->
+<!-- <import src="../public/wxml/menu.wxml"/> -->
+ 
+<view class="blank"></view>
+<view class="coupon-list">
+  <block wx:for="{{list}}">
+
+    <view class="item stamp {{item.class}} " bindtap='addcoupon'data-numberid='{{item.numberid}}'>
+        <!-- 左侧 -->
+        <view class="float-li t1">
+            <view class="coupon-left">
+                <view class="t t1">￥</view>
+                <view class="t t2">{{item.sell}}</view>
+                <view class="t t3">{{item.title}}</view>
+                <view class="t t4">优惠券编号：{{item.number}}</view>
+            </view>
+        </view>
+        <!-- 右侧 -->
+        <view class="float-li-rig">
+            <view class="coupon-rig" >
+               <view class="t1 t">优惠券</view>
+               <view class="t2 t">{{item.startday}}</view>
+               <view class="t2 t">{{item.endday}}</view>
+               <view class="t3 t"><text>{{item.statename}}</text></view>
+            </view>
+        </view>
+        <i></i>
+    </view>
+    
+    
+  </block>
+</view>
+<view class="blank"></view>
+<view class="box note">
+    <view>优惠券使用方式：</view>
+    <view>1、领取优惠券</view>
+    <view>2、点击结算时勾选使用优惠券</view>
+    <view>3、提交订单、付款，订单完成</view>
+</view>
+ 
+<!-- 浮窗 底部-->
+<template is="menu-footer" data="{{nav: footNav}}"/>
+
+
+<!-- 
+<view class="item stamp stamp02 ">
+        
+        <view class="float-li t1">
+            <view class="coupon-left">
+                <view class="t t1">￥</view>
+                <view class="t t2">1500</view>
+                <view class="t t3">新人专享全场满5500减1500</view>
+                <view class="t t4">优惠券编号：264669616164</view>
+            </view>
+        </view>
+        
+        <view class="float-li-rig">
+            <view class="coupon-rig">
+               <view class="t1 t">优惠券</view>
+               <view class="t2 t">2018-08-17</view>
+               <view class="t2 t">2019-01-01</view>
+               <view class="t3 t"><text>立即领取</text></view>
+            </view>
+        </view>
+        <i></i>
+    </view> -->

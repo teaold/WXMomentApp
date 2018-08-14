@@ -1,0 +1,20 @@
+<view class="box">
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+
+    <view class="shuru"> 
+        <textarea class="shuru1"placeholder="请输入您的内容" placeholder-style="font-size:13pt;"  name="content"/>
+    </view>
+
+
+    
+     
+
+
+
+    <button class="buttona" form-type="submit">提交</button>
+    
+</form>
+
+</view>
+

@@ -1,0 +1,45 @@
+<view class='headerView'>
+      <view class="userinfo">  
+      <view class="userinfo-avatar">  
+        <open-data  type="userAvatarUrl"></open-data>  
+      </view>  
+        <open-data type="userNickName"></open-data>  
+    </view>  
+    
+</view>
+
+<!-- 
+我的预约：发布的活动预约
+我的动态：参与的拍摄动态发布
+我的优惠券：
+设置：个人信息
+ -->
+<view class='msgListView' bindtap='liuyan'>
+  <image class='msgIcon' src='../../images/yuyue.png'></image>
+  <text class='MsgTxt' >我的预约</text>
+  <image class='msgArrow' src='../../images/jt.png'></image>
+</view>
+
+<view class='msgListView' bindtap='liuyan'>
+  <image class='msgIcon' src='../../images/dongtai.png'></image>
+  <text class='MsgTxt' >我的动态</text>
+  <image class='msgArrow' src='../../images/jt.png'></image>
+</view>
+
+<view class='msgListView' bindtap='coupon'>
+  <image class='msgIcon' src='../../images/youhui.png'></image>
+  <text class='MsgTxt' >我的优惠券</text>
+  <image class='msgArrow' src='../../images/jt.png'></image>
+</view>
+
+<view class='msgListView' bindtap='settingInfo'>
+  <image class='msgIcon' src='../../images/setting.png'></image>
+  <text class='MsgTxt' >设置信息</text>
+  <image class='msgArrow' src='../../images/jt.png'></image>
+</view>
+
+<button class="{{showGetUser}} getUserInfo" open-type="getUserInfo"> 授权昵称信息 </button> 
+
+<!-- <view class='myView'>联系客服：</view>
+<contact-button class='cBtn' type="default-dark" size="20" session-from="weapp">
+</contact-button>  -->

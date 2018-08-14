@@ -1,0 +1,155 @@
+
+<scroll-view class="box" scroll-y="true" style="height:1200rpx"  bindscroll="scrollHandle" lower-threshold="50" bindscrolltolower="scrollLoading" scroll-top="{{scrolltop}}">
+
+  <!--右上角小图标-->
+  <view class="top-right" bindtap="bindAdd">
+    <image class="baseimg" src="../../images/add.png" mode="scaleToFill"></image>
+  </view>
+
+  <view class="top-left" bindtap="locationWb">
+    <image class="baseimg" src="/images/ditu.png" mode="scaleToFill"></image>
+  </view>
+  <!--背景小图标-->
+  <view class="bg">
+      <image class="baseimg" src="../../images/bg.jpg" mode="scaleToFill"></image>
+  </view>
+  <!--背景图底部大头像-->
+  <view class="headimg">
+      <image class="baseimg" src="{{userInfo['avatarUrl']}}" mode="scaleToFill"></image>
+  </view>
+  <!--背景图底部昵称-->
+  <view class="nickname">
+    <text>{{userInfo['nickName']}}</text>
+  </view>
+  <!--占位行-->
+  <view class="lie"></view>
+
+  <!-- 默认第一个置顶 -->
+  <!--<block wx:if="{{userOnly.status != 0}}">
+
+         <view class="content">
+          <view class="head">
+            <image class="baseimg"  src="{{userInfo['avatarUrl']}}" mode="scaleToFill"></image>
+          </view>
+          <text class="wz">{{userInfo['nickName']}}</text>
+
+          <text class="desc">{{userOnly.content}}</text>
+
+
+          <block wx:if="{{userImg != ''}}">         
+                    <view class="images-wrapper">
+                        <view class="images-list">
+                          <block wx:for="{{userImg}}" wx:for-item="image">
+                          <image src="{{image}}" class="images-image" data-src="{{image}}" data-count="{{image}}" bindtap="previewImage"></image>
+                          </block>
+                        </view>
+                    </view>
+          </block>         
+
+          <block wx:if="{{userOnly.address != 'undefined'}}">
+            <text class="address">{{userOnly.address}}</text>
+          </block>
+
+
+
+          <text class="time">1秒前</text> 
+          <text class="dele">删除</text>
+          <view class="biao">
+            <image class="baseimg" src="/images/biao.png"></image>
+          </view>
+        </view>
+  </block>-->
+
+<!--循环展示-->
+  <view class="content" wx:for="{{resultData}}" wx:for-index="k">
+    <!--头像-->
+    <view class="head">
+      <image class="baseimg"  src="{{resultData[k].headimgurl}}" mode="scaleToFill"></image>
+    </view>
+    <!--昵称-->
+    <text class="wz">{{resultData[k].nickname}}</text>
+    <!--内容-->
+    <text class="desc">{{resultData[k].content}}</text>
+    <!--显示上传图片-->
+    <block wx:if="{{resultData[k].img != 'null'}}">         
+        <block wx:if="{{resultData[k].length == 1}}">
+            <view class="images-wrapper">
+                <view class="images-list">
+                  <block wx:for="{{resultData[k].img}}" wx:for-item="image">
+                    <image src="{{image}}" class="images-image" data-src="{{image}}" data-count="{{resultData[k].img}}" bindtap="previewImage"></image>
+                  </block>
+                </view>
+          </view>
+        </block>
+
+        <block wx:elif="{{resultData[k].length >= 2}}">
+          <view class="images-wrapper">
+              <view class="images-list">
+                <block wx:for="{{resultData[k].img}}" wx:for-item="image">
+                  <image src="{{image}}" class="images-image" data-src="{{image}}" data-count="{{resultData[k].img}}" bindtap="previewImage"></image>
+                </block>
+              </view>
+          </view>
+        </block>
+    </block>
+    <!--显示地址-->
+    <block wx:if="{{resultData[k].address != 'undefined'}}">
+        <text class="address">{{resultData[k].address}}</text>
+    </block>
+    <!--显示发布时间-->
+    <text class="time">{{resultData[k].time}}</text> 
+    <!--显示删除-->
+    <block wx:if="{{resultData[k].userid == userStatus.userId}}">
+        <text class="dele"  bindtap="bindDele" data-deleuserid="{{resultData[k].userid}}" data-deleid="{{resultData[k].id}}">删除</text>
+    </block>
+    <!--显示操作小图标-->
+    <view class="biao" bindtap="bindCaoZuo"  data-id="{{resultData[k].id}}">
+      <image class="baseimg" src="/images/biao.png"></image>
+    </view>
+
+    <!--显示点赞-->
+
+    <block wx:if="{{resultData[k].dianzan != 'null'}}">
+        <view class="dianzan-box">
+          <view class="dianzan-biao">
+            <image class="baseimg" src="/images/zan.png" mode="aspectFit"></image>
+          </view>
+
+          <view class="dianzan-text">{{resultData[k].dianzan}}</view>
+        </view>
+    </block>
+    <!--显示评论-->
+    <!--如果朋友圈下的评论不等于空 则显示当前朋友圈的评论-->
+    <block wx:if="{{resultData[k].pinglun != 'null'}}">
+      <view class="pinglun-box" scroll-y>
+        <!--循环评论-->
+        <block wx:for="{{resultData[k].pinglun}}" wx:for-index="kk">
+
+            <!--如果pid等于null证明是发布的评论 否则是回复的评论-->
+            <block wx:if="{{resultData[k].pinglun[kk].hf_nickname == null}}">
+                <view class="pinglun-one" bindtap="bindPingLunB" data-pl_id="{{resultData[k].pinglun[kk].pl_id}}" data-pl_userid="{{resultData[k].pinglun[kk].pl_userid}}" data-pl_nickname="{{resultData[k].pinglun[kk].pl_nickname}}" data-id="{{resultData[k].pinglun[kk].id}}">
+                    <text class="pinglun-nickname">{{resultData[k].pinglun[kk].pl_nickname}}：</text>
+                    <text class="pinglun-content">{{resultData[k].pinglun[kk].pl_content}}</text>
+                </view>
+            </block>
+
+            <block wx:else>
+              <view class="pinglun-one" bindtap="bindPingLunB" data-pl_id="{{resultData[k].pinglun[kk].pl_id}}" data-pl_userid="{{resultData[k].pinglun[kk].pl_userid}}" data-pl_nickname="{{resultData[k].pinglun[kk].pl_nickname}}" data-id="{{resultData[k].pinglun[kk].id}}">
+                    <text class="pinglun-nickname">{{resultData[k].pinglun[kk].pl_nickname}}<text style="color:#000;">回复</text>{{resultData[k].pinglun[kk].hf_nickname}}：</text>
+                    <text class="pinglun-content">{{resultData[k].pinglun[kk].pl_content}}</text>
+              </view>
+            </block>
+            
+        </block>
+      </view>
+    </block>
+
+  </view>
+
+    <!--点赞评论标签-->
+  <!--<block wx:if="{{cz_flag}}">  -->
+    <view class="caozuo" style="top:{{cz_top}}px;right:{{cz_right}}rpx;" animation="{{animationData}}">
+        <text class="dianzan" bindtap="bindDianZan">点赞</text> <text class="pinglun" bindtap="bindPingLunA">评论</text>
+    </view>
+  <!--</block>-->
+</scroll-view>

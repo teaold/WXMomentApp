@@ -1,0 +1,14 @@
+.input{
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+    font-size: 12px;
+}
+
+.inputView{
+    border:  1px solid #757575;
+    border-radius: 4px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 15px;
+}

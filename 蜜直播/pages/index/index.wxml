@@ -1,0 +1,176 @@
+<!--index.wxml-->
+<swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+       <image  bindtap='bannerpage' data-model='{{item}}' src="{{item.picurl}}" class="slide-image" mode='aspectFill'/>
+        <!-- width="355" height="150" -->
+    </swiper-item>
+  </block>
+</swiper>
+
+
+<!--间隔线  -->
+<view  style="flex:1;height:2px;background-color:#DCE3D7"></view>
+
+<view  style="flex:1;height:15px;background-color:white"></view>
+<!-- <view class='menu_photo_bg'> -->
+
+
+  <!-- 我是拍手 -->
+  <view class='menu_photo'>
+      <image class="photo_left_img" src='../../images/lineleft.png' mode='aspectFill' />
+      <text class="menu_name">拍手认证</text>
+      <image class="photo_mid_img" src='../../images/linemid.png' mode='aspectFill' />
+      <text class="menu_name">活动预约</text>
+      <image class="photo_right_img" src='../../images/lineright.png' mode='aspectFill' />
+        
+  </view>
+  <!-- 拍手菜单 -->
+  <view class="layout_horizontal photo-bgview">
+    
+    <view class="photo-conten-view" bindtap='photomancheckA'>
+        <!-- <view class="photo-img-view"> -->
+            <image class="photo-img" src='../../images/paishouA.png' mode='aspectFill' />
+            <text class="lives-name photo-name">我是拍手</text>
+    
+        <!-- </view> -->
+    </view>
+
+    <view class="photo-conten-view" bindtap='photomancheckB'>
+            <image class="photo-img" src='../../images/paishouB.png' mode='aspectFill' />
+            <text class="lives-name photo-name">见习拍手</text>
+    </view>
+
+    <view class="photo-conten-view" bindtap='photomancheckC'>
+            <image class="photo-img" src='../../images/yuyuepai.png' mode='aspectFill' />
+            <text class="lives-name photo-name">拍摄预约</text>
+    </view>
+
+    <view class="photo-conten-view" bindtap='photomancheckD'>
+            <image class="photo-img" src='../../images/huodongch.png' mode='aspectFill' />
+            <text class="lives-name photo-name">活动策划预约</text>
+    </view>
+    
+  </view>
+
+
+<!-- </view> -->
+
+
+<!--间隔线  -->
+<view  style="flex:1;height:15px;background-color:white"></view>
+
+<view class='menu_photo_bg'>
+
+  <!-- 直播menu -->
+  <view class='menu_live'>
+      <image class="menu_left_img" src='../../images/menuliveA.png' mode='aspectFill' />
+      <text class="menu_name">{{menu_nameA}}</text>
+      <text class="menu_nametemp"></text>
+      <view bindtap='livebooking'>
+            <image class="menu_right_img" src='../../images/booking.png' mode='aspectFill' />
+      </view>
+        
+        
+  </view>
+
+
+  <!-- 直播内容 -->
+  <view class="layout_horizontal">
+    
+    <view bindtap='detailpage'  data-userid='0' data-usertype='lives' class="lives-content"  wx:for="{{list}}" wx:for-item="item" for:key="key">
+        <view class="lives-img-view">
+        <image class="lives-img" src='{{item.url}}' mode='aspectFill' />
+        <image class="lives-right-img" src='../../images/play.png' mode='aspectFill' />
+      
+        </view>
+        <text class="lives-name">{{item.title}}</text>
+
+    </view>
+  </view>
+
+</view>
+
+<view  style="flex:1;height:15px;background-color:white"></view>
+<view class='menu_photo_bg'>
+  <!-- menu -->
+  <view class='menu_live'>
+        <image class="menu_left_img" src='../../images/menuliveB.png' mode='aspectFill' />
+        <text class="menu_name">{{menu_nameB}}</text>
+        <text class="menu_nametemp"></text>
+        <view>
+            <image class="menu_right_img" src='' mode='aspectFill' />
+        </view>
+  </view>
+
+  <view class="layout_horizontal">
+    
+    <view bindtap='detailpage'  data-userid='0' data-usertype='lives' class="lives-content"  wx:for="{{listB}}" wx:for-item="item" for:key="key">
+      <view class="lives-img-view">
+        <image class="lives-img" src='{{item.url}}' mode='aspectFill' />
+        <image class="lives-right-img" src='../../images/play.png' mode='aspectFill' />
+      
+      </view>
+      
+        <text class="lives-name">{{item.title}}</text>
+
+    </view>
+  </view>
+
+</view>
+
+<view  style="flex:1;height:15px;background-color:white"></view>
+<view class='menu_photo_bg'>
+  <!-- 生活 menu -->
+  <view class='menu_live'>
+        <image class="menu_left_img" src='../../images/shenghuo.png' mode='aspectFill' />
+        <text class="menu_name">生活频道</text>
+        <text class="menu_nametemp"></text>
+        <view>
+            <image class="menu_right_img" src='' mode='aspectFill' />
+        </view>
+  </view>
+
+  <view class="layout_horizontal">
+    
+    <view bindtap='detailpage'  data-userid='0' data-usertype='lives' class="lives-content"  wx:for="{{listB}}" wx:for-item="item" for:key="key">
+        <view class="lives-img-view">
+        <image class="lives-img" src='{{item.url}}' mode='aspectFill' />
+        <image class="lives-right-img" src='../../images/play.png' mode='aspectFill' />
+      
+      </view>
+        <text class="lives-name">{{item.title}}</text>
+
+    </view>
+  </view>
+</view>
+
+<view  style="flex:1;height:15px;background-color:white"></view>
+<view class='menu_photo_bg'>
+  <!-- 学习 menu -->
+  <view class='menu_live'>
+        <image class="menu_left_img" src='../../images/xuexi.png' mode='aspectFill' />
+        <text class="menu_name">学习频道</text>
+        <text class="menu_nametemp"></text>
+        <view>
+            <image class="menu_right_img" src='' mode='aspectFill' />
+        </view>
+  </view>
+
+  <view class="layout_horizontal">
+    
+    <view bindtap='detailpage'  data-userid='0' data-usertype='lives' class="lives-content"  wx:for="{{listB}}" wx:for-item="item" for:key="key">
+        <view class="lives-img-view">
+        <image class="lives-img" src='{{item.url}}' mode='aspectFill' />
+        <image class="lives-right-img" src='../../images/play.png' mode='aspectFill' />
+      
+      </view>
+        <text class="lives-name">{{item.title}}</text>
+
+    </view>
+  </view>
+
+</view>
+
+<view  style="flex:1;height:15px;background-color:white"></view>

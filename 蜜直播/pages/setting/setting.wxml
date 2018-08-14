@@ -1,0 +1,25 @@
+<view class='bgview'>
+
+  <import src="../template/template.wxml" />
+  
+  <template is="msgItemfrom" data="{{value:username,important:'1',msgname:'姓名',funcname:'listenerNameInput',inputtype:'text'}}" />
+
+  <template is="msgItemfrom" data="{{value:phone,important:'1',msgname:'电话',funcname:'listenerPhoneInput',inputtype:'number'}}" />
+
+  <template is="ItemSelectSix" data="{{value:sex,important:'1'}}" />
+  
+<template is="ItemSelectCity" data="{{important:'0',provName:provinceName[provinceSelIndex],McityName:cityName[citySelIndex] , MdistrictName:districtName[districtSelIndex]}}" />
+
+
+  <!-- <template is="msgItemfrom" data="{{msgname:'详细地点',funcname:'listenerDetailInput',inputtype:'text',value:'',important:'0'}}" /> -->
+
+  <button class="playbtn" type="primary" bindtap="listenerLogin">提 交</button>
+
+  <view class="blankView"></view>
+
+
+  <!-- 城市选择框 -->
+  <template is="ItemSelectCityView" data="{{showDistpicker , provNameArr:provinceName , cityNameArr:cityName , districtNameArr:districtName  ,messageContent,showMessage}}"/>
+  
+
+</view>

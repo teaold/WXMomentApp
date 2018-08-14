@@ -1,0 +1,158 @@
+<template name="msgItem">
+
+  <!-- 流程图 -->
+
+  <view class='liucheng-bgview'>
+
+    <text class='liuc-title'>{{msg1}}</text>
+
+    <view class='msgListView' bindtap='coupon'>
+
+      <image class='msgIcon' src='../../images/needs.png'></image>
+
+      <text class='MsgTxt'>{{msg2}}</text>
+
+    </view>
+
+    <!-- <view class='liuc-line'></view> -->
+
+    <view class='msgListView' bindtap='coupon'>
+
+      <image class='msgIcon' src='../../images/baojia.png'></image>
+
+      <text class='MsgTxt'>{{msg3}}</text>
+
+    </view>
+
+    <view class='msgListView' bindtap='coupon'>
+
+      <image class='msgIcon' src='../../images/phone.png'></image>
+
+      <text class='MsgTxt'>{{msg4}}</text>
+
+    </view>
+
+    <view class='tiplistv' bindtap='coupon'>
+
+      <image class='msgIcon' src='../../images/tishi.png'></image>
+
+      <text class='tipsTxt'>{{msg5}}</text>
+
+    </view>
+
+  </view>
+
+  <!-- 预约流程：填写需求——客服经理方案、报价确认——服务对接
+
+姓名、电话、地址
+
+服务类型：直播预告片、宣传片、活动摄影、单品拍摄
+
+（我们给到您的是低于市场价30%的报价） -->
+
+
+</template>
+
+<!-- <template name="msgItemfrom">
+  <text class='input-title'>{{msgname}}</text>
+  <text class='input-title-tag'>*</text>
+  <view class="inputView">
+    <input class="input" type="{{inputtype}}" placeholder="请输入{{msgname}}" placeholder-style="color: #D3D3D3" bindinput="{{funcname}}" />
+  </view>
+</template> -->
+
+<!-- 表单 -->
+<template name="msgItemfrom">
+  <text class='input-title'>{{msgname}}</text>
+  <block wx:if="{{important == '1'}}">
+    <text class='input-title-tag'>*</text>
+  </block>
+  <view class="inputView">
+    <input class="input" type="{{inputtype}}" value='{{value}}' placeholder="请输入{{msgname}}" placeholder-style="color: #D3D3D3" bindinput="{{funcname}}" />
+  </view>
+</template>
+
+
+<!-- 性别 -->
+<template name="ItemSelectSix">
+  <text class='input-title'>性别</text>
+  <block wx:if="{{important == '1'}}">
+    <text class='input-title-tag'>*</text>
+  </block>
+  <radio-group bindchange="sexChange">
+    <view class="layout_horizontal">
+      <view class="checkbox-view">
+        <radio class='checkbox-box' value="1"></radio>
+        <text class='checkbox-msg'>男</text>
+      </view>
+      <view class="checkbox-view">
+        <radio class='checkbox-box' value="2"></radio>
+        <text class='checkbox-msg'>女</text>
+      </view>
+    </view>
+  </radio-group>
+</template>
+
+
+<!-- 选择城市 -->
+<template name="ItemSelectCity">
+  <text class='input-title'>所在城市</text>
+  <block wx:if="{{important == '1'}}">
+    <text class='input-title-tag'>*</text>
+  </block>
+  <view class="form-item-bd" bindtap="showDistpicker">
+    <view class="input {{!provName ? 'input-placeholder' : ''}}">
+      <block wx:if="{{provName}}">{{provName}}{{McityName}}{{MdistrictName}}</block>
+      <block wx:else>请选择所在地区</block>
+    </view>
+  </view>
+
+</template>
+
+<!-- 选择城市 选择框 -->
+<template name="ItemSelectCityView">
+  <view class="distpicker {{showDistpicker ? 'show' : 'hidden'}}" hidden="{{!showDistpicker}}">
+    <view class="distpicker-btn">
+      <view class="distpicker-cancel-btn" bindtap="distpickerCancel">取消</view>
+      <view class="distpicker-sure-btn" bindtap="distpickerSure">确定</view>
+    </view>
+    <picker-view indicator-style="height: 40px;" class="distpicker-content" value="{{value}}" bindchange="changeArea">
+      <!-- 省 -->
+      <picker-view-column>
+        <view wx:for="{{provNameArr}}" wx:key="province" class="area-item">{{item}}</view>
+        <!-- <view class="area-item">上海市</view> -->
+      </picker-view-column>
+      <!-- 市 -->
+      <picker-view-column>
+        <view wx:for="{{cityNameArr}}" wx:key="city" class="area-item">{{item}}</view>
+      </picker-view-column>
+      <!-- 区 -->
+      <picker-view-column>
+        <view wx:for="{{districtNameArr}}" wx:key="district" class="area-item">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+  <view class="mask" catchtap="distpickerCancel" hidden="{{!showDistpicker}}"></view>
+  <view class="message {{showMessage ? 'fade-in' : ''}}" hidden="{{!showMessage}}">{{messageContent}}</view>
+
+</template>
+
+<!-- 多选框 -->
+<template name="ItemMutiSelectView">
+
+  <text class='input-title'>{{title}}</text>
+  <block wx:if="{{important == '1'}}">
+    <text class='input-title-tag'>*</text>
+  </block>
+  <checkbox-group bindchange="checkboxChange" >
+       
+       <view class="layout_horizontal">
+            <view wx:for="{{itemNameArr}}" wx:key="name" class="checkbox-view">
+                <checkbox class='checkbox-box' value='{{item.index}}'></checkbox>
+                <text class='checkbox-msg'>{{item.name}}</text>
+            </view>
+       </view>
+           
+  </checkbox-group>
+
+</template>

@@ -1,0 +1,194 @@
+/**index.wxss**/
+
+::-webkit-scrollbar{
+ display:none;
+}
+
+.slide-image{
+  width: 100%;
+}
+
+/* 拍手认证 */
+.menu_photo_bg{
+  position: relative;
+  /* 右下角 */
+  border-bottom-right-radius: 3px;
+  /* 左下角 */
+  border-bottom-left-radius:1px;
+  border: 1rpx  solid   block; 
+  /* border-color:azure; */
+  left: 5%;
+  box-shadow:1px 1px 1px 2px #D3D3D3;
+  width: 90%;
+}
+.menu_photo{
+  height: 45px;
+  width: 100%;
+  display: flex;
+  justify-content:center;
+  /*row 横向  column 列表  */
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color:white;
+}
+.photo_left_img{
+  width: 35px;
+  height: 35px;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+.photo_mid_img{
+  width: 35px;
+  height: 35px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.photo_right_img{
+  width: 35px;
+  height: 35px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+/*在线直播  */
+.menu_live{
+  height: 45px;
+  width: 100%;
+  display: flex;
+  justify-content:space-around;
+  /*row 横向  column 列表  */
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color:white;
+}
+.menu_left_img{
+  width: 20px;
+  height: 20px;
+  /* margin-left: 3%; */
+  margin-top: 12px;
+  /* margin-right: 10px; */
+}
+.menu_right_img{
+  width: 35px;
+  height: 35px;
+  /* margin-right: 10px; */
+}
+.menu_name{
+  line-height: 45px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  /* margin-right: 50px; */
+  text-align: center;
+}
+.menu_nametemp{
+  width: 120px;
+}
+
+/*横向布局  */
+.layout_horizontal{
+  /* height: 120px; */
+  width: 100%;
+  display: flex;
+  /*row 横向  column 列表  */
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+/* 拍手 */
+.photo-bgview{
+  justify-content:center;
+}
+.photo-conten-view{
+  
+  padding-top: 10px;
+  box-sizing: border-box;
+  /* margin-right: 10vmax;
+  margin-left: 10vmax; */
+
+  margin-right: 10px;
+  margin-left: 10px;
+
+  /* padding-left: 25%;  */
+  /* padding-right: 3%; */
+  /* flex:atuo; */
+  display:inline-block;
+  background-color:white;
+  width: 10vmax;
+  justify-content: center;
+}
+.photo-img-view{
+  
+  /* margin-left: 25%; */
+  background-color:yellow;
+  width: 25%;
+  text-align: center;
+}
+.photo-img {
+  position: relative;
+	display: block;
+  /* margin-left: 10vmax; */
+  margin-bottom: 10px;
+  box-sizing: border-box;
+	width: 10vmax;
+	height: 10vmax;
+}
+.photo-name{
+  /* margin-left: 10vmax; */
+  /* width: 10vmax; */
+  text-align: center;
+  /* position: absolute; */
+}
+
+
+/* 直播 */
+.lives-content{
+  padding-top: 10px;
+  box-sizing: border-box;
+  padding-left: 3%; 
+  padding-right: 3%;
+  /* flex:atuo; */
+  display:inline-block;
+  background-color:white;
+  width: 50%;
+}
+.lives-img {
+	display: block;
+	/* float: left; */
+	/* left: 10; */
+	/* padding-right: 0px; */
+  
+  box-sizing: border-box;
+	width: 100%;
+	height: 70px;
+  -webkit-border-radius: 5px 5px 5px 5px; 
+  -moz-border-radius: 5px 5px 5px 5px; 
+  border-radius: 5px 5px 5px 5px; 
+}
+
+/* 播放按钮 */
+.lives-img-view{
+  position: relative;
+  margin-bottom: 10px;
+}
+.lives-right-img{
+  width: 15px;
+	height: 15px;
+  position: absolute;
+  right:5px;
+  bottom: 5px;
+}
+.lives-name{
+  width: 100%;
+  /* height: 20px; */
+  /* word-wrap: normal; */
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  display: block;
+}
+

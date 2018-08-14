@@ -1,0 +1,156 @@
+
+
+/*  重写 checkbox 样式  */
+/* 未选中的 背景样式 */
+checkbox .wx-checkbox-input{
+   /* 圆角 */
+   /* border-radius: 50%; */
+   width: 40rpx; /* 背景的宽 */
+   height: 40rpx; /* 背景的高 */
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+   border: none;
+   background: #09BB07;
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 40rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 40rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 40rpx;
+   text-align: center;
+   font-size:30rpx; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+
+
+/*  重写 radio 样式  */
+/* 未选中的 背景样式 */
+radio .wx-radio-input{
+   border-radius: 50%;/* 圆角 */
+   width: 40rpx;
+   height: 40rpx;
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked{
+   border: none;
+   background: red;
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 40rpx;
+   text-align: center;
+   font-size:30rpx; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+
+
+/*横向布局  */
+.layout_horizontal{
+  /* height: 120px; */
+  width: 100%;
+  display: flex;
+  /*row 横向  column 列表  */
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+/*  */
+.checkbox-view{
+  /* padding-top: 10px; */
+  box-sizing: border-box;
+  padding-left: 15px; 
+  padding-right: 15px;
+  /* flex:atuo; */
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background-color:white;
+  width: 50%;
+  height: 40px;
+}
+.checkbox-box{
+  line-height: 40px;
+}
+.checkbox-msg{
+  display: inline-block;
+  line-height: 40px;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* 输入框 */
+.input{
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 35px;
+    font-size: 14px;
+}
+
+.inputView{
+    border:  1px solid #D3D3D3;
+    border-radius: 1px;
+    margin: 15px;
+}
+.input-title{
+  margin-left: 15px;
+  height: 30px;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+.input-title-tag{
+  color:red;
+  font-size: 15px;
+  margin-left: 10px;
+}
+.input-tips{
+  display: block;
+  margin: 10px 15px 10px 15px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #757575;
+}
+
+.playbtn{
+  margin-left: 15px; margin-right: 15px; margin-top: 45rpx; border-radius: 5rpx;
+  
+}
+
+.blankView{
+  height: 60px;
+  width:  60px;
+}
+
+/* 日期选择 */
+.section{
+   background:#f2f2f2;
+   margin: 15px; 
+   height: 40px;
+   padding-left: 10px;
+   padding-right: 10px;
+   display: flex;
+   flex-direction: row;
+}
+.data-time{
+  height: 20px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+.rili_img{
+  width: 20px;
+  height: 20px;
+  padding-top: 10px;
+  padding-right: 15px;
+  
+}

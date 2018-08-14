@@ -1,0 +1,244 @@
+/* pages/webview/webview.wxss */
+.blank{
+  height: 50rpx;
+  width: 100%;
+  
+}
+.coupon-bgv {
+  background-color: #b6bac3;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  padding-top: 15rpx;
+  padding-bottom: 5rpx;
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+  border-radius: 15rpx;
+}
+
+.msg-bg-view {
+  display: flex;
+  flex-direction: row;
+}
+
+.msg-view {
+  width: 70%;
+  margin-bottom: 10rpx 15rpx 25rpx 0rpx;
+}
+
+.use-view {
+  border-radius: 15rpx;
+  margin: 25rpx 15rpx 25rpx 15rpx;
+  width: 30%;
+  text-align: center;
+}
+
+.rule-bg-view {
+  border-radius: 10rpx;
+  margin: 25rpx 0rpx 10rpx 0rpx;
+  background-color: #a8acb2;
+}
+
+.cou-msg {
+  /* width: 100%; *//* height: 20px; *//* word-wrap: normal; *//* overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap; *//* text-align: center; *//* margin-bottom: 10px; *//* font-size: 10px; */
+  letter-spacing: 1px;
+  /* display: block; */
+}
+
+.cou-msg-a {
+  width: 100%;
+  /* height: 20px; *//* word-wrap: normal; */
+  margin: 0rpx 10rpx 10rpx 10rpx;
+  /* margin-bottom: 10px; */
+  font-size: 18px;
+  letter-spacing: 1px;
+  display: block;
+  color: white;
+}
+
+.cou-msg-b {
+  font-size: 11px;
+  letter-spacing: 1px;
+  /* display: block; */
+  color: white;
+}
+
+.cou-msg-c {
+  border-radius: 10rpx;
+  margin: 40rpx 0rpx 10rpx 30rpx;
+  padding: 25rpx 15rpx 25rpx 15rpx;
+  border: 1rpx solid block;
+  font-size: 12px;
+  letter-spacing: 1px;
+  /* display: block; */
+  color: #535353;
+  background-color: white;
+}
+
+.cou-msg-d {
+  width: 100%;
+  /* height: 20px; *//* word-wrap: normal; */
+  padding: 35rpx 15rpx 35rpx 15rpx;
+  /* margin-bottom: 10px; */
+  font-size: 12px;
+  letter-spacing: 1px;
+  display: block;
+  color: white;
+}
+
+/* xxxx */
+
+.coupon-list {
+  width: 710rpx;
+  margin: 0 auto;
+}
+
+.coupon-list .item {
+  width: 710rpx;
+  height: 250rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+}
+
+.coupon-list .item .float-li {
+  width: 450rpx;
+  height: 100%;
+  border-right: 2rpx dashed rgba(255, 255, 255, 0.3);
+}
+
+.coupon-list .item .float-li-rig {
+  width: 220rpx;
+  padding-right: 20rpx;
+  height: 100%;
+  /* background-color: yellow; */
+  color: #fff;
+}
+
+.coupon-left {
+  position: relative;
+}
+
+.coupon-left .t {
+  position: absolute;
+  color: #fff;
+  
+}
+
+.coupon-left .t1 {
+  left: 10rpx;
+  /* margin-right: 30rpx; */
+  top: 110rpx;
+}
+
+.coupon-left .t2 {
+  left: 30rpx;
+  top: 50rpx;
+  font-size: 80rpx;
+  font-weight: bold;
+}
+
+.coupon-left .t3 {
+  left: 220rpx;
+  top: 50rpx;
+  width: 200rpx;
+  font-size: 30rpx;
+}
+
+.coupon-left .t4 {
+  left: 10rpx;
+  top: 180rpx;
+  bottom: 10rpx;
+  font-size: 30rpx;
+}
+
+.coupon-rig .t {
+  text-align: center;
+}
+
+.coupon-rig .t1 {
+  font-size: 40rpx;
+  padding: 30rpx 0 10rpx 0;
+}
+.coupon-rig .t2 {
+  font-size: 25rpx;
+  /* padding: 30rpx 0 10rpx 0; */
+}
+.coupon-rig .t3 {
+  padding-top: 20rpx;
+}
+
+.coupon-rig .t3 text {
+  font-size: 25rpx;
+  background: #fff;
+  color: #333;
+  border-radius: 7rpx;
+  padding: 10rpx 40rpx;
+}
+
+.note {
+  margin: 25rpx 25rpx 30rpx 25rpx;
+  background: #f2f2;
+  font-size: 30rpx;
+  padding: 20rpx 20rpx 20rpx 20rpx;
+}
+
+.stamp {
+  width: 700rpx;
+  height: 250rpx;
+  margin-bottom: 50rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.stamp i {
+  position: absolute;
+  left: 20%;
+  top: 90rpx;
+  height: 500rpx;
+  width: 700rpx;
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: rotate(-30deg);
+}
+
+.stamp01 {
+  background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 30rpx, #f39b00 30rpx);
+  background-size: 10rpx 10rpx;
+  background-position: 9rpx 3rpx;
+  background: #f39b00;
+}
+
+.stamp02 {
+  background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 30rpx, #d24161 30rpx);
+  background-size: 10rpx 10rpx;
+  background-position: 9rpx 3rpx;
+  background: #d24161;
+}
+
+.stamp03 {
+  background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 30rpx, #d24161 30rpx);
+  background-size: 10rpx 10rpx;
+  background-position: 9rpx 3rpx;
+  background: #7eab1e;
+}
+
+.stamp04 {
+  background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 30rpx, #d24161 30rpx);
+  background-size: 10rpx 10rpx;
+  background-position: 9rpx 3rpx;
+  background: #50add3;
+}
+
+.stamp05 {
+  background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 30rpx, #d24161 30rpx);
+  background-size: 10rpx 10rpx;
+  background-position: 9rpx 3rpx;
+  background: #d2d2d2;
+}
+
+.stamp06 {
+  background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 30rpx, #d24161 30rpx);
+  background-size: 10rpx 10rpx;
+  background-position: 9rpx 3rpx;
+  background: #d2d2d2;
+}

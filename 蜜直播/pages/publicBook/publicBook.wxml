@@ -1,0 +1,7 @@
+<publicBook name="msgItem">
+<view>
+    <text>This is template.wxml文件，我是一个模板</text>
+  </view>
+
+
+</publicBook>

@@ -1,0 +1,2 @@
+ <!-- 跳转到链接页面 https://mp.weixin.qq.com/s/yRrIYAnp6eTxdceLVOTVMQ -->
+ <web-view src="{{weburl}}"> </web-view>

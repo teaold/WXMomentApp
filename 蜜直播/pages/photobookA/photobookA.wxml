@@ -1,0 +1,26 @@
+<view class='bgview'>
+
+  <import src="../template/template.wxml" />
+  <template is="msgItem" data="{{msg1:'预约流程',msg2:'1 : 填写需求',msg3:'2 : 客服经理方案、报价确认',msg4:'3 : 服务对接',msg5:'服务类型：直播预告片、宣传片、活动摄影、单品拍摄(我们给到您的是低于市场价30%的报价）'}}" />
+
+  <template is="msgItemfrom" data="{{msgname:'姓名',funcname:'listenerNameInput',inputtype:'text'}}" />
+
+  <template is="msgItemfrom" data="{{msgname:'电话',funcname:'listenerPhoneInput',inputtype:'number'}}" />
+
+  <template is="ItemSelectSix" />
+  
+<template is="ItemSelectCity" data="{{provName:provinceName[provinceSelIndex],McityName:cityName[citySelIndex] , MdistrictName:districtName[districtSelIndex]}}" />
+
+
+  <template is="msgItemfrom" data="{{msgname:'详细地点',funcname:'listenerNameInput',inputtype:'text'}}" />
+
+  <button class="playbtn" type="primary" bindtap="listenerLogin">提 交</button>
+
+  <view class="blankView"></view>
+
+
+  <!-- 城市选择框 -->
+  <template is="ItemSelectCityView" data="{{showDistpicker , provNameArr:provinceName , cityNameArr:cityName , districtNameArr:districtName  ,messageContent,showMessage}}"/>
+  
+
+</view>

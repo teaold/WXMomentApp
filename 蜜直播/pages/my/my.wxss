@@ -1,0 +1,118 @@
+.userinfo {  
+  position: relative;  
+  width: 750rpx;  
+  height: 320rpx;  
+  color: #fff;  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+}  
+  
+.userinfo-avatar {  
+  overflow:hidden;  
+  display: block;  
+  width: 160rpx;  
+  height: 160rpx;  
+  margin: 20rpx;  
+  margin-top: 50rpx;  
+  border-radius: 50%;  
+  border: 2px solid #fff;  
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);  
+}  
+  
+.userinfo text {  
+  /* color: #fff; */  
+  font-size: 14px;  
+  background-color: #c0c0c0;  
+  border-radius:40%;  
+}
+
+.headerView{
+  background-color: yellowgreen;
+  height: 180px;
+  font-family:"Open Sans", Helvetica, Arial, sans-serif;
+  text-align: center;
+
+  background: -webkit-linear-gradient(left top,#A8828D,#7A7CA2);  
+  background: -o-linear-gradient(left top,#A8828D,#7A7CA2);  
+  background: -moz-linear-gradient(left top,#A8828D,#7A7CA2);  
+  background: -mos-linear-gradient(left top,#A8828D,#7A7CA2);  
+  background: linear-gradient(left top,#A8828D,#7A7CA2);  
+}
+.headTxt{
+  font-size: 14px;
+  color:#FFF;
+  line-height: 70px;
+  text-align: center;
+  
+}
+.headImg{
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  border-radius: 35px; 
+}
+
+
+.msgListView{
+  height: 55px;
+  border-bottom: 1px solid #CCC;
+  margin-left: 16px;
+  margin-right: 16px;
+  position: relative;
+}
+.msgIcon{
+width: 25px;
+height: 25px;
+margin-top: 15px;
+margin-right: 16px;
+display: block;
+float: left;
+}
+
+.msgIcon1{
+  width: 55px;
+height: 55px;
+margin-top: 10px;
+}
+
+.MsgTxt{
+font-size: 14px;
+font-family:"Open Sans", Helvetica, Arial, sans-serif;
+letter-spacing: 1px;
+line-height: 55px;
+}
+.msgArrow{
+width: 16px;
+height: 16px;
+margin-top: 19.5px;
+display: block;
+float: right;
+}
+
+.getUserInfo{
+  font-size: 14px;
+ color: olivedrab;
+ font-family:"Open Sans", Helvetica, Arial, sans-serif;
+ letter-spacing: 1px;
+  margin-left: 20px; 
+  margin-right: 20px; 
+  margin-top: 35px; 
+}
+
+.swipershow{
+  display: block;
+}
+.swiperhid{
+  display: none;
+}
+
+.myView {
+  font-size: 35rpx;
+  margin: 20rpx;
+}
+
+.cBtn {
+  height: 100rpx;
+  margin-left: 300rpx;
+}

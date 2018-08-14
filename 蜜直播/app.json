@@ -1,0 +1,55 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/main/main",
+    "pages/logs/logs",
+    "pages/my/my",
+    "pages/coupon/coupon",
+    "pages/mycoupon/mycoupon",
+    "pages/setting/setting",
+    "pages/photobookA/photobookA",
+    "pages/photobookB/photobookB",
+    "pages/address_multi/address_multi",
+    "pages/address_single/address_single",
+    "pages/booking/booking",
+    "pages/fromdemo/fromdemo",
+    "pages/photograHig/photograHig",
+    "pages/photograLow/photograLow",
+    "pages/addComment/addComment",
+    "pages/addPingLun/addPingLun",
+    "pages/address/address",
+    "pages/webview/webview",
+    "pages/showAddress/showAddress"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "蜜直播",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh":true
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "直播",
+        "selectedIconPath": "images/homeB.png",
+        "iconPath": "images/homeA.png"
+      },
+      
+      {
+        "pagePath": "pages/main/main",
+        "text": "动态",
+        "selectedIconPath": "images/newsB.png",
+        "iconPath": "images/newsA.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "selectedIconPath": "images/userB.png",
+        "iconPath": "images/userA.png"
+      }
+    ],
+    "selectedColor": "#28CFE1"
+  }
+}

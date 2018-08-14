@@ -1,0 +1,28 @@
+ 
+ <!--默认显示文字-->
+ <view class="top">
+    {{defaultText}}
+ </view>
+ <!--省-->
+ <block wx:if="{{province}}">
+    <view>
+        <block wx:for="{{provinceArr}}" wx:for-index="k" wx:for-item="v">
+            <view class="box-city" bindtap="bindProvince" data-province="{{v.name}}"data-id="{{v.id}}">{{v.name}}</view>
+        </block>
+    </view>
+ </block>
+ <!--市-->
+  <block wx:if="{{city}}">
+    <view>
+        <block wx:for="{{cityArr}}" wx:for-index="k" wx:for-item="v">
+            <view class="box-city" bindtap="bindCity" data-city="{{v.name}}"data-id="{{v.id}}">{{v.name}}</view>
+        </block>
+    </view>
+ </block>
+
+<!--按钮-->
+    <block wx:if="{{buttona}}">
+        <view>
+            <button class="buttona" bindtap="bindAdd">点击查看</button>
+        </view>
+    </block>

@@ -1,0 +1,59 @@
+<view class="box">
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+
+    <view class="shuru"> 
+        <textarea class="shuru1"placeholder="请输入您的内容" placeholder-style="font-size:13pt;"  name="content"/>
+    </view>
+
+     <view class="images-wrapper">
+          <!--<text class="images-text">请选择图片</text>-->
+          <view class="images-list">
+            <block wx:for="{{chooseImageUrl}}" wx:for-item="image">
+              <image src="{{image}}" class="images-image" data-src="{{image}}" bindtap="previewImage"></image>
+              <text class='chooseImageClose' data-index="{{index}}" bindtap='Close'>x</text>
+            </block>
+            
+            <view class="images-image image-plus" bindtap="chooseImage">
+              <view class="image-plus-horizontal"></view>
+              <view class="image-plus-vertical"></view>
+            </view>
+          </view>
+    </view>
+    
+    <view class="address">
+        <view class="xian"></view>
+
+        <view bindtap="bindAddress">
+            <image class="biao" src="../../images/address.png" mode="aspectFit"></image>
+            <text class="weizhi">{{addRessName?addRessName:'所在位置'}}
+                <input name="address" value="{{addRessName}}" type='text'/>
+            </text>
+            <image class="jiantou" src="../../images/jt.png" mode="aspectFit"></image>
+        </view>
+    </view>    
+
+
+    <!--<view class="caozuo">
+        <view>
+            <image class="biao" src="../../images/skyk.png" mode="aspectFit"></image>
+            <text class="weizhi" >谁可以看</text>
+            <image class="jiantou" src="../../images/jt.png" mode="aspectFit"></image>
+            <text class="weizhi1">公开</text>
+        </view>
+        
+        <view class="xian"></view>
+
+        <view>
+            <image class="biao" src="../../images/@.png" mode="aspectFit"></image>
+            <text class="weizhi">提醒谁看</text>
+            <image class="jiantou" src="../../images/jt.png" mode="aspectFit"></image>
+        </view> 
+    </view>-->
+
+    <button class="buttona" form-type="submit">提交</button>
+    
+</form>
+
+</view>
+

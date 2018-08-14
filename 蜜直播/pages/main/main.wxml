@@ -1,0 +1,140 @@
+
+<scroll-view class="box" scroll-y="true" style="height:1200rpx"  bindscroll="scrollHandle" lower-threshold="50" bindscrolltolower="scrollLoading" scroll-top="{{scrolltop}}">
+
+  
+ <!--<view class="top_cc"> -->
+    <!--右上角发布小图标-->
+    <!-- <view class="top-right" bindtap="bindAdd" bindtap="scrollHandle" animation="{{animationData1}}" >
+      <image class="baseimg" src="../../images/add.png" mode="scaleToFill" catchtap="bindAdd"></image>
+    </view> -->
+    <!--右上角地理位置小图标-->
+    <!-- <view class="top-left" bindtap="scrollHandle" animation="{{animationData2}}">
+      <image class="baseimg" src="/images/ditu.png" mode="scaleToFill" catchtap="locationWb"></image>
+    </view> -->
+<!--</view>  -->
+
+  <!--背景小图标-->
+  <view class="bg">
+      <image class="baseimg" src="../../images/bg.jpg" mode="scaleToFill"></image>
+      <image class="lives-right-img" src='../../images/Camaro.png' mode='aspectFill'  catchtap="bindAdd"/>
+  </view>
+  <!--背景图底部大头像-->
+  <view class="headimg">
+      <image class="baseimg" src="{{userInfo['avatarUrl']}}" mode="scaleToFill"></image>
+  </view>
+  <!--背景图底部昵称-->
+  <view class="nickname">
+    <text>{{userInfo['nickName']}}</text>
+  </view>
+  <!--占位行-->
+  <view class="lie"></view>
+
+
+<!--循环展示-->
+  <view class="content" wx:for="{{resultData}}" wx:for-item="item" wx:for-index="k">
+   
+    <block wx:if="{{item.user != 'undefined'}}">
+      <view class="head">
+        <!--头像-->
+        <image class="baseimg"  src="{{item.user.avatar}}" mode="scaleToFill"></image>
+      </view>
+      <!--昵称-->
+      <text class="wz">{{item.user.user_name}}</text>
+
+    </block>
+    
+    <!--内容-->
+    <text class="desc">{{item.info}}</text>
+    <!--显示上传图片-->
+    <block wx:if="{{item.imgs != 'null'}}">         
+        <!-- <block wx:if="{{item.length == 1}}"> -->
+            <view class="images-wrapper">
+                <view class="images-list">
+                  <block wx:for="{{item.imgs}}" wx:for-item="image">
+                    <image src="{{image}}" class="images-image" data-src="{{image}}" data-count="{{item.imgcount}}" bindtap="previewImage"></image>
+                  </block>
+                </view>
+          </view>
+        <!-- </block> -->
+
+        <!-- <block wx:elif="{{item.length >= 2}}">
+          <view class="images-wrapper">
+              <view class="images-list">
+                <block wx:for="{{item.img}}" wx:for-item="image">
+                  <image src="{{image}}" class="images-image" data-src="{{image}}" data-count="{{item.img}}" bindtap="previewImage"></image>
+                </block>
+              </view>
+          </view>
+        </block> -->
+    </block>
+    <!--显示地址-->
+    <block wx:if="{{item.address != 'undefined'}}">
+        <text class="address">{{item.address}}</text>
+    </block>
+
+    <!-- <block wx:if="{{item.user_id == userStatus.userId}}"> -->
+    <block wx:if="{{item.user_id == 1}}">
+        <text class="dele"  bindtap="bindDele" data-deleuserid="{{item.user_id}}" data-deleid="{{item.moment_id}}">删除</text>
+    </block>
+
+<view class='comment-view'>
+    <!--显示发布时间-->
+    <text class="time">{{item.time}}</text> 
+    <!--显示删除-->
+    
+    <!--显示操作小图标-->
+    <view class="biao" data-id="{{item.moment_id}}">
+      <image class="zan-img" bindtap="bindDianZan"  src='{{zanimg}}'></image>
+      <image class="comment-img" bindtap="bindPingLunA"  src="/images/comment.png"></image>
+    </view>
+
+</view>
+    
+    <!--显示点赞-->
+
+    <block wx:if="{{item.likes != 'null'}}">
+        <view class="dianzan-box">
+          <view class="dianzan-biao">
+            <image class="baseimg" src="/images/zan.png" mode="aspectFit"></image>
+          </view>
+
+          <view class="dianzan-text">bobo</view>
+        </view>
+    </block>
+    <!--显示评论-->
+    <!--如果朋友圈下的评论不等于空 则显示当前朋友圈的评论-->
+    <block wx:if="{{item.comments != 'null'}}">
+      <view class="pinglun-box" scroll-y>
+        <!--循环评论-->
+        <block wx:for="{{item.comments}}"  wx:for-item="item" wx:for-index="kk">
+
+            <!--如果pid等于null证明是发布的评论 否则是回复的评论-->
+            <block wx:if="{{item.replyed_id == 0}}">
+                <view class="pinglun-one" bindtap="bindPingLunB" data-pl_id="{{item.comment_id}}" data-pl_userid="{{item.reply_id}}" data-pl_nickname="{{item.reply_name}}" data-id="{{item.comment_id}}">
+                    <text class="pinglun-nickname">{{item.reply_name}}：</text>
+                    <text class="pinglun-content">{{item.comment}}</text>
+                </view>
+            </block>
+
+            <block wx:else>
+              <view class="pinglun-one" bindtap="bindPingLunB" data-pl_id="{{item.comment_id}}" data-pl_userid="{{item.replyed_id}}" data-pl_nickname="{{item.replyed_name}}" data-id="{{item.comment_id}}">
+                    <text class="pinglun-nickname">{{item.replyed_name}}<text style="color:#000;">回复</text>{{item.reply_name}}：</text>
+                    <text class="pinglun-content">{{item.comment}}</text>
+              </view>
+            </block>
+            
+        </block>
+      </view>
+    </block>
+
+  </view>
+
+    <!--点赞评论标签-->
+    <view class="caozuo" style="top:{{cz_top}}px;right:{{cz_right}}rpx;" animation="{{animationData}}">
+        <text class="dianzan" bindtap="bindDianZan">点赞</text> <text class="pinglun" bindtap="bindPingLunA">评论</text>
+    </view>
+
+
+
+</scroll-view>
+

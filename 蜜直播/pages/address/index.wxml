@@ -1,0 +1,78 @@
+<!--index.wxml-->
+<swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+       <image  bindtap='bannerpage' data-url='{{item.url}}' src="{{item.picurl}}" class="slide-image" mode='aspectFill'/>
+        <!-- width="355" height="150" -->
+    </swiper-item>
+  </block>
+</swiper>
+
+<!--间隔线  -->
+<view  style="flex:1;height:15px;background-color:#EBEBEB"></view>
+
+<!--菜单 item  -->
+<view class="item-content">
+  <view class="item-content-left-img">
+      <image style="width:30px;height:30px;" class='item-img' src="/images/img06.png"></image>
+      <!-- <text class='item-title' bindtap='calling'>在线求助</text> -->
+  </view>
+  <view class="item-content-left">
+      <!-- <image style="width:30px;height:30px;" class='item-img' src="/images/img06.png"></image> -->
+      <text class='item-title' bindtap='calling'>在线求助</text>
+  </view>
+  <view class="item-content-right-img">
+      <image style="width:30px;height:30px;" class='item-img' src="/images/img07.png"></image>
+      <!-- <text class='item-title' bindtap='liuyan'>留言求助</text> -->
+  </view>	
+  <view class="item-content-right">
+      <!-- <image style="width:30px;height:30px;" class='item-img' src="/images/img07.png"></image> -->
+      <text class='item-title' bindtap='liuyan'>留言求助</text>
+  </view>				
+</view>
+
+<!--间隔线  -->
+<view  style="flex:1;height:10px;background-color:#DCE3D7"></view>
+
+<!-- 测试  -->
+<view class='swiper-item-view'>
+  <view class='swiper-left' bindtap='swiperLeftTap'>
+    <text class="{{swiperlefttxt}}">专家导师</text>
+  </view>
+  <view class='swiper-right' bindtap='swiperRightTap'>
+    <text class="{{swiperrighttxt}}">资深心理咨询师</text>
+  </view>
+</view>
+
+<view class= "{{swiperItemShow}} swiper-content-left">
+    <!-- 导师信息 -->
+  <view bindtap='detailpage'  data-userid='{{item.userId}}' data-usertype='teachera' class="teacher-item" wx:for="{{list}}" wx:for-item="item" for:key="key">
+      <view class="teacher-content" >
+            <image class="teacher-img" mode='aspectFill' src='{{item.headurl}}'/>
+            <text id="" class="teacher-name">{{item.name}}</text>
+            <p class="teacher-desc">{{item.desc}}</p>					
+      </view>
+  </view> 
+</view>
+<view class="{{swiperItemHid}} swiper-content-right" >
+  <!-- 导师信息 -->
+  <view bindtap='detailpage' data-userid='{{item.userId}}' data-usertype='teacherb' class="teacher-item" wx:for="{{listB}}" wx:for-item="item" for:key="key">
+  <!--  -->
+      <view class="teacher-content" >
+            <image class="teacher-img" mode='aspectFill' src='{{item.headurl}}'/>
+            <text id="" class="teacher-name">{{item.name}}</text>
+            <p class="teacher-desc">{{item.desc}}</p>					
+      </view>
+  </view> 
+</view>
+
+
+<!--间隔线  -->
+<!-- <view  style="flex:1;height:10px;background-color:#DCE3D7"></view>
+
+<view class='daoshiItem'>导师风采</view>
+
+      -->
+
+

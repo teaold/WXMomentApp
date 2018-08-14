@@ -1,0 +1,34 @@
+.top
+{
+    text-align: center;
+    margin: 20rpx auto;
+}
+
+
+.box-city
+{
+    width:220rpx;
+    height:70rpx;
+    border:2px solid #ccc;
+    margin-left:16rpx;
+    margin-top:20rpx;
+    font-size:10pt;
+    float:left;
+    text-align: center;
+    line-height:75rpx;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+
+.buttona
+{
+    background:#09BB07; 
+    width:600rpx; 
+    height:88rpx; 
+    color:#fff; 
+    font-size:14pt;
+    margin-top:800rpx;
+    margin-left:80rpx;
+    line-height:40px;
+}
