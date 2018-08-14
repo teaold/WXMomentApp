@@ -85,7 +85,7 @@
     <!--显示操作小图标-->
     <view class="biao" data-id="{{item.moment_id}}">
       <image class="zan-img" bindtap="bindDianZan"  src='{{zanimg}}'></image>
-      <image class="comment-img" bindtap="bindPingLunA"  src="/images/comment.png"></image>
+      <image class="comment-img" bindtap="bindPingLunA" data-id="{{item.moment_id}}" data-type="add" src="/images/comment.png"></image>
     </view>
 
 </view>
@@ -110,15 +110,15 @@
 
             <!--如果pid等于null证明是发布的评论 否则是回复的评论-->
             <block wx:if="{{item.replyed_id == 0}}">
-                <view class="pinglun-one" bindtap="bindPingLunB" data-pl_id="{{item.comment_id}}" data-pl_userid="{{item.reply_id}}" data-pl_nickname="{{item.reply_name}}" data-id="{{item.comment_id}}">
+                <view class="pinglun-one" bindtap="bindPingLunB" data-model="{{item}}">
                     <text class="pinglun-nickname">{{item.reply_name}}：</text>
                     <text class="pinglun-content">{{item.comment}}</text>
                 </view>
             </block>
 
             <block wx:else>
-              <view class="pinglun-one" bindtap="bindPingLunB" data-pl_id="{{item.comment_id}}" data-pl_userid="{{item.replyed_id}}" data-pl_nickname="{{item.replyed_name}}" data-id="{{item.comment_id}}">
-                    <text class="pinglun-nickname">{{item.replyed_name}}<text style="color:#000;">回复</text>{{item.reply_name}}：</text>
+              <view class="pinglun-one" bindtap="bindPingLunB" data-type="reply" data-model="{{item}}">
+                    <text class="pinglun-nickname">{{item.reply_name}}<text style="color:#000;">回复</text>{{item.replyed_name}}：</text>
                     <text class="pinglun-content">{{item.comment}}</text>
               </view>
             </block>
@@ -131,7 +131,7 @@
 
     <!--点赞评论标签-->
     <view class="caozuo" style="top:{{cz_top}}px;right:{{cz_right}}rpx;" animation="{{animationData}}">
-        <text class="dianzan" bindtap="bindDianZan">点赞</text> <text class="pinglun" bindtap="bindPingLunA">评论</text>
+        <text class="dianzan" bindtap="bindDianZan">点赞</text> <text class="pinglun" bindtap="bindPingLunA" >评论</text>
     </view>
 
 

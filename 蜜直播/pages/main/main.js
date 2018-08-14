@@ -106,7 +106,6 @@ Page({
               
               if(res.data.code == 0)
               {
-                
                   wx.hideToast()
                   wx.stopPullDownRefresh()
                   that.setData({
@@ -248,56 +247,64 @@ Page({
       //   scrolltop: that.data.scrolltop
       // })
   },
-  bindDele: function(event){ //删除评论
+  bindDele: function(event){ //删除动态
     var that = this
+    var del_moment_id = event.target.dataset.deleid
     // 弹出提示让用户确认是否删除
     wx.showModal({
-      content: '您确定要删除当前评论吗, 删除后将无法恢复!',
+      content: '您确定要删除当前动态吗, 删除后将无法恢复!',
       success: function(res) 
       {
         if (res.confirm) 
         {
+
+          wx.showLoading({
+            title: '删除中...',
+          })
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 2000)
             // 执行REQUEST 删除当前记录
             wx.request({
-                url: app.requestUrl,
+              url: app.requestDelMomentUrl,
                 data: {
                   flag:'dele',
-                  openid:event.target.dataset.deleuserid,
-                  deleid:event.target.dataset.deleid
+                  // openid:event.target.dataset.deleuserid,
+                  user_id: '1',
+                  moment_id: del_moment_id
                 },
-                header: {
-                    'content-type': 'application/x-www-form-urlencoded',
-                },
-                method:'POST',
+                // header: {
+                //     'content-type': 'application/x-www-form-urlencoded',
+                // },
+                // method:'POST',
                 success: function(res) 
                 {
-                  console.log(res.data);
-                  if(res.data)
+                  wx.hideLoading()
+                  // console.log(res.data);
+                  if(res.data['code'] == 0)
                   {
-                    // 循环当前所有评论元素 找到当前用户选择的 并进行删除
-                    for(var i=0; i<that.data.resultData.length; i++)
-                    {
-                      if(that.data.resultData[i].id == event.target.dataset.deleid)
-                      {
-                        // 删除当前用户已选择的元素
-                        that.data.resultData.splice(i,1);
-                      }
-                      //console.log(that.data.resultData[i].id);
+                    // this.showMessage('已删除')
+                    var dataList = that.data.resultData
+                    for (var i = 0; i < dataList.length; i++) {
+                      var dataM = dataList[i];
+                      console.log(dataM.moment_id);
+                      if (dataM.moment_id == del_moment_id){
+                          dataList.splice(i, 1);
+                        }
                     }
-
                     // 构成新对象并且展示
                     that.setData({
-                      resultData:that.data.resultData
+                      resultData: dataList
                     })
                   }
                 },
                 fail: function(res)
                 {
-                  console.error(res);
+                  wx.hideLoading()
                 },
                 complete:function(res)
                 {
-                  console.debug(res)
+                  wx.hideLoading()
                 }
           })
         }
@@ -475,25 +482,36 @@ Page({
         }
     })
   },
-  bindPingLunA: function() // 处理评论
+  bindPingLunA: function(e) // 处理评论
   {
       var that = this
-      var userId = app.userIdd
-      var dz_id = that.data.dz_id
+      var moment_id = e.currentTarget.dataset.id
+      
     wx.navigateTo({
-        url: '../addPingLun/addPingLun?id='+dz_id+'&userId='+userId+'&state=0'
+      url: '../addPingLun/addPingLun?id=' + moment_id+'&state=0'
       })
   },
   bindPingLunB: function(e){ // 处理已有评论的回复
-    var userId = app.userId
-    var id = e.currentTarget.dataset.id
-    var pl_id = e.currentTarget.dataset.pl_id
-    var hf_nickname = e.currentTarget.dataset.pl_nickname
-    var hf_userid = e.currentTarget.dataset.pl_userid
+    var dataM = e.currentTarget.dataset.model
+    // console.log(dataM)
+    if (dataM.replyed_id == 0){
+      wx.navigateTo({
+        url: '../addPingLun/addPingLun?id=' + dataM.moment_id + '&userId=' + dataM.reply_id + '&nickname=' + dataM.reply_name +'&state=1'
+      })
+    } else {
+      wx.navigateTo({
+        url: '../addPingLun/addPingLun?id=' + dataM.moment_id + '&userId=' + dataM.reply_id + '&nickname=' + dataM.reply_name + '&hf_userId=' + dataM.replyed_id + '&hf_nickname=' + dataM.replyed_name + '&state=2'
+      })
+    }
+    // var userId = app.userId
+    // var id = e.currentTarget.dataset.id
+    // var pl_id = e.currentTarget.dataset.pl_id
+    // var hf_nickname = e.currentTarget.dataset.pl_nickname
+    // var hf_userid = e.currentTarget.dataset.pl_userid
 
-    wx.navigateTo({
-      url: '../addPingLun/addPingLun?id='+id+'&userId='+userId+'&hf_userId='+hf_userid+'&hf_nickname='+hf_nickname+'&state=1'
-    })
+    // wx.navigateTo({
+    //   url: '../addPingLun/addPingLun?id='+id+'&userId='+userId+'&hf_userId='+hf_userid+'&hf_nickname='+hf_nickname+'&state=1'
+    // })
   },
 
 

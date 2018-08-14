@@ -123,6 +123,10 @@ Page({
             title: '网络错误,请稍后再试',
           })
 
+        },
+        
+        complete: function (res) {
+          wx.hideLoading()
         }
 
       });

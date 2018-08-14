@@ -17,16 +17,22 @@ Page({
           userInfo:userInfo
         })
       })
-
-    // 当前人信息
+    //动态id
     that.data.userStatus['id'] = e.id;
-    that.data.userStatus['userId'] = e.userId;
+    
+    //状态
     that.data.userStatus['state'] = e.state;
-
-    // 回复人信息
-    that.data.userStatus['hf_nickname'] = e.hf_nickname;
-    that.data.userStatus['hf_userId'] = e.hf_userId;
-    console.debug(e)
+    if (e.state > 0) {
+      // 回复人信息
+      // 当前人信息
+      that.data.userStatus['userId'] = e.userId;
+      that.data.userStatus['nickname'] = e.nickname;
+    } else {
+      that.data.userStatus['nickname'] = '0';
+      that.data.userStatus['userId'] = '0';
+    }
+    
+    // console.log(that.data.userStatus)
      // console.log(event);
   },
 
@@ -52,71 +58,62 @@ Page({
     }
     else
     {
-
-      // 执行REQUEST写入数据库
-      wx.request({
-        url: app.requestUrl,
-        data: 
-        {
-          flag: 'addPl' ,
-          content:e.detail.value.content,
-          nickname:that.data.userInfo.nickName,
-          userId:that.data.userStatus.userId,
-          id:that.data.userStatus.id,
-          flagc:that.data.userStatus.state,
-          hf_userId:that.data.userStatus.hf_userId,
-          hf_nickname:that.data.userStatus.hf_nickname
-        },
-        header: 
-        {
-           'content-type': 'application/x-www-form-urlencoded',
-        },
-        method:'POST',
-        success: function(lb) 
-        {
-
-          wx.redirectTo({
-            url: '../../pages/main/main?userId=' + app.userId +'&state=0'
-            //url: '../../pages/main/main?userId='+that.data.userStatus.userId+'&address='+that.data.userStatus.address+'&name='+that.data.userStatus.name+'&lat='+that.data.userStatus.lat+'&lnt='+that.data.userStatus['lnt'] 
-          });
-          // console.log(lb.data)
-          // return
-          // if(lb.data.status)
-          // {
-          //     wx.showModal({
-          //     content: lb.data.text,
-          //     showCancel:false,
-          //     success: function(res) 
-          //     {
-          //       if (res.confirm) 
-          //       {
-          //           wx.redirectTo({
-          //             url: '../../pages/main/main?userId=' + app.userId +'&state=0'
-          //             //url: '../../pages/main/main?userId='+that.data.userStatus.userId+'&address='+that.data.userStatus.address+'&name='+that.data.userStatus.name+'&lat='+that.data.userStatus.lat+'&lnt='+that.data.userStatus['lnt'] 
-          //           });
-          //       }
-          //     }
-          //   });
-          // }
-          // else
-          // {
-          //   wx.showModal({
-          //     content: lb.data.text,
-          //     showCancel:false,
-          //     success: function(res) {
-          //       if (res.confirm) 
-          //       {
-          //         //console.log('用户点击确定');
-          //       }
-          //     }
-          //   });
-          // }
-        },
-        fail: function(lb)
-        {
-          console.log(lb)
-        }
+      var url1 = app.requestAddCommentUrl;
+      wx.showLoading({
+        title: '提交中...',
       })
+      setTimeout(function () {
+        wx.hideLoading()
+      }, 2000)
+      wx.request({
+        url: url1,
+        data: {
+          state: that.data.userStatus.state,
+          moment_id: that.data.userStatus.id,
+          reply_id: '1',
+          reply_name: '波波',
+          comment: e.detail.value.content,
+          replyed_id: that.data.userStatus.userId,
+          replyed_name: that.data.userStatus.nickname
+        },
+        //POST请求要添加下面的header设置
+        // method: 'POST',
+        // header: { "Content-Type": "application/x-www-form-urlencoded" },
+        success: function (res) {
+
+          that.setData({
+            hidden: true
+          });
+          wx.hideLoading()
+          console.log(res)
+          wx.showToast({
+            title: res.data['msg'],
+          });
+          if (res.data['code'] == '0') {
+            
+            var pages = getCurrentPages();
+            if (pages.length > 1) {
+              //上一个页面实例对象
+              var prePage = pages[pages.length - 2];
+              //关键在这里
+              prePage.onReloadPage()
+            }
+            setTimeout(function () {
+              wx.navigateBack();
+            }, 2000)
+
+          }
+        },
+        fail: function (res) {
+          wx.hideLoading()
+          wx.showToast({
+            title: '网络错误,请稍后再试',
+          })
+
+        }
+
+      });
+
     }
   }
 

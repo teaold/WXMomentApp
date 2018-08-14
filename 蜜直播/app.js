@@ -1,5 +1,5 @@
 //app.js
-var baseUrl = 'http://localhost/public/index.php/index/'
+var baseUrl = 'http://localhost/public/index.php/index/moments/'
 App({
   onLaunch: function () 
   {
@@ -54,16 +54,19 @@ App({
     }
   },
   globalData:{
-    userInfo:null
+    // userInfo:null
+    userInfo: {openId:'1',nickName:'波波'}
   },
-  requestUserinfoUrl: baseUrl+'moments/modifyuserinfo',
-  requestUrl: baseUrl +'moments/momentlist',
-  requestAddMomentUrl: baseUrl + 'moments/addMoment',
-  requestliveUrl: baseUrl +'moments/livelist',
-  requestBannerUrl: baseUrl +'moments/banner',
-  requestcouponUrl: baseUrl +'moments/couponlist',
-  requestgetcouponUrl: baseUrl +'moments/getcoupon',
-  requestusercouponlisturl: baseUrl +'moments/usercouponlist',
+  requestUserinfoUrl: baseUrl+'modifyuserinfo',
+  requestUrl: baseUrl +'momentlist',
+  requestAddMomentUrl: baseUrl + 'addMoment',
+  requestDelMomentUrl: baseUrl + 'delemoment',
+  requestAddCommentUrl: baseUrl + 'addComment',
+  requestliveUrl: baseUrl +'livelist',
+  requestBannerUrl: baseUrl +'banner',
+  requestcouponUrl: baseUrl +'couponlist',
+  requestgetcouponUrl: baseUrl +'getcoupon',
+  requestusercouponlisturl: baseUrl +'usercouponlist',
   userId:null,
   // http://47.52.142.116/friend/pengyuquan.php
 })
