@@ -1,5 +1,5 @@
 //app.js
-var baseUrl = 'http://localhost/public/index.php/index/moments/'
+var baseUrl = 'http://172.16.0.54/public/index.php/index/moments/'
 App({
   onLaunch: function () 
   {
@@ -19,28 +19,28 @@ App({
           //console.log(lb.code);
           //console.log(that.requestUrl);
           //拿到code后请求服务器获取身份标识写入缓存
-          wx.request({
-            url: that.requestUrl,
-            data: 
-            {
-              flag: 'code' ,
-              code: lb.code
-            },
-            header: 
-            {
-                'content-type': 'application/x-www-form-urlencoded',
-            },
-            method:'POST',
-            success: function(lb) 
-            {
-              console.log(lb.data)
-              that.userId = lb.data.userid
-            },
-            fail: function(lb)
-            {
-              console.log(lb)
-            }
-          })
+          // wx.request({
+          //   url: that.requestUrl,
+          //   data: 
+          //   {
+          //     flag: 'code' ,
+          //     code: lb.code
+          //   },
+          //   header: 
+          //   {
+          //       'content-type': 'application/x-www-form-urlencoded',
+          //   },
+          //   method:'POST',
+          //   success: function(lb) 
+          //   {
+          //     console.log(lb.data)
+          //     that.userId = lb.data.userid
+          //   },
+          //   fail: function(lb)
+          //   {
+          //     console.log(lb)
+          //   }
+          // })
 
           // 用户OBJ写入全局对象
           wx.getUserInfo({
@@ -54,19 +54,21 @@ App({
     }
   },
   globalData:{
-    // userInfo:null
-    userInfo: {openId:'1',nickName:'波波'}
+    userInfo:null
+    // userInfo: {openId:'1',nickName:'波波'}
   },
   requestUserinfoUrl: baseUrl+'modifyuserinfo',
   requestUrl: baseUrl +'momentlist',
   requestAddMomentUrl: baseUrl + 'addMoment',
   requestDelMomentUrl: baseUrl + 'delemoment',
+  requestDetailMomentUrl: baseUrl + 'momentdetail',
   requestAddCommentUrl: baseUrl + 'addComment',
   requestliveUrl: baseUrl +'livelist',
   requestBannerUrl: baseUrl +'banner',
   requestcouponUrl: baseUrl +'couponlist',
   requestgetcouponUrl: baseUrl +'getcoupon',
   requestusercouponlisturl: baseUrl +'usercouponlist',
+  requestaddLikeUrl: baseUrl + 'addLike',
   userId:null,
   // http://47.52.142.116/friend/pengyuquan.php
 })

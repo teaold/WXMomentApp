@@ -44,7 +44,7 @@
     </block>
     
     <!--内容-->
-    <text class="desc">{{item.info}}</text>
+    <text class="desc" bindtap="detailpage" data-id="{{item.moment_id}}">{{item.info}}</text>
     <!--显示上传图片-->
     <block wx:if="{{item.imgs != 'null'}}">         
         <!-- <block wx:if="{{item.length == 1}}"> -->
@@ -82,15 +82,23 @@
     <text class="time">{{item.time}}</text> 
     <!--显示删除-->
     
-    <!--显示操作小图标-->
+    <!--点赞 评论-->
     <view class="biao" data-id="{{item.moment_id}}">
-      <image class="zan-img" bindtap="bindDianZan"  src='{{zanimg}}'></image>
+      <block wx:if="{{item.praise == 1}}">
+      <!-- <block wx:if="{{item.moment_id == 6}}"> -->
+          <image class="zan-img" bindtap="bindDianZan" data-model="{{item}}"  src="../../images/yidianzan.png"></image>
+      </block>
+
+      <block wx:else>
+          <image class="zan-img"  bindtap="bindDianZan" data-model="{{item}}"  src="../../images/dianzan.png"></image>
+      </block>
+
       <image class="comment-img" bindtap="bindPingLunA" data-id="{{item.moment_id}}" data-type="add" src="/images/comment.png"></image>
     </view>
 
 </view>
     
-    <!--显示点赞-->
+    <!--显示点赞 用户 列表-->
 
     <block wx:if="{{item.likes != 'null'}}">
         <view class="dianzan-box">
@@ -99,6 +107,14 @@
           </view>
 
           <view class="dianzan-text">bobo</view>
+          <view class="dianzan-text">bobo2</view>
+          <view class="dianzan-text">bobo3</view>
+          <view class="dianzan-text">bobo4</view>
+          <view class="dianzan-text">bobo5</view>
+          <view class="dianzan-text">bobo5</view>
+          <view class="dianzan-text">bobo5</view>
+          <view class="dianzan-text">波波赞</view>
+          <view class="dianzan-text">bobo5</view>
         </view>
     </block>
     <!--显示评论-->

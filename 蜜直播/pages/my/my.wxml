@@ -14,13 +14,13 @@
 我的优惠券：
 设置：个人信息
  -->
-<view class='msgListView' bindtap='liuyan'>
+<view class='msgListView' bindtap='mybooking'>
   <image class='msgIcon' src='../../images/yuyue.png'></image>
   <text class='MsgTxt' >我的预约</text>
   <image class='msgArrow' src='../../images/jt.png'></image>
 </view>
 
-<view class='msgListView' bindtap='liuyan'>
+<view class='msgListView' bindtap='mymoment'>
   <image class='msgIcon' src='../../images/dongtai.png'></image>
   <text class='MsgTxt' >我的动态</text>
   <image class='msgArrow' src='../../images/jt.png'></image>

@@ -31,6 +31,8 @@ Page({
       that.setData({
         userInfo: userInfo
       })
+      //app.globalData.userInfo = userInfo
+      //console.log(userInfo.avatarUrl)
     })
 
     // that.data.userStatus['state'] = e.state;
@@ -63,6 +65,23 @@ Page({
     var that = this
     that.onloadRequest(0)
   },
+  onChangeMoment: function (e) {
+    // 详情页动态改动
+    console.log(e)
+    var that = this
+    var changeM = e
+    var dataList = that.data.resultData
+    for (var i = 0; i < dataList.length; i++) {
+      var dataM = dataList[i];
+      if (dataM.moment_id == changeM.moment_id) {
+        dataList[i] = changeM
+      }
+    }
+    // 构成新对象并且展示
+    that.setData({
+      resultData: dataList
+    })
+  },
   onReady: function () {
     // 页面渲染完成
   },
@@ -89,15 +108,16 @@ Page({
          wx.request({
             url: app.requestUrl, 
             data: {
-              flag:'pageData',
+              flag:'list',
               data:that.data.userStatus,
               state:that.data.state,
+              user_id:'1',
               page:page
             },
-            header: {
-                'content-type': 'application/x-www-form-urlencoded',
-            },
-            method:'POST',
+            // header: {
+            //     'content-type': 'application/x-www-form-urlencoded',
+            // },
+            // method:'POST',
             success: function(res) 
             {
               //console.log(res.data)
@@ -332,6 +352,16 @@ Page({
       }
     })
   },
+  // 详情页
+  detailpage: function (e) 
+  {
+    var that = this
+    var moment_id = e.currentTarget.dataset.id
+
+    wx.navigateTo({
+      url: '../detailmoment/detailmoment?id=' + moment_id + '&state=0'
+    })
+  },
   previewImage: function (e){ // 展示图片
     var current = e.target.dataset.src
     // var count = e.target.dataset.count.split(",")
@@ -386,101 +416,64 @@ Page({
     },2000)
     
   },
-  bindDianZan: function () // 处理点赞
-  {
-    var that = this
-    that.setData({
-      zanimg: '/images/yidianzan.png'
-    })
-  },
-  bindDianZan1: function() // 处理点赞
+  // bindDianZan: function () // 处理点赞
+  // {
+  //   var that = this
+  //   that.setData({
+  //     zanimg: '/images/yidianzan.png'
+  //   })
+  // },
+  bindDianZan: function(e) // 处理点赞
   {
       var that = this
-      var userId = app.userId
-      var dz_id = that.data.dz_id
-
-      wx.request({
-        url: app.requestUrl,
-        data: 
-        {
-          flag:'addDZ',
-          userId:userId,
-          id: dz_id,
-          nickname: that.data.userInfo.nickName
-        },
-        header: 
-        {
-            'content-type': 'application/x-www-form-urlencoded',
-        },
-        method:'POST',
-        success: function(res) 
-        {
-          console.log(res.data.status)
-          // 1是点赞 2是取消点赞
-          if(res.data.status == 1)
-          {
-            // 循环当前节点找到点赞ID对应的节点
-            for(var ii=0; ii<that.data.resultData.length;ii++)
-            {
-                if(that.data.resultData[ii].id == dz_id)
-                {
-                  // 如果当前数组下dianzan为null证明还没有人点赞则直接添加 否则添加当前人昵称+之前人的点赞
-                  if(that.data.resultData[ii]['dianzan'] == 'null')
-                  {
-                    that.data.resultData[ii]['dianzan'] = that.data.userInfo.nickName
-                  }
-                  else
-                  {
-                    that.data.resultData[ii]['dianzan'] = that.data.userInfo.nickName + "," + that.data.resultData[ii]['dianzan']
-                  }
-                  break
+      var dataM = e.currentTarget.dataset.model
+    if (dataM.praise == 0){//未点赞
+        
+        wx.request({
+          url: app.requestaddLikeUrl,
+          data: {
+            user_id: '1',
+            user_name: app.globalData.userInfo.nickName,
+            like:'1',//1 : 点赞 ,0 取消赞
+            moment_id: dataM.moment_id
+          },
+          // header: {
+          //     'content-type': 'application/x-www-form-urlencoded',
+          // },
+          // method:'POST',
+          success: function (res) {
+            wx.hideLoading()
+            console.log(res.data);
+            if (res.data['code'] == 0) {
+              // this.showMessage('已赞')
+              var dataList = that.data.resultData
+              for (var i = 0; i < dataList.length; i++) {
+                var datatempM = dataList[i];
+                console.log(dataM.moment_id);
+                if (dataM.moment_id == datatempM.moment_id) {
+                  datatempM['praise'] = '1';
+                  // var dataLikesArr = datatempM['likes'];
+                  // dataLikesArr[] = res.data['data'];
+                  // datatempM['likes'] = dataLikesArr;
+                  dataList[i] = datatempM;
                 }
-            }
-          }
-          else if(res.data.status == 2)
-          {
-            // 循环当前节点找到点赞ID对应的节点
-            for(var ii=0; ii<that.data.resultData.length;ii++)
-            {
-              if(that.data.resultData[ii].id == dz_id)
-              {
-                // 当前点赞列表拆分数组
-                var dzArr = that.data.resultData[ii]['dianzan'].split(",")
-                // 计算当前数组的长度 如果长度小于2则赋值为null 否则删除当前元素后返回新的数组
-                if(dzArr.length < 2)
-                {
-                  that.data.resultData[ii]['dianzan'] = 'null'
-                }
-                else
-                {
-                  // 循环数组删除当前点赞的昵称
-                  for(var dz=0; dz<dzArr.length;dz++)
-                  {
-                    if(dzArr[dz] == that.data.userInfo.nickName)
-                    {
-                      dzArr.splice(dz,1)
-                      break
-                    }
-                  }
-
-                  that.data.resultData[ii]['dianzan'] = dzArr.join(",")
-                }
-                break
               }
-            }
-          }
-          // 重置数据
-          that.setData({
-            resultData:that.data.resultData,
-            cz_flag:false
-          })
 
-        },
-        fail: function(lb)
-        {
-          console.log(lb)
-        }
-    })
+              // 构成新对象并且展示
+              that.setData({
+                resultData: dataList
+              })
+            }
+          },
+          fail: function (res) {
+            wx.hideLoading()
+          },
+          complete: function (res) {
+            wx.hideLoading()
+          }
+        })
+      }
+      
   },
   bindPingLunA: function(e) // 处理评论
   {
@@ -520,6 +513,73 @@ Page({
   
  
 
+// wx.request({
+//   url: app.requestUrl,
+//   data:
+//     {
+//       flag: 'addDZ',
+//       userId: userId,
+//       id: dz_id,
+//       nickname: that.data.userInfo.nickName
+//     },
+//   header:
+//     {
+//       'content-type': 'application/x-www-form-urlencoded',
+//     },
+//   method: 'POST',
+//   success: function (res) {
+//     console.log(res.data.status)
+//     // 1是点赞 2是取消点赞
+//     if (res.data.status == 1) {
+//       // 循环当前节点找到点赞ID对应的节点
+//       for (var ii = 0; ii < that.data.resultData.length; ii++) {
+//         if (that.data.resultData[ii].id == dz_id) {
+//           // 如果当前数组下dianzan为null证明还没有人点赞则直接添加 否则添加当前人昵称+之前人的点赞
+//           if (that.data.resultData[ii]['dianzan'] == 'null') {
+//             that.data.resultData[ii]['dianzan'] = that.data.userInfo.nickName
+//           }
+//           else {
+//             that.data.resultData[ii]['dianzan'] = that.data.userInfo.nickName + "," + that.data.resultData[ii]['dianzan']
+//           }
+//           break
+//         }
+//       }
+//     }
+//     else if (res.data.status == 2) {
+//       // 循环当前节点找到点赞ID对应的节点
+//       for (var ii = 0; ii < that.data.resultData.length; ii++) {
+//         if (that.data.resultData[ii].id == dz_id) {
+//           // 当前点赞列表拆分数组
+//           var dzArr = that.data.resultData[ii]['dianzan'].split(",")
+//           // 计算当前数组的长度 如果长度小于2则赋值为null 否则删除当前元素后返回新的数组
+//           if (dzArr.length < 2) {
+//             that.data.resultData[ii]['dianzan'] = 'null'
+//           }
+//           else {
+//             // 循环数组删除当前点赞的昵称
+//             for (var dz = 0; dz < dzArr.length; dz++) {
+//               if (dzArr[dz] == that.data.userInfo.nickName) {
+//                 dzArr.splice(dz, 1)
+//                 break
+//               }
+//             }
 
+//             that.data.resultData[ii]['dianzan'] = dzArr.join(",")
+//           }
+//           break
+//         }
+//       }
+//     }
+//     // 重置数据
+//     that.setData({
+//       resultData: that.data.resultData,
+//       cz_flag: false
+//     })
+
+//   },
+//   fail: function (lb) {
+//     console.log(lb)
+//   }
+// })
 
 

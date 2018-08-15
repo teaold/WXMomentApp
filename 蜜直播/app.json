@@ -19,7 +19,11 @@
     "pages/addPingLun/addPingLun",
     "pages/address/address",
     "pages/webview/webview",
-    "pages/showAddress/showAddress"
+    "pages/showAddress/showAddress",
+    "pages/detailmoment/detailmoment",
+    "pages/mybooking/mybooking",
+    "pages/mymoment/mymoment",
+    "pages/userpage/userpage"
   ],
   "window":{
     "backgroundTextStyle":"light",

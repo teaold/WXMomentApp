@@ -71,7 +71,7 @@ Page({
           state: that.data.userStatus.state,
           moment_id: that.data.userStatus.id,
           reply_id: '1',
-          reply_name: '波波',
+          reply_name: app.globalData.userInfo.nickName,
           comment: e.detail.value.content,
           replyed_id: that.data.userStatus.userId,
           replyed_name: that.data.userStatus.nickname
@@ -100,7 +100,7 @@ Page({
             }
             setTimeout(function () {
               wx.navigateBack();
-            }, 2000)
+            }, 1000)
 
           }
         },

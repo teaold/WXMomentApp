@@ -48,7 +48,20 @@ Page({
       url: '../../pages/setting/setting'
     })
   },
- 
+  //我的预约 
+  mybooking: function (e) {
+    var that = this
+    wx.navigateTo({
+      url: '../../pages/mybooking/mybooking'
+    })
+  },
+  //我的动态 
+  mymoment: function (e) {
+    var that = this
+    wx.navigateTo({
+      url: '../../pages/mymoment/mymoment'
+    })
+  },
 
 }) 
 

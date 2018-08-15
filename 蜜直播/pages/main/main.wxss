@@ -146,6 +146,7 @@ color: transparent;
  {
    margin-top:20rpx;
    margin-left:120rpx;
+   margin-right:40rpx;
    font-size:10pt;
  }
 
@@ -249,8 +250,14 @@ color: transparent;
   border-bottom: 1px solid #cfcfcf;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
-}
 
+  /* width: 100%; */
+  display: flex;
+  /*row 横向  column 列表  */
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+/* 点赞列表 图标 */
 .dianzan-biao
 {
   width:35rpx;
@@ -259,14 +266,14 @@ color: transparent;
   overflow:hidden;
   margin-left: 15rpx;
 }
-
+/* 点赞列表用户 */
 .dianzan-text
 {
   position:relative;
   color:#576b95;
   font-size:10pt;
-  margin-top:-29rpx;
-  margin-left:50rpx;
+  /* margin-top:-29rpx; */
+  margin-left:20rpx;
 }
 
 
