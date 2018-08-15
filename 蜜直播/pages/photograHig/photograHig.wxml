@@ -28,7 +28,7 @@
 
 <template is="ItemMutiSelectView" data="{{title:'直播经验',important:'1',itemNameArr:liveNameArray,funcname:'livecheckbox'}}" />
 
-  <template is="msgItemfrom" data="{{msgname:'作品链接',important:'1',funcname:'listenerWorkInput',inputtype:'text'}}" />
+  <template is="msgItemfrom" data="{{msgname:'作品链接',important:'0',funcname:'listenerWorkInput',inputtype:'text'}}" />
 
   <button class="playbtn" type="primary" bindtap="listenerLogin">认 证</button>
 

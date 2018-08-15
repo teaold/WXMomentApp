@@ -1,5 +1,5 @@
 //app.js
-var baseUrl = 'http://172.16.0.54/public/index.php/index/moments/'
+var baseUrl = 'http://localhost/public/index.php/index/moments/'
 App({
   onLaunch: function () 
   {
@@ -69,6 +69,7 @@ App({
   requestgetcouponUrl: baseUrl +'getcoupon',
   requestusercouponlisturl: baseUrl +'usercouponlist',
   requestaddLikeUrl: baseUrl + 'addLike',
+  requestlivebookingUrl: baseUrl + 'livebooking',
   requestcertyphotomanUrl: baseUrl + 'certyphotoman',
   userId:null,
   // http://47.52.142.116/friend/pengyuquan.php

@@ -11,7 +11,7 @@
 <text class='input-title'>姓名</text>
 <text class='input-title-tag'>*</text>
 <view class="inputView" >
-      <input class="input" type="text" placeholder="请输入姓名" placeholder-style="color: #D3D3D3" bindinput="listenerPhoneInput" />
+      <input class="input" type="text" placeholder="请输入姓名" placeholder-style="color: #D3D3D3" bindinput="listenerNameInput" />
 </view>
 
 <text class='input-title'>电话</text>
@@ -44,7 +44,7 @@
 <text class='input-title'>活动地点</text>
 <text class='input-title-tag'>*</text>
 <view class="inputView" >
-      <input class="input" type="text" placeholder="请输入活动地点" placeholder-style="color: #D3D3D3" bindinput="listenerPhoneInput" />
+      <input class="input" type="text" placeholder="请输入活动地点" placeholder-style="color: #D3D3D3" bindinput="listenerDetailAddrInput" />
 </view>
 
 <text class='input-title'>机位需求</text>
