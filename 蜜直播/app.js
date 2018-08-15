@@ -69,6 +69,7 @@ App({
   requestgetcouponUrl: baseUrl +'getcoupon',
   requestusercouponlisturl: baseUrl +'usercouponlist',
   requestaddLikeUrl: baseUrl + 'addLike',
+  requestcertyphotomanUrl: baseUrl + 'certyphotoman',
   userId:null,
   // http://47.52.142.116/friend/pengyuquan.php
 })

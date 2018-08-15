@@ -23,7 +23,7 @@
 <text class='input-title'>活动主题</text>
 <text class='input-title-tag'>*</text>
 <view class="inputView" >
-      <input class="input" type="text" placeholder="请输入活动主题" placeholder-style="color: #D3D3D3" bindinput="listenerPhoneInput" />
+      <input class="input" type="text" placeholder="请输入活动主题" placeholder-style="color: #D3D3D3" bindinput="listenerThemeInput" />
 </view>
 
 <text class='input-title'>活动时间</text>

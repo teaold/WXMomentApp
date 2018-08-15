@@ -144,7 +144,7 @@
   <block wx:if="{{important == '1'}}">
     <text class='input-title-tag'>*</text>
   </block>
-  <checkbox-group bindchange="checkboxChange" >
+  <checkbox-group bindchange="{{funcname}}" >
        
        <view class="layout_horizontal">
             <view wx:for="{{itemNameArr}}" wx:key="name" class="checkbox-view">

@@ -1,6 +1,6 @@
 var area = require('../../data/area')
 var p = 0, c = 0, d = 0
-
+var app = getApp()
 Page({
   /**
    * 初始化数据

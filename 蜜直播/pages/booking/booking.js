@@ -1,3 +1,4 @@
+var app = getApp()
 Page({
   /**
    * 初始化数据
@@ -18,12 +19,8 @@ Page({
     this.data.phone = e.detail.value;
 
   },
-
-  /**
-   * 监听密码输入
-   */
-  listenerPasswordInput: function (e) {
-    this.data.password = e.detail.value;
+  listenerThemeInput: function (e) {
+    this.data.checkData['theme'] = e.detail.value;
   },
 
   /**
