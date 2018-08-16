@@ -1,4 +1,4 @@
-// pages/webview/webview.js
+
 const app = getApp()
 
 Page({
@@ -71,15 +71,16 @@ Page({
 })
 
 
-// 加载优惠券
+// 我的预约列表
 var GetList = function (that) {
-  var url = app.requestcouponUrl;
+  var url = app.requestuserlivebookUrl;
   that.setData({
     hidden: false
   });
   wx.request({
     url: url,
     data: {
+      user_id: '1'
     },
     success: function (res) {
       // var l = []

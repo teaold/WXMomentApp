@@ -1,0 +1,67 @@
+<template name="msgItem">
+  <!-- 流程图 -->
+  <view class='liucheng-bgview'>
+    <text class='liuc-title'>{{msg1}}</text>
+    <view class='msgListView' bindtap='coupon'>
+      <!-- <image class='msgIcon' src='../../images/needs.png'></image> -->
+      <text class='MsgTxt'>{{msg2}}</text>
+    </view>
+    <!-- <view class='liuc-line'></view> -->
+    <view class='msgListView' bindtap='coupon'>
+      <!-- <image class='msgIcon' src='../../images/baojia.png'></image> -->
+      <text class='MsgTxt'>{{msg3}}</text>
+    </view>
+    <view class='msgListView2' bindtap='coupon'>
+      <!-- <image class='msgIcon' src='../../images/phone.png'></image> -->
+      <text class='MsgTxt2'>{{msg4}}</text>
+    </view>
+    <view class='tiplistv' bindtap='coupon'>
+      <image class='msgIcon' src='../../images/tishi.png'></image>
+      <text class='tipsTxt'>{{msg5}}</text>
+    </view>
+
+    <view class='stateView {{class1}}'>
+      {{msg6}}
+    </view>
+  </view>
+
+</template>
+
+
+<template name="msgItem2">
+  <!-- 流程图 -->
+  <view class='liucheng-bgview'>
+    <text class='liuc-title'>{{msg1}}</text>
+    <view class='msgListView' bindtap='coupon'>
+      <text class='MsgTxt'>{{msg2}}</text>
+    </view>
+    <!-- <view class='liuc-line'></view> -->
+    <view class='msgListView' bindtap='coupon'>
+      <text class='MsgTxt'>{{msg3}}</text>
+    </view>
+    <view class='msgListView' bindtap='coupon'>
+      <text class='MsgTxt2'>{{msg4}}</text>
+    </view>
+    <view class='msgListView' bindtap='coupon'>
+      <text class='MsgTxt'>{{msg5}}</text>
+    </view>
+    <view class='msgListView' bindtap='coupon'>
+      <text class='MsgTxt'>{{msg6}}</text>
+    </view>
+    <view class='msgListView' bindtap='coupon'>
+      <text class='MsgTxt'>{{msg7}}</text>
+    </view>
+    <view class='msgListView' bindtap='coupon'>
+      <text class='MsgTxt'>{{msg8}}</text>
+    </view>
+    <view class='tiplistv' bindtap='coupon'>
+      <image class='msgIcon' src='../../images/tishi.png'></image>
+      <text class='tipsTxt'>{{msg9}}</text>
+    </view>
+
+    <view class='stateView {{class1}}'>
+      {{msg10}}
+    </view>
+  </view>
+
+</template>

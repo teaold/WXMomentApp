@@ -71,6 +71,7 @@ App({
   requestaddLikeUrl: baseUrl + 'addLike',
   requestlivebookingUrl: baseUrl + 'livebooking',
   requestcertyphotomanUrl: baseUrl + 'certyphotoman',
+  requestuserlivebookUrl: baseUrl + 'userlivebooklist',
   userId:null,
   // http://47.52.142.116/friend/pengyuquan.php
 })
