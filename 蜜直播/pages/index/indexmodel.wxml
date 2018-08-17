@@ -29,7 +29,7 @@
     
     <view  class="lives-content"  wx:for="{{listdata}}" wx:for-item="item" for:key="key">
         <view class="lives-img-view" bindtap='detailpage'  data-model='{{item}}' data-usertype='lives'>
-          <image class="lives-img" src='{{item.url}}' mode='aspectFill' />
+          <image class="lives-img" src='{{item.picurl}}' mode='aspectFill' />
           <image class="lives-right-img" src='../../images/play.png' mode='aspectFill' />
       
         </view>

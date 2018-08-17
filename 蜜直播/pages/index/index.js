@@ -62,8 +62,9 @@ Page({
   
   // 详情页
   detailpage: function (e) {
+    var itemM = e.currentTarget.dataset.model
     var that = this
-    var pageurl = "http://play.yunxi.tv/livestream/4f3725c779cb4315a1e2aec170feff8e";
+    var pageurl = itemM.url;
     // pageurl = 'http'
     if (pageurl.length > 10) {
       wx.navigateTo({
