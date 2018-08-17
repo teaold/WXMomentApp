@@ -11,10 +11,7 @@ Page({
     interval: 5000,
     duration: 1000,
 
-    list: [],
-    listB: [],
-    menu_nameA: "在线直播",
-    menu_nameB: "直播回看",
+    homedata: {},
 
     motto: 'Hello World',
     userInfo: {},
@@ -200,8 +197,6 @@ Page({
 
 })
 
-var p = 1
-
 // 加载列表
 var GetList = function (that) {
   var url = app.requestliveUrl;
@@ -211,27 +206,15 @@ var GetList = function (that) {
   wx.request({
     url: url,
     data: {
-      pageSize: 10,
-      pageNo: p
+      
     },
     success: function (res) {
-      var l = res.data['data']['lives']
-      // for (var i in res.data['data']['lives']) {
-      //   l.push(res.data['data']['lives'][i])
-      // }
-
-      var lB = res.data['data']['livebacks']
-      // for (var i in res.data['data']['livebacks']) {
-      //   lB.push(res.data['data']['livebacks'][i])
-      // }
-      // for (var i = 0; i < res.data.datasB.length; i++) {
-      //   lB.push(res.data.datasB[i])
-      // }
-      that.setData({
-        list: l,
-        listB:lB
-      });
-      p++;
+      if (res.data['code'] == 0){
+        that.setData({
+          homedata: res.data['data']
+        });
+      }
+      
       that.setData({
         hidden: true
       });

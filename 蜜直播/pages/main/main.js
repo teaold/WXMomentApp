@@ -189,16 +189,16 @@ Page({
       icon: 'loading'
     })
   },
-  onPullDownRefresh:function(){ //下拉刷新
-    var that = this
-    that.bindLoding()
-    that.onloadRequest(0)
-    that.setData({
-      page:1,
-      resultData:[]
-    })
+  // onPullDownRefresh:function(){ //下拉刷新
+  //   var that = this
+  //   that.bindLoding()
+  //   that.onloadRequest(0)
+  //   that.setData({
+  //     page:1,
+  //     resultData:[]
+  //   })
     
-  },
+  // },
   scrollHandle:function(e){ //滚动事件
     // console.log(e.detail.scrollTop)
     var anum = e.detail.scrollTop <= 20?20:e.detail.scrollTop

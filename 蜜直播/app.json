@@ -30,7 +30,7 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "蜜直播",
     "navigationBarTextStyle":"black",
-    "enablePullDownRefresh":true
+    "enablePullDownRefresh":false
   },
   "tabBar": {
     "list": [
