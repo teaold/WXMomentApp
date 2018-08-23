@@ -45,7 +45,8 @@ Page({
   settingInfo: function (e) {
     var that = this
     wx.navigateTo({
-      url: '../../pages/setting/setting'
+      url: '../../pages/userinfo/userinfo'
+      // url: '../../pages/setting/setting'
     })
   },
   //我的预约 

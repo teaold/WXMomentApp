@@ -1,4 +1,6 @@
 <!--index.wxml-->
+<view class='homepage'>
+
 <swiper indicator-dots="{{indicatorDots}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{imgUrls}}">
@@ -68,3 +70,5 @@
   
 
 <view  style="flex:1;height:15px;background-color:white"></view>
+
+</view>

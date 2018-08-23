@@ -3,6 +3,8 @@
 （如是首次，显示首次直播优惠券，需考虑如何区分首次使用）
 直播咨询：13918340690（微信）qq:3443026025
  -->
+<view class='homepage'>
+
 <!--间隔线  -->
 <view  style="flex:1;height:2px;background-color:#DCE3D7"></view>
 <view  style="flex:1;height:50px;background-color:white"></view>
@@ -76,3 +78,5 @@
 <button class="playbtn" type="primary" bindtap="listenerLogin">{{payname}}</button>
 
 <view class="blankView"></view>
+
+</view>

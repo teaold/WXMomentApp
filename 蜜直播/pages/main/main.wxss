@@ -5,9 +5,14 @@ width: 0;
 height: 0;
 color: transparent;
 }
-
+.lineview{
+  height: 1px;
+  background-color: #f2f2f2;
+  /* position: absolute; */
+}
  .box
  {
+  background-color: white;
   /*border:2px solid #576b95;*/
   /*height:100%;*/
  }

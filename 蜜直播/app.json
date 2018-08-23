@@ -23,7 +23,10 @@
     "pages/detailmoment/detailmoment",
     "pages/mybooking/mybooking",
     "pages/mymoment/mymoment",
-    "pages/userpage/userpage"
+    "pages/userpage/userpage",
+    "pages/paishouInfo/paishouInfo",
+    "pages/bill/bill",
+    "pages/userinfo/userinfo"
   ],
   "window":{
     "backgroundTextStyle":"light",

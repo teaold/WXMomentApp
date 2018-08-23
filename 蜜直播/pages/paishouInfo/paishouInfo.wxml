@@ -1,0 +1,54 @@
+<template name="pailist">
+    <view class="weui-media-box weui-media-box_text">
+        <view class="weui-media-box__title weui-media-box__title_in-text">{{name}}</view>
+        <view class="weui-media-box__desc">{{msg}}</view>
+    </view>
+</template>
+
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">拍手信息</view>
+        <view class="page__desc">已申请</view>
+    </view>
+    <view class="page__bd">
+      <block wx:if="{{psmodel.type == 'old'}}">
+          <view class="weui-panel weui-panel_access">
+              <view class="weui-panel__hd">我是拍手</view>
+              <view class="weui-panel__bd">
+                  <template is="pailist" data="{{name:'姓名',msg:psmodel.name}}" />
+                  <template is="pailist" data="{{name:'电话',msg:psmodel.phone}}" />
+                  <template is="pailist" data="{{name:'微信号',msg:psmodel.weixin}}" />
+                  <template is="pailist" data="{{name:'性别',msg:psmodel.sex}}" />
+                  <template is="pailist" data="{{name:'拍龄',msg:psmodel.photoAge + '年'}}" />
+                  <template is="pailist" data="{{name:'专长领域',msg:psmodel.special}}" />
+                  <template is="pailist" data="{{name:'设备经验',msg:psmodel.device}}" />
+                  <template is="pailist" data="{{name:'直播经验',msg:psmodel.live}}" />
+                  <template is="pailist" data="{{name:'作品链接',msg:psmodel.worklink}}" />
+                  <template is="pailist" data="{{name:'城市',msg:psmodel.address}}" />
+
+              </view>
+              <view class="weui-form-preview__ft">
+                  <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">{{psmodel.statename}}</navigator>
+              </view>
+          </view>
+      </block> 
+
+      <block wx:else>
+            <view class="weui-panel weui-panel_access">
+              <view class="weui-panel__hd">实习拍手</view>
+              <view class="weui-panel__bd">
+              
+                  <template is="pailist" data="{{name:'姓名',msg:psmodel.name}}" />
+                  <template is="pailist" data="{{name:'电话',msg:psmodel.phone}}" />
+                  <template is="pailist" data="{{name:'城市',msg:psmodel.address}}" />
+                  <template is="pailist" data="{{name:'性别',msg:psmodel.sex}}" />
+              </view>
+              <view class="weui-form-preview__ft">
+                  <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">{{psmodel.statename}}</navigator>
+              </view>
+            </view>
+      
+      </block>
+        
+    </view>
+</view>

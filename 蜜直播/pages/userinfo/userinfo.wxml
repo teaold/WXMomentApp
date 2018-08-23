@@ -1,22 +1,59 @@
-<view class='bgview'>
-<import src="../mybooking/mybookvm.wxml" />
-<block wx:for="{{list.live}}">
-    <template is="msgItem2" data="{{msg1:'直播预约',msg2:'姓名 : '+ item.name ,msg3:'电话 : '+ item.phone ,msg4:'活动主题 : '+ item.topicname ,msg5:'活动时间 : '+ item.topictime ,msg6:'活动地址 : '+ item.topicaddr ,msg7:'机位需求 : '+ item.machinenum ,msg8:'支付 : '+ (item.pay == 'yes' ? '已支付(已支付账单为准)' : '未支付'),msg9:'直播咨询：微信(同手机号): 13918340690 - QQ:3443026025',msg10:item.statename,class1:'stateclass' + item.state}}" />
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__hd">
+        <view class="page__title">我的资料</view>
+        <view class="page__desc">My Information.</view>
+    </view>
+    <view class="page__bd">
 
-</block>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">姓名</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" bindinput="listenerName" value='{{userinfo.user_name}}' placeholder="姓名"/>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">地址</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" bindinput="listenerAddr" value='{{userinfo.addr}}' placeholder="请输入地址"/>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input weui-cell_vcode">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">手机号</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" bindinput="listenerPhone" value='{{userinfo.phone}}' placeholder="请输入手机号" />
+                </view>
+            </view>
+            
+        </view>
+        
 
-<block wx:for="{{list.photo}}">
-   <template is="msgItem" data="{{msg1:'拍摄预约',msg2:'姓名 : '+ item.name ,msg3:'电话 : '+ item.phone ,msg4:'预约地址 : '+ item.address + item.street ,msg5:'服务类型：直播预告片、宣传片、活动摄影、单品拍摄(我们给到您的是低于市场价30%的报价）',msg6:item.statename,class1:'stateclass' + item.state}}" />
-</block>
+        <view class="weui-cells__title">性别</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindAccountChange" value="{{accountIndex}}" range="{{accounts}}">
+                        <view class="weui-select">{{accounts[accountIndex]}}</view>
+                    </picker>
+                </view>
+            </view>
+           
+        </view>
 
-<block wx:for="{{list.active}}">
-   <template is="msgItem" data="{{msg1:'活动策划预约',msg2:'姓名 : '+ item.name ,msg3:'电话 : '+ item.phone ,msg4:'预约地址 : '+ item.address + item.street ,msg5:'服务类型：直播预告片、宣传片、活动摄影、单品拍摄(我们给到您的是低于市场价30%的报价）',msg6:item.statename,class1:'stateclass' + item.state}}" />
-</block>
-<!-- 
-  <template is="msgItem" data="{{msg1:'拍摄预约',msg2:'姓名 : 不不不',msg3:'电话 : 13072122220',msg4:'预约地址 : 上海市',msg5:'服务类型：直播预告片、宣传片、活动摄影、单品拍摄(我们给到您的是低于市场价30%的报价）',msg6:'待确认'}}" />
 
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="listenerEdit">修改</button>
+        </view>
+        <view class="page__bd">
+        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errormsg}}</view>
 
-  <template is="msgItem2" data="{{msg1:'直播预约',msg2:'姓名 : 不不不',msg3:'电话 : 13072122220',msg4:'活动主题 : 我要',msg5:'活动时间 : 上海市',msg6:'活动地址 : 上海市',msg7:'机位需求 : 上海市',msg8:'支付 : 未支付',msg9:'直播咨询：微信(同手机号): 13918340690 - QQ:3443026025',msg10:'待确认'}}" /> -->
+        </view>
 
-
+    </view>
 </view>

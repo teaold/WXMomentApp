@@ -59,6 +59,7 @@ App({
   },
   requestUserinfoUrl: baseUrl+'modifyuserinfo',
   requestUrl: baseUrl +'momentlist',
+  requestuserinfoUrl: baseUrl + 'userinfo',
   requestAddMomentUrl: baseUrl + 'addMoment',
   requestDelMomentUrl: baseUrl + 'delemoment',
   requestDetailMomentUrl: baseUrl + 'momentdetail',
@@ -72,6 +73,7 @@ App({
   requestlivebookingUrl: baseUrl + 'livebooking',
   requestcertyphotomanUrl: baseUrl + 'certyphotoman',
   requestuserlivebookUrl: baseUrl + 'userlivebooklist',
+  requestcertyphotomanInfoUrl: baseUrl + 'certyphotomanInfo',
   userId:null,
   // http://47.52.142.116/friend/pengyuquan.php
 })

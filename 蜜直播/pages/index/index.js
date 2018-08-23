@@ -11,7 +11,8 @@ Page({
     interval: 5000,
     duration: 1000,
 
-    homedata: {},
+    authenphoto:'0',//是否认证拍手
+    homedata: {},//首页加载数据
 
     motto: 'Hello World',
     userInfo: {},
@@ -29,17 +30,36 @@ Page({
       path: 'pages/index/index'
     }
   },
+  // 认证成功
+  didcertpicman: function () {
+    this.setData({
+      authenphoto: '1'
+    })
+  },
   // 拍手认证
   photomancheckA: function(e) {
-    wx.navigateTo({
-      url: '../photograHig/photograHig'
-    })
+    if (this.data.authenphoto == '1'){
+      wx.navigateTo({
+        url: '../paishouInfo/paishouInfo'
+      })
+    } else {
+      wx.navigateTo({
+        url: '../photograHig/photograHig'
+      })
+    }
+    
   },
   // 拍手 新手
   photomancheckB: function (e) {
-    wx.navigateTo({
-      url: '../photograLow/photograLow'
-    })
+    if (this.data.authenphoto == '1') {
+      wx.navigateTo({
+        url: '../paishouInfo/paishouInfo'
+      })
+    } else {
+      wx.navigateTo({
+        url: '../photograLow/photograLow'
+      })
+    }
   },
   // 拍摄 预约
   photomancheckC: function (e) {
@@ -207,11 +227,13 @@ var GetList = function (that) {
   wx.request({
     url: url,
     data: {
-      
+      user_id:'1'
     },
     success: function (res) {
+      // console.log(res)
       if (res.data['code'] == 0){
         that.setData({
+          authenphoto: res.data['authenphoto'],
           homedata: res.data['data']
         });
       }

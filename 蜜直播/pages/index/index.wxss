@@ -4,6 +4,7 @@
  display:none;
 }
 
+
 .slide-image{
   width: 100%;
 }

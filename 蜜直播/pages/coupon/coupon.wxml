@@ -40,12 +40,13 @@
 
 <!--pages/coupon/index.wxml-->
 <!-- <import src="../public/wxml/menu.wxml"/> -->
- 
+<view class='homepage'>
+
 <view class="blank"></view>
 <view class="coupon-list">
   <block wx:for="{{list}}">
 
-    <view class="item stamp {{item.class}} " bindtap='addcoupon'data-numberid='{{item.numberid}}'>
+    <view class="item stamp {{item.class}} " bindtap='addcoupon'data-model='{{item}}'>
         <!-- 左侧 -->
         <view class="float-li t1">
             <view class="coupon-left">
@@ -81,6 +82,8 @@
 <!-- 浮窗 底部-->
 <template is="menu-footer" data="{{nav: footNav}}"/>
 
+
+</view>
 
 <!-- 
 <view class="item stamp stamp02 ">

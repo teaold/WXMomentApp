@@ -1,3 +1,5 @@
+<!-- <image class="lives-right-img" src='../../images/Camaro.png' mode='aspectFill'  catchtap="bindAdd"/> -->
+<view class='lineview'></view>
 
 <scroll-view class="box" scroll-y="true" style="height:1200rpx"  bindscroll="scrollHandle" lower-threshold="50" bindscrolltolower="scrollLoading" scroll-top="{{scrolltop}}">
 
@@ -14,24 +16,25 @@
 <!--</view>  -->
 
   <!--背景小图标-->
-  <view class="bg">
+  <!-- <view class="bg">
       <image class="baseimg" src="../../images/bg.jpg" mode="scaleToFill"></image>
       <image class="lives-right-img" src='../../images/Camaro.png' mode='aspectFill'  catchtap="bindAdd"/>
-  </view>
+  </view> -->
   <!--背景图底部大头像-->
-  <view class="headimg">
+  <!-- <view class="headimg">
       <image class="baseimg" src="{{userInfo['avatarUrl']}}" mode="scaleToFill"></image>
-  </view>
+  </view> -->
   <!--背景图底部昵称-->
-  <view class="nickname">
+  <!-- <view class="nickname">
     <text>{{userInfo['nickName']}}</text>
-  </view>
+  </view> -->
   <!--占位行-->
-  <view class="lie"></view>
+  <!-- <view class="lie"></view> -->
+
 
 
 <!--循环展示-->
-  <view class="content" wx:for="{{resultData}}" wx:for-item="item" wx:for-index="k">
+  <view class="content" wx:for="{{resultData}}" wx:for-item="item" for:key="key">
    
     <block wx:if="{{item.user != 'undefined'}}">
       <view class="head">
@@ -122,7 +125,7 @@
     <block wx:if="{{item.comments != 'null'}}">
       <view class="pinglun-box" scroll-y>
         <!--循环评论-->
-        <block wx:for="{{item.comments}}"  wx:for-item="item" wx:for-index="kk">
+        <block wx:for="{{item.comments}}"  wx:for-item="item" for:key="key">
 
             <!--如果pid等于null证明是发布的评论 否则是回复的评论-->
             <block wx:if="{{item.replyed_id == 0}}">

@@ -34,11 +34,11 @@
 
 <view class='msgListView' bindtap='settingInfo'>
   <image class='msgIcon' src='../../images/setting.png'></image>
-  <text class='MsgTxt' >设置信息</text>
+  <text class='MsgTxt' >编辑资料</text>
   <image class='msgArrow' src='../../images/jt.png'></image>
 </view>
 
-<button class="{{showGetUser}} getUserInfo" open-type="getUserInfo"> 授权昵称信息 </button> 
+<!-- <button class="{{showGetUser}} getUserInfo" open-type="getUserInfo"> 授权昵称信息 </button>  -->
 
 <!-- <view class='myView'>联系客服：</view>
 <contact-button class='cBtn' type="default-dark" size="20" session-from="weapp">

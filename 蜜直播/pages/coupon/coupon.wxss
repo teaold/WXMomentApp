@@ -236,9 +236,9 @@
   background: #f0229b;
 }
 
-.stamp05 {
+.stamp06 {
   background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 30rpx, #d24161 30rpx);
   background-size: 10rpx 10rpx;
   background-position: 9rpx 3rpx;
-  background: #f0229b;
+  background: #d2d2d2;
 }

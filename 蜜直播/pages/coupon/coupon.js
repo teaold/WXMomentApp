@@ -22,27 +22,38 @@ Page({
   // 领取优惠券
   addcoupon: function (e) {
     var that = this
-    var number_id = e.currentTarget.dataset.numberid
-    var url = app.requestgetcouponUrl;
-    wx.request({
-      url: url,
-      data: {
-        // user_id: app.globalData.userInfo.user_id
-        user_id:'1',
-        numberid: number_id
-      },
-      success: function (res) {
-        console.log(res.data['data'])
-        console.log('领取成功!')
-        // that.setData({
-        //   list: res.data['data']
-        // });
+    var model = e.currentTarget.dataset.model
+    if (model.state == 0){
+      var number_id = model.numberid
+      var url = app.requestgetcouponUrl;
+      wx.request({
+        url: url,
+        data: {
+          // user_id: app.globalData.userInfo.user_id
+          user_id: '1',
+          numberid: number_id
+        },
+        success: function (res) {
+          if (res.data['code'] == '0') {
+            console.log(res.data['data'])
+            console.log('领取成功!')
+            GetList(that)
+          } else {
+            wx.showToast({
+              title: res.data['msg'],
+            });
+          }
+          
+          // that.setData({
+          //   list: res.data['data']
+          // });
 
-        that.setData({
-          hidden: true
-        });
-      }
-    });
+          that.setData({
+            hidden: true
+          });
+        }
+      });
+    }
 
   },
   /**
@@ -105,6 +116,7 @@ var GetList = function (that) {
   wx.request({
     url: url,
     data: {
+      user_id:'1'
     },
     success: function (res) {
       // var l = []
