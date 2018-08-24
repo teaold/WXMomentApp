@@ -28,7 +28,8 @@
 
               </view>
               <view class="weui-form-preview__ft">
-                  <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">{{psmodel.statename}}</navigator>
+                  <!-- <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">{{psmodel.statename}}</navigator> -->
+                  <view class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">{{psmodel.statename}}</view>
               </view>
           </view>
       </block> 
@@ -44,7 +45,8 @@
                   <template is="pailist" data="{{name:'性别',msg:psmodel.sex}}" />
               </view>
               <view class="weui-form-preview__ft">
-                  <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">{{psmodel.statename}}</navigator>
+                  <!-- <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">{{psmodel.statename}}</navigator> -->
+                  <view class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">{{psmodel.statename}}</view>
               </view>
             </view>
       

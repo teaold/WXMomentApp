@@ -1,5 +1,5 @@
 //app.js
-var baseUrl = 'http://localhost/public/index.php/index/moments/'
+var baseUrl = 'http://193.112.47.20/home/'
 App({
   onLaunch: function () 
   {

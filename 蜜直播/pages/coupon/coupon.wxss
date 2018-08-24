@@ -94,20 +94,20 @@
   
 }
 
-.coupon-list .item {
+.coupon-list .coupitem {
   width: 710rpx;
-  height: 250rpx;
+  height: 300rpx;
   margin-bottom: 20rpx;
   display: flex;
 }
 
-.coupon-list .item .float-li {
+.coupon-list .coupitem .float-li {
   width: 450rpx;
   height: 100%;
   border-right: 2rpx dashed rgba(255, 255, 255, 0.3);
 }
 
-.coupon-list .item .float-li-rig {
+.coupon-list .coupitem .float-li-rig {
   width: 220rpx;
   padding-right: 20rpx;
   height: 100%;
@@ -119,56 +119,56 @@
   position: relative;
 }
 
-.coupon-left .t {
+.coupon-left .coupt {
   position: absolute;
   color: #fff;
   
 }
 
-.coupon-left .t1 {
+.coupon-left .coupon1 {
   left: 10rpx;
   /* margin-right: 30rpx; */
   top: 110rpx;
 }
 
-.coupon-left .t2 {
+.coupon-left .coupon2 {
   left: 30rpx;
   top: 50rpx;
   font-size: 80rpx;
   font-weight: bold;
 }
 
-.coupon-left .t3 {
+.coupon-left .coupon3 {
   left: 220rpx;
   top: 50rpx;
   width: 200rpx;
   font-size: 30rpx;
 }
 
-.coupon-left .t4 {
+.coupon-left .coupon4 {
   left: 10rpx;
   top: 180rpx;
   bottom: 10rpx;
   font-size: 30rpx;
 }
 
-.coupon-rig .t {
+.coupon-rig .coupt {
   text-align: center;
 }
 
-.coupon-rig .t1 {
+.coupon-rig .coupon1 {
   font-size: 40rpx;
   padding: 30rpx 0 10rpx 0;
 }
-.coupon-rig .t2 {
+.coupon-rig .coupon2 {
   font-size: 25rpx;
   /* padding: 30rpx 0 10rpx 0; */
 }
-.coupon-rig .t3 {
+.coupon-rig .coupon3 {
   padding-top: 20rpx;
 }
 
-.coupon-rig .t3 text {
+.coupon-rig .coupon3 text {
   font-size: 25rpx;
   background: #fff;
   color: #333;

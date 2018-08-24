@@ -123,7 +123,7 @@ var GetList = function (that) {
       // for (var i in res.data['data']) {
       //   l.push(res.data['data'][i])
       // }
-      // console.log(l)
+      console.log(res)
       that.setData({
         list: res.data['data']
       });

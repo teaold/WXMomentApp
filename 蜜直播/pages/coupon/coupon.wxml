@@ -46,23 +46,23 @@
 <view class="coupon-list">
   <block wx:for="{{list}}">
 
-    <view class="item stamp {{item.class}} " bindtap='addcoupon'data-model='{{item}}'>
+    <view class="coupitem stamp {{item.class}} " bindtap='addcoupon'data-model='{{item}}'>
         <!-- 左侧 -->
         <view class="float-li t1">
             <view class="coupon-left">
-                <view class="t t1">￥</view>
-                <view class="t t2">{{item.sell}}</view>
-                <view class="t t3">{{item.title}}</view>
-                <view class="t t4">优惠券编号：{{item.number}}</view>
+                <view class="coupt coupon1">￥</view>
+                <view class="coupt coupon2">{{item.sell}}</view>
+                <view class="coupt coupon3">{{item.title}}</view>
+                <view class="coupt coupon4">优惠券编号：{{item.numberid}}</view>
             </view>
         </view>
         <!-- 右侧 -->
         <view class="float-li-rig">
             <view class="coupon-rig" >
-               <view class="t1 t">优惠券</view>
-               <view class="t2 t">{{item.startday}}</view>
-               <view class="t2 t">{{item.endday}}</view>
-               <view class="t3 t"><text>{{item.statename}}</text></view>
+               <view class="coupon1 coupt">优惠券</view>
+               <view class="coupon2 coupt">{{item.startday}}</view>
+               <view class="coupon2 coupt">{{item.endday}}</view>
+               <view class="coupon3 coupt"><text>{{item.statename}}</text></view>
             </view>
         </view>
         <i></i>
