@@ -95,7 +95,7 @@ Page({
         url: url1,
         data: {
           //userId: that.data.appid,
-          user_id: '1',
+          user_id: app.globalData.openid,
           user_name: that.data.username,
           sex: that.data.sex,
           phone: that.data.phone,

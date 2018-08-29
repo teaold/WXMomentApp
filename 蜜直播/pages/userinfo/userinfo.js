@@ -10,7 +10,7 @@ Page({
     showTopTips: false,
     errormsg:'警告',
     userinfo: {},
-    accounts: ["男", "女"],
+    accounts: ["男", "女",'未填'],
     accountIndex: 0,
   },
 
@@ -70,13 +70,13 @@ Page({
             wx.hideLoading()
           }, 2000)
 
-         that.data.userinfo['user_id'] = '1'
+      that.data.userinfo['user_id'] = app.globalData.openid;
           wx.request({
             url: url1,
             data: that.data.userinfo,
             //POST请求要添加下面的header设置
-            // method: 'POST',
-            // header: { "Content-Type": "application/x-www-form-urlencoded" },
+            method: 'POST',
+            header: { "Content-Type": "application/x-www-form-urlencoded" },
             success: function (res) {
 
               that.setData({
@@ -138,7 +138,7 @@ var GetList = function (that) {
   wx.request({
     url: url,
     data: {
-      user_id: '1'
+      user_id: app.globalData.openid
     },
     success: function (res) {
       if (res.data['code'] == 0) {

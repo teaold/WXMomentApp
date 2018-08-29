@@ -69,7 +69,7 @@ Page({
       var address = this.data.provinceName[pindex] + this.data.cityName[cindex] + this.data.districtName[dindex];
 
       sendData['address'] = address;
-      sendData['user_id'] = '1';
+      sendData['user_id'] = app.globalData.openid;
       sendData['type'] = 'new';
 
       var that = this
@@ -86,8 +86,8 @@ Page({
         url: url1,
         data: sendData,
         //POST请求要添加下面的header设置
-        // method: 'POST',
-        // header: { "Content-Type": "application/x-www-form-urlencoded" },
+        method: 'POST',
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         success: function (res) {
 
           that.setData({

@@ -1,7 +1,7 @@
-<!-- <image class="lives-right-img" src='../../images/Camaro.png' mode='aspectFill'  catchtap="bindAdd"/> -->
-<view class='lineview'></view>
+<image class="lives-right-img" src='../../images/Camaro.png' mode='aspectFill'  catchtap="bindAdd"/>
+<view class='lineview' ></view>
 
-<scroll-view class="box" scroll-y="true" style="height:1200rpx"  bindscroll="scrollHandle" lower-threshold="50" bindscrolltolower="scrollLoading" scroll-top="{{scrolltop}}">
+<scroll-view class="box" scroll-y="true" style="padding-bottom:50px"  bindscroll="scrollHandle" lower-threshold="50" bindscrolltolower="scrollLoading" scroll-top="{{scrolltop}}">
 
   
  <!--<view class="top_cc"> -->
@@ -102,22 +102,16 @@
 </view>
     
     <!--显示点赞 用户 列表-->
-
-    <block wx:if="{{item.likes != 'null'}}">
+    
+    <block wx:if="{{item.likes.length > 0}}">
         <view class="dianzan-box">
           <view class="dianzan-biao">
             <image class="baseimg" src="/images/zan.png" mode="aspectFit"></image>
           </view>
-
-          <view class="dianzan-text">bobo</view>
-          <view class="dianzan-text">bobo2</view>
-          <view class="dianzan-text">bobo3</view>
-          <view class="dianzan-text">bobo4</view>
-          <view class="dianzan-text">bobo5</view>
-          <view class="dianzan-text">bobo5</view>
-          <view class="dianzan-text">bobo5</view>
-          <view class="dianzan-text">波波赞</view>
-          <view class="dianzan-text">bobo5</view>
+        <block wx:for="{{item.likes}}"  wx:for-item="item" for:key="key">
+            <view data-model="{{item}}" class="dianzan-text">{{item.reply_name}}</view>
+        </block>
+          
         </view>
     </block>
     <!--显示评论-->

@@ -1,0 +1,25 @@
+<view>
+  <view class='defaultimgView'>
+    <image class='defaultimg' src='../../images/launchdefault.jpg'></image>
+  </view>
+  
+  <text class='MsgTxt MsgTxt2' >蜜源live</text>
+  <text class='MsgTxt' >在线直播,预约,回看</text>
+  <text class='MsgTxt' >拍手认证</text>
+  <text class='MsgTxt' >拍摄预约</text>
+  <text class='MsgTxt' >活动策划</text>
+
+  
+<!-- <button class="{{showGetUser}} beginBtn"  open-type="getUserInfo">开始说事儿</button>  -->
+<!-- openSetting  getUserInfo  -->
+
+<button
+    wx:if="{{canIUse}}"
+    open-type="getUserInfo"
+    class="beginBtn"
+    hidden='{{isauthorize}}'
+    bindgetuserinfo="bindGetUserInfo"
+>授权登录</button>
+
+
+</view>

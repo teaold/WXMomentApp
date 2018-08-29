@@ -3,7 +3,7 @@
 
 <swiper indicator-dots="{{indicatorDots}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-  <block wx:for="{{imgUrls}}">
+  <block wx:for="{{imgUrls}}" wx:for-item="item" for:key="key">
     <swiper-item>
        <image  bindtap='bannerpage' data-model='{{item}}' src="{{item.picurl}}" class="slide-image" mode='aspectFill'/>
         <!-- width="355" height="150" -->

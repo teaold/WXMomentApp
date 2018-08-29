@@ -45,7 +45,7 @@ Page({
       this.showMessage('请选择机位需求')
     } else {
 
-      sendData['user_id'] = '1';
+      sendData['user_id'] = app.globalData.openid,
       sendData['type'] = 'live';
       sendData['pay'] = 'not';
 
@@ -63,8 +63,8 @@ Page({
         url: url1,
         data: sendData,
         //POST请求要添加下面的header设置
-        // method: 'POST',
-        // header: { "Content-Type": "application/x-www-form-urlencoded" },
+        method: 'POST',
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         success: function (res) {
 
           that.setData({

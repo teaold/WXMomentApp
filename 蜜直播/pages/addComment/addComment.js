@@ -14,16 +14,16 @@ Page({
     latitude: '',
     chooseImageUrl: [], //绑定到页面的数据
     imgCount: 0, //图片的张数
-    imgLenght: 0
+    imgLenght: 0,
+
+    uploadimgindex:0,//当前上传第几张
+    uploadimgnameArr: [] //上传图片文件名称
   },
   onLoad: function(e) {
     var that = this
     //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo) {
-      //更新数据
-      that.setData({
-        userInfo: userInfo
-      })
+    that.setData({
+      userInfo: app.globalData.userInfo
     })
 
     that.data.userStatus['name'] = e.name;
@@ -32,40 +32,97 @@ Page({
     that.data.userStatus['lnt'] = e.lnt;
     that.data.userStatus['userId'] = e.userId;
 
-    // console.log(event);
+
+    console.log(imgArr);
+    imgArr = [];
+  },
+  formSubmit: function (e) {//这里触发图片上传的方法
+    var that = this
+    var pics = this.data.chooseImageUrl;
+    
+    // that.data.uploadimgnameArr = {};
+    wx.showLoading({
+      title: '提交中...',
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
+
+    wx.uploadFile({
+      url: app.requestUploadImgUrl, 
+      filePath: pics[that.data.uploadimgindex],
+      name: 'file',
+      formData: {
+      },
+      //POST请求要添加下面的header设置
+      // method: 'POST',
+      // header: { "Content-Type": "application/x-www-form-urlencoded" },
+      success: function (res) {
+        console.log(res)
+        console.log(res.data)
+        var obj = JSON.parse(res.data);
+        if (obj.code == 0) {
+          that.data.uploadimgnameArr.push(obj['imgname']);
+          console.log(that.data.uploadimgnameArr)
+        } else {
+          console.log('失败')
+          console.log(obj['msg'])
+        }
+        
+      },
+      fail: (res) => {
+        // that.data.uploadimgnameArr[uploadimgindex] = 'fail';
+        console.log(res)
+        // console.log(that.data.uploadimgnameArr)
+      },
+      complete: () => {
+        that.data.uploadimgindex ++;
+        if (that.data.uploadimgindex >= pics.length) {
+          console.log('上传完成')
+          that.data.uploadimgindex = 0;
+          that.formSubmit2(e);
+        } else {
+          that.formSubmit(e);
+        }
+      }
+    })
+
   },
 
   // 表单提交
-  formSubmit: function(e) {
+  formSubmit2: function(e) {
     var that = this
     // 如果文本为空提示用户输入 否则提交表单
-    if (e.detail.value.content == '' && that.data.imgStr == null) {
+    if (e.detail.value.content == '' && that.data.imgCount == 0) {
       this.showMessage('请输入内容或选择图片！')
     } else {
-      if (that.data.addressData == null) {
-        that.data.addressData = that.data.userStatus
+      if (that.data.userStatus['address'] == null || that.data.userStatus['address'] == '') {
+        // that.data.addressData = that.data.userStatus
+        that.data.userStatus['address'] = '0';
       }
 
-      //console.log('地点:' + that.data.addressData.address + '内容:' + e.detail.value.content)
+      var imageurls = ''
+      for (var i = 0; i < that.data.uploadimgnameArr.length; i++) {
+        if (imageurls != ''){
+          imageurls = imageurls + ','
+        }
+        imageurls = imageurls + that.data.uploadimgnameArr[i]
+      }
 
       var url1 = app.requestAddMomentUrl;
-      wx.showLoading({
-        title: '提交中...',
-      })
-      setTimeout(function () {
-        wx.hideLoading()
-      }, 2000)
+      
       wx.request({
         url: url1,
         data: {
           //userId: that.data.appid,
-          user_id: '1',
+          user_id: app.globalData.openid,
           text_box: e.detail.value.content,
-          address: that.data.addressData.address
+          urls: imageurls,
+          address: that.data.userStatus['address']
         },
         //POST请求要添加下面的header设置
-        // method: 'POST',
-        // header: { "Content-Type": "application/x-www-form-urlencoded" },
+        method: 'POST',
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         success: function (res) {
 
           that.setData({
@@ -140,7 +197,7 @@ Page({
     wx.chooseImage({
       sourceType: ['album', 'camera'],
       sizeType: ['original'],
-      count: 9,
+      count: 9 - that.data.imgCount,
       success: function(res) {
 
         var tempFilePaths = res.tempFilePaths;

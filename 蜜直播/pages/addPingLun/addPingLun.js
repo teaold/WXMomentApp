@@ -11,12 +11,9 @@ Page({
   {
       var that = this
       //调用应用实例的方法获取全局数据
-      app.getUserInfo(function(userInfo){
-        //更新数据
-        that.setData({
-          userInfo:userInfo
-        })
-      })
+    that.setData({
+      userInfo: app.globalData.userInfo
+    })
     //动态id
     that.data.userStatus['id'] = e.id;
     
@@ -31,9 +28,6 @@ Page({
       that.data.userStatus['nickname'] = '0';
       that.data.userStatus['userId'] = '0';
     }
-    
-    // console.log(that.data.userStatus)
-     // console.log(event);
   },
 
   // 表单提交
@@ -70,15 +64,15 @@ Page({
         data: {
           state: that.data.userStatus.state,
           moment_id: that.data.userStatus.id,
-          reply_id: '1',
+          reply_id: app.globalData.openid,
           reply_name: app.globalData.userInfo.nickName,
           comment: e.detail.value.content,
           replyed_id: that.data.userStatus.userId,
           replyed_name: that.data.userStatus.nickname
         },
         //POST请求要添加下面的header设置
-        // method: 'POST',
-        // header: { "Content-Type": "application/x-www-form-urlencoded" },
+        method: 'POST',
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         success: function (res) {
 
           that.setData({

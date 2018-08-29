@@ -25,13 +25,8 @@ Page({
     // 根据不同参数执行不同的操作
     var that = this
     //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      that.setData({
-        userInfo: userInfo
-      })
-      //app.globalData.userInfo = userInfo
-      //console.log(userInfo.avatarUrl)
+    that.setData({
+      userInfo: app.globalData.userInfo
     })
 
     that.data.userStatus['state'] = e.state;
@@ -51,14 +46,6 @@ Page({
     var dataTop = { 'detail': { 'scrollTop': 0 } }
     that.scrollHandle(dataTop)
 
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //console.log(userInfo)
-      //更新数据
-      that.setData({
-        userInfo: userInfo,
-      })
-    })
   },
   onReloadPage: function () {
     // 重新加载页面 页面显示
@@ -89,7 +76,7 @@ Page({
         data: {
           flag: 'detail',
           moment_id: that.data.userStatus['moment_id'],
-          user_id: '1'
+          user_id: app.globalData.openid
         },
         success: function (res) {
           console.log(res)
@@ -223,7 +210,7 @@ Page({
             data: {
               flag: 'dele',
               // openid:event.target.dataset.deleuserid,
-              user_id: '1',
+              user_id: app.globalData.openid,
               moment_id: del_moment_id
             },
             // header: {
@@ -352,7 +339,7 @@ Page({
       wx.request({
         url: app.requestaddLikeUrl,
         data: {
-          user_id: '1',
+          user_id: app.globalData.openid,
           user_name: app.globalData.userInfo.nickName,
           like: '1',//1 : 点赞 ,0 取消赞
           moment_id: dataM.moment_id

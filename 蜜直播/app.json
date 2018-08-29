@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/authorize/authorize",
     "pages/index/index",
     "pages/main/main",
     "pages/logs/logs",
@@ -27,6 +28,7 @@
     "pages/paishouInfo/paishouInfo",
     "pages/bill/bill",
     "pages/userinfo/userinfo"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",

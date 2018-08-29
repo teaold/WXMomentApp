@@ -30,9 +30,12 @@ Page({
         url: url,
         data: {
           // user_id: app.globalData.userInfo.user_id
-          user_id: '1',
+          user_id: app.globalData.openid,
           numberid: number_id
         },
+        //POST请求要添加下面的header设置
+        method: 'POST',
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         success: function (res) {
           if (res.data['code'] == '0') {
             console.log(res.data['data'])
@@ -116,7 +119,7 @@ var GetList = function (that) {
   wx.request({
     url: url,
     data: {
-      user_id:'1'
+      user_id: app.globalData.openid
     },
     success: function (res) {
       // var l = []

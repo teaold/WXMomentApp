@@ -26,15 +26,10 @@ Page({
     // 根据不同参数执行不同的操作
     var that = this
     //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      that.setData({
-        userInfo: userInfo
-      })
-      //app.globalData.userInfo = userInfo
-      //console.log(userInfo.avatarUrl)
+    that.setData({
+      userInfo: app.globalData.userInfo
     })
-
+    
     // that.data.userStatus['state'] = e.state;
     //console.debug(e.state)
     // 上一个页面传过来的用户信息参数赋值
@@ -51,14 +46,6 @@ Page({
     var dataTop = {'detail':{'scrollTop':0}}
     that.scrollHandle(dataTop)
 
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo){
-      //console.log(userInfo)
-      //更新数据
-      that.setData({
-        userInfo:userInfo,
-      })
-    })
   },
   onReloadPage: function () {
     // 重新加载页面 页面显示
@@ -99,7 +86,8 @@ Page({
   onloadRequest: function(e,page)
   {
     page = page == undefined?0:page
-    //console.debug(e+"---"+page)
+    console.log('用户id')
+    console.log(app.globalData.openid)
     var that = this
     // 0是下滑刷新
     if(e == 0)
@@ -111,7 +99,7 @@ Page({
               flag:'list',
               data:that.data.userStatus,
               state:that.data.state,
-              user_id:'1',
+              user_id: app.globalData.openid,
               page:page
             },
             // header: {
@@ -120,7 +108,7 @@ Page({
             // method:'POST',
             success: function(res) 
             {
-              //console.log(res.data)
+              console.log(res.data)
               // return;
               // 如果没有数据直接返回首页 有数据则展示
               
@@ -290,7 +278,7 @@ Page({
                 data: {
                   flag:'dele',
                   // openid:event.target.dataset.deleuserid,
-                  user_id: '1',
+                  user_id: app.globalData.openid,
                   moment_id: del_moment_id
                 },
                 // header: {
@@ -432,15 +420,16 @@ Page({
         wx.request({
           url: app.requestaddLikeUrl,
           data: {
-            user_id: '1',
+            user_id: app.globalData.openid,
             user_name: app.globalData.userInfo.nickName,
             like:'1',//1 : 点赞 ,0 取消赞
             moment_id: dataM.moment_id
           },
-          // header: {
-          //     'content-type': 'application/x-www-form-urlencoded',
-          // },
-          // method:'POST',
+          method:'POST',
+          header: {
+              'content-type': 'application/x-www-form-urlencoded'
+          },
+          
           success: function (res) {
             wx.hideLoading()
             console.log(res.data);
@@ -452,7 +441,14 @@ Page({
                 console.log(dataM.moment_id);
                 if (dataM.moment_id == datatempM.moment_id) {
                   datatempM['praise'] = '1';
-                  // var dataLikesArr = datatempM['likes'];
+                  var dataLikesArr = datatempM['likes'];
+                  var likemodel = {};
+                  likemodel['moment_id'] = dataM.moment_id;
+                  likemodel['reply_id'] = app.globalData.openid;
+                  likemodel['reply_name'] = app.globalData.userInfo.nickName;
+                  dataLikesArr.push(likemodel);
+                  datatempM['likes'] = dataLikesArr;
+
                   // dataLikesArr[] = res.data['data'];
                   // datatempM['likes'] = dataLikesArr;
                   dataList[i] = datatempM;

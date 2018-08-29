@@ -90,7 +90,7 @@ var GetList = function (that) {
   wx.request({
     url: url,
     data: {
-      user_id: '1'
+      user_id: app.globalData.openid,
     },
     success: function (res) {
       // var l = []

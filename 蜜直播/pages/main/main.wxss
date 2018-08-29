@@ -83,7 +83,7 @@ color: transparent;
  .lives-right-img{
   width: 40px;
 	height: 40px;
-  position: absolute;
+  /* position: absolute; */
   right:10px;
   top: 25px;
  }

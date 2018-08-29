@@ -23,14 +23,10 @@ Page({
     });
     var that = this
     //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      getuserMsg(userInfo)
-      that.setData({
-        userInfo: userInfo
-      })
+    that.setData({
+      userInfo: app.globalData.userInfo
     })
-
+    // getuserMsg(that.data.userInfo)
     
   },
   //添加  
@@ -71,7 +67,7 @@ var getuserMsg = function (userInfo) {
   // var NiName = app.globalData.userInfo.nickName
   // var headUrl = app.globalData.userInfo.avatarUrl
   // var that = this
-  var UId = 1223
+  var UId = app.globalData.openid
 
   var NiName = userInfo.nickName
   var headUrl = userInfo.avatarUrl
