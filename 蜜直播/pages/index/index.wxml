@@ -5,7 +5,8 @@
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{imgUrls}}" wx:for-item="item" for:key="key">
     <swiper-item>
-       <image  bindtap='bannerpage' data-model='{{item}}' src="{{item.picurl}}" class="slide-image" mode='aspectFill'/>
+       <!-- <image  bindtap='bannerpage' data-model='{{item}}' src="{{item.picurl}}" class="slide-image" mode='aspectFit'/> -->
+       <view bindtap='bannerpage' data-model='{{item}}' class="swiper-item slide-image-view" style='background-image: url({{item.picurl}})'></view>
         <!-- width="355" height="150" -->
     </swiper-item>
   </block>
@@ -32,11 +33,9 @@
   <view class="layout_horizontal photo-bgview">
     
     <view class="photo-conten-view" bindtap='photomancheckA'>
-        <!-- <view class="photo-img-view"> -->
             <image class="photo-img" src='../../images/paishouA.png' mode='aspectFill' />
             <text class="lives-name photo-name">我是拍手</text>
     
-        <!-- </view> -->
     </view>
 
     <view class="photo-conten-view" bindtap='photomancheckB'>
@@ -45,7 +44,7 @@
     </view>
 
     <view class="photo-conten-view" bindtap='photomancheckC'>
-            <image class="photo-img" src='../../images/yuyuepai.png' mode='aspectFill' />
+            <image class="photo-img" src='../../images/huodong.png' mode='aspectFill' />
             <text class="lives-name photo-name">拍摄预约</text>
     </view>
 

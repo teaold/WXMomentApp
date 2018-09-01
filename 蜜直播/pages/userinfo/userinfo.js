@@ -23,7 +23,8 @@ Page({
   },
   // 修改性别
   bindAccountChange: function (e) {
-    this.data.userinfo['sex'] = e.detail.value
+
+    this.data.userinfo['sex'] = this.data.accounts[e.detail.value]
     this.setData({
       accountIndex: e.detail.value
     })
@@ -61,7 +62,7 @@ Page({
     } else {
           
           var that = this
-          var url1 = app.requestUserinfoUrl;
+      var url1 = app.requestmodifyuserinfoUrl;
 
           wx.showLoading({
             title: '提交中...',
@@ -83,10 +84,12 @@ Page({
                 hidden: true
               });
               wx.hideLoading()
-              wx.showToast({
-                title: res.data['msg'],
-              })
+              console.log(res)
               if (res.data['code'] == '0') {
+                wx.showToast({
+                  title: '修改成功'
+                })
+                
                 setTimeout(function () {
                   wx.navigateBack();
                 }, 1500)

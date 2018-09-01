@@ -27,13 +27,14 @@
     "pages/userpage/userpage",
     "pages/paishouInfo/paishouInfo",
     "pages/bill/bill",
-    "pages/userinfo/userinfo"
+    "pages/userinfo/userinfo",
+    "pages/player/player"
     
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "蜜直播",
+    "navigationBarTitleText": "蜜源live",
     "navigationBarTextStyle":"black",
     "enablePullDownRefresh":false
   },
@@ -41,14 +42,14 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "直播",
+        "text": "首页",
         "selectedIconPath": "images/homeB.png",
         "iconPath": "images/homeA.png"
       },
       
       {
         "pagePath": "pages/main/main",
-        "text": "动态",
+        "text": "蜜圈",
         "selectedIconPath": "images/newsB.png",
         "iconPath": "images/newsA.png"
       },

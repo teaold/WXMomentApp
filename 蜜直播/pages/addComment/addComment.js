@@ -8,14 +8,14 @@ Page({
     addressData: null,
     userStatus: {},
     addRessName: false,
-    content: false,
+    content: '',
     imgStr: null,
     httpImg: [],
     latitude: '',
     chooseImageUrl: [], //绑定到页面的数据
     imgCount: 0, //图片的张数
     imgLenght: 0,
-
+    chooseImagehid:false,
     uploadimgindex:0,//当前上传第几张
     uploadimgnameArr: [] //上传图片文件名称
   },
@@ -37,6 +37,15 @@ Page({
     imgArr = [];
   },
   formSubmit: function (e) {//这里触发图片上传的方法
+    var tempc = e.detail.value.content;
+    //限制输入内容长度
+    if (tempc.length > 10) {
+      wx.showToast({
+        title: '内容过长!'
+      })
+      return;
+    }
+
     var that = this
     var pics = this.data.chooseImageUrl;
     
@@ -76,7 +85,10 @@ Page({
         // console.log(that.data.uploadimgnameArr)
       },
       complete: () => {
-        that.data.uploadimgindex ++;
+        var uploadTempindex = that.data.uploadimgindex + 1;
+        that.setData({
+          uploadimgindex: uploadTempindex
+        })
         if (that.data.uploadimgindex >= pics.length) {
           console.log('上传完成')
           that.data.uploadimgindex = 0;
@@ -96,8 +108,9 @@ Page({
     if (e.detail.value.content == '' && that.data.imgCount == 0) {
       this.showMessage('请输入内容或选择图片！')
     } else {
-      if (that.data.userStatus['address'] == null || that.data.userStatus['address'] == '') {
-        // that.data.addressData = that.data.userStatus
+      if (that.data.addRessName) {
+        that.data.userStatus['address'] = that.data.addRessName;
+      } else {
         that.data.userStatus['address'] = '0';
       }
 
@@ -108,7 +121,7 @@ Page({
         }
         imageurls = imageurls + that.data.uploadimgnameArr[i]
       }
-
+      console.log(imageurls)
       var url1 = app.requestAddMomentUrl;
       
       wx.request({
@@ -162,6 +175,18 @@ Page({
   formReset: function() {
     console.log('form发生了reset事件')
   },
+  // 输入内容
+  listenercontent: function (e) {
+    var tempc = e.detail.value;
+
+    if (tempc.length > 10){
+      tempc = tempc.substring(0, 9)
+    }
+    console.log(tempc)
+    that.setData({
+      content: tempc
+    })
+  },
 
   // 选择地理位置
   bindAddress: function() {
@@ -188,56 +213,58 @@ Page({
   },
 
   // 相册
-  chooseImage: function() {
-
+  chooseImage: function(e) {
+    
     var that = this
 
     var attach = []
     //wx.chooseImage 不多介绍看文档
     wx.chooseImage({
       sourceType: ['album', 'camera'],
-      sizeType: ['original'],
-      count: 9 - that.data.imgCount,
+      sizeType: ['compressed'],//压缩图
+      count: 6 - that.data.imgCount,
       success: function(res) {
 
         var tempFilePaths = res.tempFilePaths;
         var len = that.data.imgCount + tempFilePaths.length
         //len 是此时已有的张数和本次上传的张数的和，也就是本次操作完成页面应该有的张数，因为用户可能会多次选择图片，所以每一次的都要记录下来。
-
-        if (len > 9) {
-
-          wx.showToast({
-            title: '最大数量为9',
-            icon: 'loading',
-            duration: 1000
-          })
-          //超过结束
-          return false
-        }
+        
         for (var i = 0; i < tempFilePaths.length; i++) {
           //将api 返回的图片数组push进一开始的imgArr，一定要循环一个个添加，因为用户上传多张图直接push就会多个路径在imgArr的同一个元素里。报错
           imgArr.push(tempFilePaths[i]);
         }
+        var addImagehid = false
+        if (len >= 6) {
+          addImagehid = true
+        }
         //将此时的图片长度和存放路径的数组加到要渲染的数据中
         that.setData({
           imgCount: len,
-          chooseImageUrl: imgArr
+          chooseImageUrl: imgArr,
+          chooseImagehid: addImagehid
         })
 
-
-
       }
-
     })
   },
+  // previewImage: function (e) {
+  //   wx.previewImage({
+  //     current: e.currentTarget.id, // 当前显示图片的http链接
+  //     urls: this.data.files // 需要预览的图片http链接列表
+  //   })
+  // },
   previewImage: function(e) // 显示图片大图
   {
-    var current = e.target.dataset.src
-
-    wx.previewImage({
-      current: current,
-      urls: this.data.imageList
-    })
+    var current = e.target.dataset.index
+    console.log(current)
+    console.log(imgArr[current])
+    if (current != undefined){
+      wx.previewImage({
+        current: imgArr[current],
+        urls: imgArr
+      })
+    }
+    
   },
   bindLoding: function() { // LOADING加载
     wx.showToast({
@@ -246,7 +273,7 @@ Page({
     })
   },
   //点关闭按键
-  Close: function(e) {
+  deleteImg: function(e) {
     var mylen = this.data.chooseImageUrl.length; //当前渲染的数组长度
 
     var myindex = e.currentTarget.dataset.index; //当前点击的是第几张图片 data-index

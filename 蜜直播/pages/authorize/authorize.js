@@ -43,7 +43,7 @@ Page({
       //用户按了允许授权按钮
       app.globalData.userInfo = e.detail.userInfo
         wx.switchTab({
-          url: '../../pages/main/main'
+          url: '../../pages/index/index'
         })
       
     } else {

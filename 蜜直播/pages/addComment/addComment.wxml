@@ -1,4 +1,81 @@
-<view class="box">
+<view class="page">
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+  
+  <view class="weui-cells__title">话题内容</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        <textarea class="weui-textarea" name="content" value='{{content}}' placeholder="请输入话题内容" style="height: 3.3em" />
+        <view class="weui-textarea-counter">0/200</view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="page__bd">
+    <view class="weui-cells">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class="weui-uploader">
+            <view class="weui-uploader__hd">
+              <view class="weui-uploader__title">图片上传</view>
+              <view class="weui-uploader__info">{{chooseImageUrl.length}}/6</view>
+            </view>
+            <view class="weui-uploader__bd">
+              <view class="weui-uploader__files" id="uploaderFiles">
+                <block wx:for="{{chooseImageUrl}}" wx:for-item="image">
+                  <view class="weui-uploader__file" >
+
+                    <view class="images-list">
+                          <image class="weui-uploader__img" src="{{image}}" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"/>
+                          <image class='chooseImageClose' src="../../images/delete.png" data-index="{{index}}" bindtap='deleteImg'></image>
+                    </view>
+                    
+                    
+                  </view>
+                  <!-- <view>
+                    <image class='chooseImageClose' src="../../images/delete.png" data-index="{{index}}" bindtap='Close'></image>
+                  </view> -->
+                  
+                </block>
+
+              </view>
+              <view class="weui-uploader__input-box" hidden='{{chooseImagehid}}'>
+                <view  class="weui-uploader__input" bindtap="chooseImage"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    
+    <view class="address">
+
+        <view bindtap="bindAddress">
+            <image class="biao" src="../../images/address.png" mode="aspectFit"></image>
+            <text class="weizhi">{{addRessName?addRessName:'所在位置'}}
+                <input name="address" value="{{addRessName}}" type='text'/>
+            </text>
+            <image class="jiantou" src="../../images/jt.png" mode="aspectFit"></image>
+        </view>
+    </view>    
+
+  </view>
+
+
+  <!-- <button class="weui-btn page_btn_spacing" type="submit">发布动态</button> -->
+  <button class="buttona" form-type="submit">发布动态</button>
+
+  <view style='height:80px'></view>
+
+</form>
+
+</view>
+
+
+<!-- <view class="box">
 
 <form bindsubmit="formSubmit" bindreset="formReset">
 
@@ -7,7 +84,6 @@
     </view>
 
      <view class="images-wrapper">
-          <!--<text class="images-text">请选择图片</text>-->
           <view class="images-list">
             <block wx:for="{{chooseImageUrl}}" wx:for-item="image">
               <image src="{{image}}" class="images-image" data-src="{{image}}" bindtap="previewImage"></image>
@@ -33,27 +109,9 @@
         </view>
     </view>    
 
-
-    <!--<view class="caozuo">
-        <view>
-            <image class="biao" src="../../images/skyk.png" mode="aspectFit"></image>
-            <text class="weizhi" >谁可以看</text>
-            <image class="jiantou" src="../../images/jt.png" mode="aspectFit"></image>
-            <text class="weizhi1">公开</text>
-        </view>
-        
-        <view class="xian"></view>
-
-        <view>
-            <image class="biao" src="../../images/@.png" mode="aspectFit"></image>
-            <text class="weizhi">提醒谁看</text>
-            <image class="jiantou" src="../../images/jt.png" mode="aspectFit"></image>
-        </view> 
-    </view>-->
-
     <button class="buttona" form-type="submit">提交</button>
     
 </form>
 
 </view>
-
+ -->

@@ -1,7 +1,7 @@
-<image class="lives-right-img" src='../../images/Camaro.png' mode='aspectFill'  catchtap="bindAdd"/>
-<view class='lineview' ></view>
+<!-- <image class="lives-right-img" src='../../images/Camaro.png' mode='aspectFill'  catchtap="bindAdd"/>
+<view class='lineview' ></view> -->
 
-<scroll-view class="box" scroll-y="true" style="padding-bottom:50px"  bindscroll="scrollHandle" lower-threshold="50" bindscrolltolower="scrollLoading" scroll-top="{{scrolltop}}">
+<scroll-view class="box" scroll-y="true" style="height: {{windowHeight}}px; width: {{windowWidth}}px;padding-bottom:50px"  bindscroll="scrollHandle" lower-threshold="50" bindscrolltolower="scrollLoading" scroll-top="{{scrolltop}}">
 
   
  <!--<view class="top_cc"> -->
@@ -16,20 +16,24 @@
 <!--</view>  -->
 
   <!--背景小图标-->
-  <!-- <view class="bg">
-      <image class="baseimg" src="../../images/bg.jpg" mode="scaleToFill"></image>
-      <image class="lives-right-img" src='../../images/Camaro.png' mode='aspectFill'  catchtap="bindAdd"/>
-  </view> -->
+  <view class="bghead"  mode='aspectFill' style="background-image: url({{mombgimg}})">
+      <!-- <image class="baseimg" src="../../images/bg.jpg" mode="aspectFill"></image> -->
+
+      <!-- <view class="headimg" > -->
+      <!-- <image class="baseimg" src="{{userInfo['avatarUrl']}}" mode="scaleToFill"></image> -->
+      <!-- <button class="baseimg"  bindtap='bindAdd' style="background-image:url(../../images/Camaro.png);"></button> -->
+          <image class="takephotoimg" bindtap='bindAdd' src='../../images/Camaro.png' mode="scaleToFill" ></image>
+      <!-- </view> -->
+      <!-- <image class="lives-right-img" src='../../images/Camaro.png' mode='aspectFill'  catchtap="bindAdd"/> -->
+  </view>
   <!--背景图底部大头像-->
-  <!-- <view class="headimg">
-      <image class="baseimg" src="{{userInfo['avatarUrl']}}" mode="scaleToFill"></image>
-  </view> -->
+  
   <!--背景图底部昵称-->
   <!-- <view class="nickname">
     <text>{{userInfo['nickName']}}</text>
   </view> -->
   <!--占位行-->
-  <!-- <view class="lie"></view> -->
+  <view class="lie"></view>
 
 
 

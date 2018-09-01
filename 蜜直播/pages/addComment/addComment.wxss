@@ -42,7 +42,7 @@
 {
     width:60rpx;
     height:60rpx;
-    margin-left:50rpx;
+    margin-left:20rpx;
     margin-top:20rpx;
 }
 
@@ -109,7 +109,7 @@
 }
 .images-list {
   display: flex;
-  margin-top: 20rpx;
+  /* margin-top: 20rpx; */
   flex-wrap: wrap;
 }
 .images-image {
@@ -140,10 +140,11 @@
   transform: translate(-50%, -50%);
 }
 .chooseImageClose {
-  display: flex;
+  /* display: flex;
   top: 0;
-  right: 0;
-  width: 30rpx;
-  height: 30rpx;
-  background-color: #d9d9d9;
+  right: 0; */
+  display: block;
+  width: 20px;
+  height: 20px;
+  /* background-color: #d9d9d9; */
 }

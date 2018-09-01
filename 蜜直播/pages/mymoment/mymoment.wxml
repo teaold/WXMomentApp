@@ -1,11 +1,8 @@
+<scroll-view class="box" scroll-y="true" style="padding-bottom:50px"  bindscroll="scrollHandle" lower-threshold="50" bindscrolltolower="scrollLoading" scroll-top="{{scrolltop}}">
 
-<scroll-view class="box" scroll-y="true" style="height:1200rpx"  bindscroll="scrollHandle" lower-threshold="50" bindscrolltolower="scrollLoading" scroll-top="{{scrolltop}}">
-
-  <!--占位行-->
-  <view class="lie"></view>
-
+  
 <!--循环展示-->
-  <view class="content" wx:for="{{resultData}}" wx:for-item="item" wx:for-index="k">
+  <view class="content" wx:for="{{resultData}}" wx:for-item="item" for:key="key">
    
     <block wx:if="{{item.user != 'undefined'}}">
       <view class="head">
@@ -73,22 +70,16 @@
 </view>
     
     <!--显示点赞 用户 列表-->
-
-    <block wx:if="{{item.likes != 'null'}}">
+    
+    <block wx:if="{{item.likes.length > 0}}">
         <view class="dianzan-box">
           <view class="dianzan-biao">
             <image class="baseimg" src="/images/zan.png" mode="aspectFit"></image>
           </view>
-
-          <view class="dianzan-text">bobo</view>
-          <view class="dianzan-text">bobo2</view>
-          <view class="dianzan-text">bobo3</view>
-          <view class="dianzan-text">bobo4</view>
-          <view class="dianzan-text">bobo5</view>
-          <view class="dianzan-text">bobo5</view>
-          <view class="dianzan-text">bobo5</view>
-          <view class="dianzan-text">波波赞</view>
-          <view class="dianzan-text">bobo5</view>
+        <block wx:for="{{item.likes}}"  wx:for-item="item" for:key="key">
+            <view data-model="{{item}}" class="dianzan-text">{{item.reply_name}}</view>
+        </block>
+          
         </view>
     </block>
     <!--显示评论-->
@@ -96,7 +87,7 @@
     <block wx:if="{{item.comments != 'null'}}">
       <view class="pinglun-box" scroll-y>
         <!--循环评论-->
-        <block wx:for="{{item.comments}}"  wx:for-item="item" wx:for-index="kk">
+        <block wx:for="{{item.comments}}"  wx:for-item="item" for:key="key">
 
             <!--如果pid等于null证明是发布的评论 否则是回复的评论-->
             <block wx:if="{{item.replyed_id == 0}}">
@@ -127,4 +118,3 @@
 
 
 </scroll-view>
-

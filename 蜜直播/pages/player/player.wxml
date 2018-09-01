@@ -1,0 +1,21 @@
+<view class="page-body">
+  <view class="page-section tc">
+    <video id="myVideo" src="https://cdn-host.media.yunxi.tv/recordM3u8/4f3725c779cb4315a1e2aec170feff8e/4f3725c779cb4315a1e2aec170feff8e_GFULr.m3u8" binderror="videoErrorCallback" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
+
+    <view class="weui-cells">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">弹幕内容</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input bindblur="bindInputBlur" class="weui-input" type="text" placeholder="在此处输入弹幕内容" />
+        </view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button bindtap="bindSendDanmu" class="page-body-button" type="primary" formType="submit">发送弹幕</button>
+      <button bindtap="bindPlay" class="page-body-button" type="primary">播放</button>
+      <button bindtap="bindPause" class="page-body-button" type="primary">暂停</button>
+    </view>
+  </view>
+</view>

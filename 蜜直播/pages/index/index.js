@@ -13,7 +13,8 @@ Page({
 
     authenphoto: '0', //是否认证拍手
     homedata: {}, //首页加载数据
-
+    
+// ('title' => '在线直播','icon' => 'menuliveA.png','rightbtn' => '1','data' => $datalive,'datacount' => count($datalive))
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -86,14 +87,35 @@ Page({
     var that = this
     var pageurl = itemM.url;
     // pageurl = 'http'
-    if (pageurl.length > 10) {
+    if (pageurl == 'menuA') {
+      that.photomancheckA(e);
+    } else if (pageurl == 'menuB') {
+      that.photomancheckB(e);
+    } else if (pageurl == 'menuC') {
+      that.photomancheckC(e);
+    } else if (pageurl == 'menuD') {
+      that.photomancheckD(e);
+    } else if (itemM.type == 'scan') {
+      that.previewImage(itemM.scanurl);
+    }else if (pageurl.length > 10) {
       wx.navigateTo({
+        // url:'../player/player'
+        // url: '../webview/webview?url=https://www.miyuanlive.com/player'
         url: '../webview/webview?url=' + pageurl //跳转页面的路径，可带参数 ？隔开，不同参数用 & 分隔；相对路径，不需要.wxml后缀'../test/test?id=1&page=4',
       })
     }
     // console.log(pageurl)
     // console.log('url=' + pageurl)
 
+  },
+  previewImage: function (e) { // 展示图片
+    var current = e
+    var count = [current]
+    // console.log(count)
+    wx.previewImage({
+      current: current,
+      urls: count
+    })
   },
   // detailpage: function (e) {
   //   var that = this

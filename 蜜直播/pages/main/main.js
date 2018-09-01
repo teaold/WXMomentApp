@@ -7,9 +7,12 @@ Page({
     userInfo: {}, // 存放用户信息
     resultData:[], // 存放数据
     imgplace: "../../meheadplace.png",
+      mombgimg:'https://www.miyuanlive.com/static/images/default/defaultA.png',
     userStatus:{}, // 存放地理位置
     scrolltop:20, // 滚动轴TOP
     page:1, // 页码值
+    nomore:false,
+
     cz_flag:false, // 控制点赞评论按钮
     cz_right:0, // 点赞评论定位right
     cz_top:80, // 点赞评论定位top
@@ -17,6 +20,9 @@ Page({
     animationData: {},
     animationData1: {}, // 发布按钮下滑动画
     animationData2: {}, // 位置按钮下滑动画
+
+    windowHeight: 0,
+    windowHeight: 0,
 
     zanimg:'/images/dianzan.png'
   },
@@ -30,6 +36,15 @@ Page({
       userInfo: app.globalData.userInfo
     })
     
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          windowHeight: res.windowHeight,
+          windowWidth: res.windowWidth
+        })
+      }
+    });
+
     // that.data.userStatus['state'] = e.state;
     //console.debug(e.state)
     // 上一个页面传过来的用户信息参数赋值
@@ -40,7 +55,7 @@ Page({
 
     
     that.bindLoding()
-    that.onloadRequest(0)
+    that.onloadRequest()
     
 
     var dataTop = {'detail':{'scrollTop':0}}
@@ -50,7 +65,9 @@ Page({
   onReloadPage: function () {
     // 重新加载页面 页面显示
     var that = this
-    that.onloadRequest(0)
+    that.data.page = 1
+    that.data.nomore = false
+    that.onloadRequest()
   },
   onChangeMoment: function (e) {
     // 详情页动态改动
@@ -83,93 +100,67 @@ Page({
     // 页面关闭
   },
 
-  onloadRequest: function(e,page)
+  onloadRequest: function()
   {
-    page = page == undefined?0:page
+    var that = this
+    if (that.data.nomore){
+      return;
+    }
     console.log('用户id')
     console.log(app.globalData.openid)
-    var that = this
-    // 0是下滑刷新
-    if(e == 0)
-    {
-         // 执行REQUEST请求相应的数据
-         wx.request({
-            url: app.requestUrl, 
-            data: {
-              flag:'list',
-              data:that.data.userStatus,
-              state:that.data.state,
-              user_id: app.globalData.openid,
-              page:page
-            },
-            // header: {
-            //     'content-type': 'application/x-www-form-urlencoded',
-            // },
-            // method:'POST',
-            success: function(res) 
-            {
-              console.log(res.data)
-              // return;
-              // 如果没有数据直接返回首页 有数据则展示
-              
-              if(res.data.code == 0)
-              {
-                  wx.hideToast()
-                  wx.stopPullDownRefresh()
-                  that.setData({
-                    resultData:res.data.data
-                    //imgplace:
-                
-                  })
-              
-              }          
-            },
-            fail: function(res)
-            {
-              console.log(res)
-            }
-        })
-    }
-    else if(e == 1)
-    {
-      // 执行REQUEST请求相应的数据
-         wx.request({
-            url: app.requestUrl, 
-            data: {
-              flag:'pageData',
-              data:that.data.userStatus,
-              state:that.data.state,
-              page:page
-            },
-            header: {
-                //'Content-Type': 'application/json',
-                'content-type': 'application/x-www-form-urlencoded',
-            },
-            method:'POST',
-            success: function(res) 
-            {
-              // 如果没有数据直接返回首页 有数据则展示
-              if(res.data.length)
-              {
-                  wx.hideToast()
-                  wx.stopPullDownRefresh()
-                  for(var ii = 0; ii < res.data.data.length;ii++)
-                  {
-                    that.data.resultData.push(res.data.data[ii])
-                  }
+    
+    // 执行REQUEST请求相应的数据
+    wx.request({
+      url: app.requestUrl,
+      data: {
+        flag: 'list',
+        data: that.data.userStatus,
+        state: that.data.state,
+        user_id: app.globalData.openid,
+        page: that.data.page,
+        pagesize:'20'
+      },
+      // header: {
+      //     'content-type': 'application/x-www-form-urlencoded',
+      // },
+      // method:'POST',
+      success: function (res) {
+        // console.log(res.data)
+        // return;
+        // 如果没有数据直接返回首页 有数据则展示
 
-                  that.setData({
-                    resultData:that.data.resultData
-                  })
-              }         
-            },
-            fail: function(res)
-            {
-              console.log("fail2")
-              console.log(res)
+        if (res.data.code == 0) {
+          wx.hideToast()
+          wx.stopPullDownRefresh()
+          if (that.data.page == 1){
+            that.setData({
+              resultData: res.data.data,
+              mombgimg: res.data.bgimg
+            })
+          } else {
+            var tempdata = that.data.resultData
+            for (var i = 0; i < res.data.data.length ;i ++){
+              tempdata.push(res.data.data[i])
             }
-        })
-    }  
+            if (res.data.more == 0){
+              that.setData({
+                nomore : true
+              })
+            }
+            that.setData({
+              resultData: tempdata,
+              mombgimg: res.data.bgimg
+            })
+          }
+          
+
+        }
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+     
   },
   bindLoding:function(){ // LOADING加载
      wx.showToast({
@@ -242,18 +233,16 @@ Page({
 
     
   },
+  // 上拉加载 (滚动到底部)
   scrollLoading:function(){ //滚动加载
-      var that = this
-      //console.log(that.data.page)
-      that.setData({
-          page:that.data.page + 1
-      })
-      // 临时关闭
-      // that.bindLoding()
-      // that.onloadRequest(1,that.data.page)
-      // that.setData({
-      //   scrolltop: that.data.scrolltop
-      // })
+    
+    var that = this
+    if (that.data.nomore == false) {
+      that.bindLoding()
+      that.data.page += 1;
+      that.onloadRequest();
+    }
+    
   },
   bindDele: function(event){ //删除动态
     var that = this
@@ -415,6 +404,9 @@ Page({
   {
       var that = this
       var dataM = e.currentTarget.dataset.model
+    if (dataM == undefined){
+      return;
+    }
     if (dataM.praise == 0){//未点赞
         
         wx.request({
@@ -475,10 +467,14 @@ Page({
   {
       var that = this
       var moment_id = e.currentTarget.dataset.id
-      
-    wx.navigateTo({
-      url: '../addPingLun/addPingLun?id=' + moment_id+'&state=0'
-      })
+    // console.log(moment_id)
+    
+    if (moment_id != undefined && moment_id != null && moment_id != ''){
+        wx.navigateTo({
+          url: '../addPingLun/addPingLun?id=' + moment_id + '&state=0'
+        })
+      }
+    
   },
   bindPingLunB: function(e){ // 处理已有评论的回复
     var dataM = e.currentTarget.dataset.model

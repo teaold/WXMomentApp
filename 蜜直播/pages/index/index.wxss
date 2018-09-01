@@ -8,7 +8,15 @@
 .slide-image{
   width: 100%;
 }
+.swiper-item{
+  display: block;
+  height: 150px;
+}
+.slide-image-view{
+  background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
 
+
+}
 /* 拍手认证 */
 .menu_photo_bg{
   position: relative;
@@ -160,7 +168,7 @@
   
   box-sizing: border-box;
 	width: 100%;
-	height: 70px;
+	height: 90px;
   -webkit-border-radius: 5px 5px 5px 5px; 
   -moz-border-radius: 5px 5px 5px 5px; 
   border-radius: 5px 5px 5px 5px; 
@@ -192,4 +200,3 @@
   letter-spacing: 1px;
   display: block;
 }
-

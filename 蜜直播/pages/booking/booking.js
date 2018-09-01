@@ -7,7 +7,6 @@ Page({
     checkData: {},
     price: '0',
     payname:'预 约',
-    
     dates: '2018-01-08',
   },
   listenerPhoneInput: function (e) {
@@ -157,5 +156,62 @@ Page({
   },
   onUnload: function () {
     // 页面关闭
+  },
+  //支付
+  listenerLogin3: function () {
+    //app.globalData.openid,
+    var that = this
+    wx.request({
+      url: 'https://www.miyuanlive.com/home/wxplay',
+      data: {
+        openid: app.globalData.openid
+      },
+      success: function (res) {
+        that.pay(res.data)
+      }
+    })
+
+  },
+  /*
+调起微信支付 
+@param 支付价格，不填写默认为1分钱
+*/
+  listenerLogin4: function () {
+
+    var total_fee = 1;
+    //code 用于获取openID的条件之一
+    wx.request({
+      url: 'https://www.miyuanlive.com/home/wxpay',
+      method: "POST",
+      data: {
+        total_fee: total_fee,
+        openid: app.globalData.openid,
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' // 默认值
+      },
+      success: function (res) {  //后端返回的数据
+        var data = res.data;
+        console.log(data);
+        console.log(data["timeStamp"]);
+        wx.requestPayment({
+          timeStamp: data['timeStamp'],
+          nonceStr: data['nonceStr'],
+          package: data['package'],
+          signType: data['signType'],
+          paySign: data['paySign'],
+          success: function (res) {
+            wx.showModal({
+              title: '支付成功',
+              content: '',
+            })
+          },
+          fail: function (res) {
+            console.log(res);
+          }
+        })
+      }
+    });
+
   }
 })

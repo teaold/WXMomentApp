@@ -63,7 +63,7 @@ App({
   },
   requestLoginUrl: baseUrl + 'userlogin',
   requestregisterUrl: baseUrl + 'register',
-  requestUserinfoUrl: baseUrl+'modifyuserinfo',
+  requestmodifyuserinfoUrl: baseUrl +'modifyuserinfo',
   requestUrl: baseUrl +'momentlist',
   requestuserinfoUrl: baseUrl + 'userinfo',
   requestAddMomentUrl: baseUrl + 'addMoment',
