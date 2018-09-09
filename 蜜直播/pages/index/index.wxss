@@ -3,7 +3,11 @@
 ::-webkit-scrollbar{
  display:none;
 }
-
+.bannerpic{
+  display: block;
+  width: 100vw;
+  height: 56.25vw;
+}
 
 .slide-image{
   width: 100%;
@@ -14,8 +18,6 @@
 }
 .slide-image-view{
   background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
-
-
 }
 /* 拍手认证 */
 .menu_photo_bg{
@@ -199,4 +201,23 @@
   font-size: 10px;
   letter-spacing: 1px;
   display: block;
+}
+
+.beginBtn{
+  top: 40px;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+.defaultimgView{
+  margin-top: 60px;
+  margin-bottom: 30px;
+  width: 100%;
+  height: 80px;
+  text-align: center;
+  
+}
+.defaultimg{
+  margin-top: 80px;
+  width: 40vw;
+  height: 40vw;
 }

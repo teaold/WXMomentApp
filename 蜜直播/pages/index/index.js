@@ -10,7 +10,7 @@ Page({
     autoplay: true,
     interval: 5000,
     duration: 1000,
-
+    loadfail:false,
     authenphoto: '0', //是否认证拍手
     homedata: {}, //首页加载数据
     
@@ -80,14 +80,29 @@ Page({
       url: '../booking/booking'
     })
   },
-
+  calling: function () {
+    wx.makePhoneCall({
+      phoneNumber: '13918344690',
+      success: function () {
+        console.log("拨打电话成功！")
+      },
+      fail: function () {
+        console.log("拨打电话失败！")
+      }
+    })
+  },
   // 详情页
   detailpage: function(e) {
+
     var itemM = e.currentTarget.dataset.model
     var that = this
     var pageurl = itemM.url;
     // pageurl = 'http'
-    if (pageurl == 'menuA') {
+    if (pageurl == 'video') {
+      wx.navigateTo({
+        url: '../player/player?url=' + pageurl
+      })
+    } else if (pageurl == 'menuA') {
       that.photomancheckA(e);
     } else if (pageurl == 'menuB') {
       that.photomancheckB(e);
@@ -152,12 +167,16 @@ Page({
       url: '../logs/logs'
     })
   },
-
+  reloadhomedata: function () {
+    // console.log('reloadhomedata')
+    var that = this
+    GetList(that)
+  },
   onLoad: function() {
     var that = this
 
     GetList(that)
-    GetBanner(that)
+    GetBannerpics(that)
     loginuser(that)
     if (app.globalData.userInfo) {
       this.setData({
@@ -180,21 +199,9 @@ Page({
       msg: "是我啊"
     })
   },
-  calling: function() {
-    wx.makePhoneCall({
-      phoneNumber: '021-39590800',
-      success: function() {
-        console.log("拨打电话成功！")
-      },
-      fail: function() {
-        console.log("拨打电话失败！")
-      }
-    })
-  },
   //添加  
   liuyan: function(e) {
     var that = this
-    console.log("拨打电话成功！")
     wx.navigateTo({
       url: '../case/case' //跳转页面的路径，可带参数 ？隔开，不同参数用 & 分隔；相对路径，不需要.wxml后缀'../test/test?id=1&page=4',
     })
@@ -243,12 +250,37 @@ var GetList = function(that) {
       }
 
       that.setData({
-        hidden: true
+        hidden: true,
+        loadfail: false
+      });
+    },
+    fail: function (res) {
+      this.setData({
+        loadfail: true
+      })
+    }
+  });
+}
+// 加载banner pics
+var GetBannerpics = function (that) {
+  var url = app.requestBannerpicUrl;
+  that.setData({
+    hidden: false
+  });
+  wx.request({
+    url: url,
+    data: {},
+    success: function (res) {
+      that.setData({
+        imgUrls: res.data['data']
+      });
+      that.setData({
+        hidden: true,
+        loadfail: false
       });
     }
   });
 }
-
 // 加载banner
 var GetBanner = function(that) {
   var url = app.requestBannerUrl;
@@ -265,7 +297,8 @@ var GetBanner = function(that) {
       }
 
       that.setData({
-        imgUrls: l
+        imgUrls: l,
+        loadfail: false
       });
 
       that.setData({
@@ -302,6 +335,9 @@ var loginuser = function(that) {
         },
         fail: function(lb) {
           // console.log(lb)
+          that.setData({
+            loadfail: true
+          });
         }
       })
 
@@ -331,9 +367,15 @@ var registerser = function(that) {
         if (res.data['code'] == '0') {
           that.data.authenphoto = res.data['data']['authenticate'];
         }
+        that.setData({
+          loadfail: false
+        });
       },
       fail: function(res) {
         // console.log(lb)
+        that.setData({
+          loadfail: true
+        });
       }
     })
   }

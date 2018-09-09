@@ -30,10 +30,10 @@
     <view  class="lives-content"  wx:for="{{listdata}}" wx:for-item="item" for:key="key">
         <view class="lives-img-view" bindtap='detailpage'  data-model='{{item}}' data-usertype='lives'>
          <block wx:if='{{item.type == "item"}}'>
-              <image class="lives-img" src='{{item.picurl}}' mode='aspectFit' />
+              <image class="lives-img" mode='aspectFill' src='{{item.picurl}}' mode='aspectFit' />
          </block>
          <block wx:else>
-              <image class="lives-img" src='{{item.picurl}}' mode='aspectFill' />
+              <image class="lives-img" mode='aspectFill' src='{{item.picurl}}' mode='aspectFill' />
          </block>
           
           <!-- {{item.type == "item" ? aspectFit : aspectFill}} -->

@@ -6,8 +6,10 @@ Page({
   data: {
     checkData: {},
     price: '0',
-    payname:'预 约',
+    payname:'免费预约',
     dates: '2018-01-08',
+    showMessage: false,
+    messageContent: ''
   },
   listenerPhoneInput: function (e) {
     this.data.checkData['phone'] = e.detail.value;
@@ -21,7 +23,19 @@ Page({
   listenerDetailAddrInput: function (e) {// 详细地点
     this.data.checkData['address'] = e.detail.value;
   },
-
+  showMessage: function (text) {
+    var that = this
+    that.setData({
+      showMessage: true,
+      messageContent: text
+    })
+    setTimeout(function () {
+      that.setData({
+        showMessage: false,
+        messageContent: ''
+      })
+    }, 1000)
+  },
   /**
    * 监听登录按钮
    */
@@ -117,13 +131,13 @@ Page({
     if (e.detail.value == 1){
       // newprice = '3500'
       // newpayname = '支付3500元'
-      this.data.checkData['machine'] = '单机位:支付3500元'
+      this.data.checkData['machine'] = '单机位'
     } else if (e.detail.value == 2) {
       // newprice = '5000'
       // newpayname = '支付5000元'
-      this.data.checkData['machine'] = '双机位:支付5000元'
+      this.data.checkData['machine'] = '双机位'
     } else {
-      this.data.checkData['machine'] = '多机位:联系后支付'
+      this.data.checkData['machine'] = '多机位'
     }
     // this.setData({
     //   price: newprice,
@@ -176,7 +190,7 @@ Page({
 调起微信支付 
 @param 支付价格，不填写默认为1分钱
 */
-  listenerLogin4: function () {
+  listenerLogin8: function () {
 
     var total_fee = 1;
     //code 用于获取openID的条件之一
@@ -191,25 +205,35 @@ Page({
         'content-type': 'application/x-www-form-urlencoded' // 默认值
       },
       success: function (res) {  //后端返回的数据
+        console.log(res);
         var data = res.data;
         console.log(data);
-        console.log(data["timeStamp"]);
-        wx.requestPayment({
-          timeStamp: data['timeStamp'],
-          nonceStr: data['nonceStr'],
-          package: data['package'],
-          signType: data['signType'],
-          paySign: data['paySign'],
-          success: function (res) {
-            wx.showModal({
-              title: '支付成功',
-              content: '',
-            })
-          },
-          fail: function (res) {
-            console.log(res);
-          }
-        })
+        
+        var timeStampS = String(data['timeStamp']);
+        if (data['state'] == 200){
+          wx.requestPayment({
+            timeStamp: timeStampS,
+            nonceStr: data['nonceStr'],
+            package: data['package'],
+            signType: data['signType'],
+            paySign: data['paySign'],
+            success: function (res) {
+              console.log('支付成功:');
+              console.log(res);
+              wx.showModal({
+                title: '支付成功',
+                content: '',
+              })
+            },
+            fail: function (res) {
+              console.log('支付失败:');
+              console.log(res);
+            }
+          })
+        } else {
+          console.log('请求支付失败');
+        }
+        
       }
     });
 

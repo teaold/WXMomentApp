@@ -92,9 +92,11 @@ Page({
       this.showMessage('请输入手机号码')
     } else if (!telRule.test(sendData['phone'])) {
       this.showMessage('手机号码格式不正确')
-    } else if (sendData['weixin'] == undefined || sendData['weixin'] == '') {
-      this.showMessage('请输入微信号')
-    } else if (sendData['sexArr'] == undefined || sendData['sexArr'] == '') {
+    }
+    //  else if (sendData['weixin'] == undefined || sendData['weixin'] == '') {
+    //   this.showMessage('请输入微信号')
+    // }
+    else if (sendData['sexArr'] == undefined || sendData['sexArr'] == '') {
       this.showMessage('请选择性别')
     } else if (this.data.provinceSelIndex == '') {
       this.showMessage('请选择所在地区')
@@ -148,7 +150,8 @@ Page({
          }
          sendData['live'] = liveStr
        }
-      
+      //微信号
+      sendData['weixin'] = '未设置'
       //性别
       var sexArr = sendData['sexArr']
       if (sexArr[0] == 1){

@@ -30,6 +30,12 @@ line-height: 55px;
 
 .beginBtn{
   top: 40px;
-  width: 50%;
+  margin-left: 26%;
+  margin-right: 26%;
+}
+.beginBtn2{
+  top: 40px;
+  margin-left: 16%;
+  margin-right: 16%;
 }
 

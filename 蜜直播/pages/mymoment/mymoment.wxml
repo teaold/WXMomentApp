@@ -22,8 +22,16 @@
             <view class="images-wrapper">
                 <view class="images-list">
                   <block wx:for="{{item.imgs}}" wx:for-item="image">
+                      <block wx:if="{{item.imgs.length == 1}}">
+                        <image src="{{image}}" mode='aspectFill' class="images-image-one" data-src="{{image}}" data-model="{{item}}" data-count="{{item.imgcount}}" bindtap="previewImage"></image>
+                      </block>
+                      <block wx:else>
+                        <image src="{{image}}" mode='aspectFill' class="images-image" data-src="{{image}}" data-model="{{item}}" data-count="{{item.imgcount}}" bindtap="previewImage"></image>
+                        </block>
+                    </block>
+                  <!-- <block wx:for="{{item.imgs}}" wx:for-item="image">
                     <image src="{{image}}" class="images-image" data-src="{{image}}" data-count="{{item.imgcount}}" bindtap="previewImage"></image>
-                  </block>
+                  </block> -->
                 </view>
           </view>
         <!-- </block> -->

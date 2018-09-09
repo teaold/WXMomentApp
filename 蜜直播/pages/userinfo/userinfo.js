@@ -11,7 +11,7 @@ Page({
     errormsg:'警告',
     userinfo: {},
     accounts: ["男", "女",'未填'],
-    accountIndex: 0,
+    sexname: '未填',
   },
 
   /**
@@ -23,10 +23,9 @@ Page({
   },
   // 修改性别
   bindAccountChange: function (e) {
-
     this.data.userinfo['sex'] = this.data.accounts[e.detail.value]
     this.setData({
-      accountIndex: e.detail.value
+      sexname: this.data.accounts[e.detail.value]
     })
   },
   /**
@@ -87,12 +86,12 @@ Page({
               console.log(res)
               if (res.data['code'] == '0') {
                 wx.showToast({
-                  title: '修改成功'
+                  title: res.data['msg']
                 })
                 
                 setTimeout(function () {
                   wx.navigateBack();
-                }, 1500)
+                }, 1000)
                 
               }
             },
@@ -147,7 +146,7 @@ var GetList = function (that) {
       if (res.data['code'] == 0) {
         that.setData({
           userinfo: res.data['data'],
-          accountIndex: res.data['data']['sex']
+          sexname: res.data['data']['sex']
         });
       }
 

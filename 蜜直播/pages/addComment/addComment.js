@@ -38,14 +38,7 @@ Page({
   },
   formSubmit: function (e) {//这里触发图片上传的方法
     var tempc = e.detail.value.content;
-    //限制输入内容长度
-    if (tempc.length > 10) {
-      wx.showToast({
-        title: '内容过长!'
-      })
-      return;
-    }
-
+    
     var that = this
     var pics = this.data.chooseImageUrl;
     

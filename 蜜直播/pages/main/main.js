@@ -339,14 +339,17 @@ Page({
       url: '../detailmoment/detailmoment?id=' + moment_id + '&state=0'
     })
   },
-  previewImage: function (e){ // 展示图片
+  // 展示图片
+  previewImage: function (e){ 
+    var model = e.target.dataset.model
     var current = e.target.dataset.src
     // var count = e.target.dataset.count.split(",")
-    var count = [current]
+    console.log(model)
+    var urlArry = model.imgs
     // console.log(count)
     wx.previewImage({
       current: current,
-      urls: count
+      urls: urlArry
     })
   },
   locationWb:function(){ //选择地理位置跳转进入微博友圈

@@ -237,7 +237,7 @@ Page({
         showMessage: false,
         messageContent: ''
       })
-    }, 3000)
+    }, 1000)
   }
 
   // 城市 - end

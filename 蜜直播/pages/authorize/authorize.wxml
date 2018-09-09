@@ -1,13 +1,27 @@
+<template name="msgblank">
+  <view>
+    <view class='defaultimgView'>
+      <image class='defaultimg' src='../../images/nonetwork.png'></image>
+      <button class='beginBtn2' bindtap='reloadhomedata'>加载失败,重新加载</button>
+    </view>
+    
+  </view>
+</template>
+
+<block wx:if='{{loadfail}}'>
+  <template is="msgblank"  />
+</block>
+  <block wx:else>
+
 <view>
   <view class='defaultimgView'>
     <image class='defaultimg' src='../../images/launchdefault.jpg'></image>
   </view>
   
-  <text class='MsgTxt MsgTxt2' >蜜源live</text>
+  <text class='MsgTxt MsgTxt2' >蜜直播</text>
   <text class='MsgTxt' >在线直播,预约,回看</text>
   <text class='MsgTxt' >拍手认证</text>
   <text class='MsgTxt' >拍摄预约</text>
-  <text class='MsgTxt' >活动策划</text>
 
   
 <!-- <button class="{{showGetUser}} beginBtn"  open-type="getUserInfo">开始说事儿</button>  -->
@@ -19,7 +33,10 @@
     class="beginBtn"
     hidden='{{isauthorize}}'
     bindgetuserinfo="bindGetUserInfo"
->授权登录</button>
+>进入蜜直播</button>
 
 
 </view>
+
+
+</block>

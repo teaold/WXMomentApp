@@ -15,17 +15,14 @@ Page({
   inputValue: '',
   data: {
     src: '',
-    danmuList: [
-      {
-        text: '第 1s 出现的弹幕',
-        color: '#ff0000',
-        time: 1
-      },
-      {
-        text: '第 3s 出现的弹幕',
-        color: '#ff00ff',
-        time: 3
-      }]
+    danmuList: []
+  },
+  onLoad: function (options) {
+    var that = this
+    // console.log("-----web--url--" + options.url);
+    that.setData({
+      src: options.url
+    });
   },
   bindInputBlur: function (e) {
     this.inputValue = e.detail.value

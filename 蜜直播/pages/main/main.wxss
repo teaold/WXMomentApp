@@ -81,6 +81,11 @@ color: transparent;
   height: 150rpx;
   margin: 10rpx;
 }
+ .images-image-one {
+  width: 250rpx;
+  height: 200rpx;
+  margin: 10rpx;
+}
 
  .bghead
  {

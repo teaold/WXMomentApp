@@ -3,14 +3,14 @@
 <view class='bgview'>
 
   <import src="../template/template.wxml" />
-  <template is="msgItem" data="{{msg1:'拍手认证流程',msg2:'1 : 认证成为拍手',msg3:'2 : 客服确认,完成入驻',msg4:'3 : 根据您的所在区域派发订单',msg5:'欢迎加入蜜直播大家庭，完成入驻后，我们将会根据您的所在区域派发订单，合作双赢。'}}" />
+  <template is="msgItem" data="{{msg1:'拍手认证流程',msg2:'1 : 入驻平台',msg3:'2 : 客服确认,完成入驻',msg4:'3 : 平台派单（直播设备平台提供）',msg5:'欢迎加入蜜直播大家庭，完成入驻后，我们将会根据您的所在区域派发订单，合作双赢。'}}" />
 
   <template is="msgItemfrom" data="{{msgname:'姓名',important:'1',funcname:'listenerNameInput',inputtype:'text'}}" />
 
   <template is="msgItemfrom" data="{{msgname:'电话',important:'1',funcname:'listenerPhoneInput',inputtype:'number'}}" />
 
-
-<template is="msgItemfrom" data="{{msgname:'微信号',important:'1',funcname:'listenerWXNumInput',inputtype:'text'}}" />
+<!-- 
+<template is="msgItemfrom" data="{{msgname:'微信号',important:'1',funcname:'listenerWXNumInput',inputtype:'text'}}" /> -->
 
 <!-- 性别 -->
 <template is="ItemSelectSix" data="{{important:'1'}}" />

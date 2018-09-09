@@ -51,7 +51,7 @@
 
 <text class='input-title'>机位需求</text>
 <text class='input-title-tag'>*</text>
-<text class='input-tips'>机位价格:单机位：3500元/次；双机位：5000元/次；多机位：联系后付款</text>
+<!-- <text class='input-tips'>机位价格:单机位：3500元/次；双机位：5000元/次；多机位：联系后付款</text> -->
 <radio-group bindchange="radioChange" >
     <!-- <label  wx:for="{{cartArr}}"> -->
     <view class="layout_horizontal">
@@ -74,9 +74,10 @@
 <text class='input-tips'>微信(同手机号): 13918340690 - QQ:3443026025</text>
 
 
-
 <button class="playbtn" type="primary" bindtap="listenerLogin">{{payname}}</button>
 
 <view class="blankView"></view>
 
 </view>
+
+<view class="message {{showMessage ? 'fade-in' : ''}}" hidden="{{!showMessage}}">{{messageContent}}</view>

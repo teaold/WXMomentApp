@@ -8,13 +8,24 @@ Page({
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isauthorize:1, //是否显示授权按钮
-    pagedata: {}
+    pagedata: {},
+    loadfail: false
   },
   onLoad: function () {
     var that = this
     // 查看是否授权
+    that.checkgetSetting(that)
+    
+  },
+  
+  checkgetSetting: function () {
+    // console.log('reloadhomedata')
+    var that = this
     wx.getSetting({
       success: function (res) {
+        that.setData({
+          loadfail: false
+        })
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
             success: function (res) {
@@ -32,10 +43,20 @@ Page({
           that.setData({
             isauthorize: 0
           })
-          
+
         }
+      },
+      fail: function (res) {
+        that.setData({
+          loadfail: true
+        });
       }
     });
+  },
+  reloadhomedata: function () {
+    // console.log('reloadhomedata')
+    var that = this
+    that.checkgetSetting(that)
   },
   bindGetUserInfo: function (e) {
     console.log(e.detail.userInfo)

@@ -329,13 +329,13 @@ Page({
     })
   },
   previewImage: function (e) { // 展示图片
+    var model = e.target.dataset.model
     var current = e.target.dataset.src
-    // var count = e.target.dataset.count.split(",")
-    var count = [current]
-    // console.log(count)
+    console.log(model)
+    var urlArry = model.imgs
     wx.previewImage({
       current: current,
-      urls: count
+      urls: urlArry
     })
   },
   locationWb: function () { //选择地理位置跳转进入微博友圈
@@ -393,6 +393,9 @@ Page({
   {
     var that = this
     var dataM = e.currentTarget.dataset.model
+    if (dataM == undefined) {
+      return;
+    }
     if (dataM.praise == 0) {//未点赞
 
       wx.request({
@@ -403,10 +406,11 @@ Page({
           like: '1',//1 : 点赞 ,0 取消赞
           moment_id: dataM.moment_id
         },
-        // header: {
-        //     'content-type': 'application/x-www-form-urlencoded',
-        // },
-        // method:'POST',
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+
         success: function (res) {
           wx.hideLoading()
           console.log(res.data);
@@ -418,7 +422,14 @@ Page({
               console.log(dataM.moment_id);
               if (dataM.moment_id == datatempM.moment_id) {
                 datatempM['praise'] = '1';
-                // var dataLikesArr = datatempM['likes'];
+                var dataLikesArr = datatempM['likes'];
+                var likemodel = {};
+                likemodel['moment_id'] = dataM.moment_id;
+                likemodel['reply_id'] = app.globalData.openid;
+                likemodel['reply_name'] = app.globalData.userInfo.nickName;
+                dataLikesArr.push(likemodel);
+                datatempM['likes'] = dataLikesArr;
+
                 // dataLikesArr[] = res.data['data'];
                 // datatempM['likes'] = dataLikesArr;
                 dataList[i] = datatempM;

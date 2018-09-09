@@ -1,7 +1,7 @@
 <view class='bgview'>
 <import src="../mybooking/mybookvm.wxml" />
 <block wx:for="{{list.live}}">
-    <template is="msgItem2" data="{{msg1:'直播预约',msg2:'姓名 : '+ item.name ,msg3:'电话 : '+ item.phone ,msg4:'活动主题 : '+ item.topicname ,msg5:'活动时间 : '+ item.topictime ,msg6:'活动地址 : '+ item.topicaddr ,msg7:'机位需求 : '+ item.machinenum ,msg8:'支付 : '+ (item.pay == 'yes' ? '已支付(已支付账单为准)' : '未支付'),msg9:'直播咨询：微信(同手机号): 13918340690 - QQ:3443026025',msg10:item.statename,class1:'stateclass' + item.state}}" />
+    <template is="msgItem2" data="{{msg1:'直播预约',msg2:'姓名 : '+ item.name ,msg3:'电话 : '+ item.phone ,msg4:'活动主题 : '+ item.topicname ,msg5:'活动时间 : '+ item.topictime ,msg6:'活动地址 : '+ item.topicaddr ,msg7:'机位需求 : '+ item.machinenum ,msg8:'支付 : '+ (item.pay == 'yes' ? '已支付(已支付账单为准)' : '免费预约'),msg9:'直播咨询：微信(同手机号): 13918340690 - QQ:3443026025',msg10:item.statename,class1:'stateclass' + item.state}}" />
 
 </block>
 

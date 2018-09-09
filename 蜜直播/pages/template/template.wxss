@@ -10,12 +10,12 @@
   height: 100%;
   width: 100%;
   background-color: #f2f2f2;
+  /* 
   background: -webkit-linear-gradient(left top,#A8828D,#7A7CA2);  
   background: -o-linear-gradient(left top,#A8828D,#7A7CA2);  
   background: -moz-linear-gradient(left top,#A8828D,#7A7CA2);  
   background: -mos-linear-gradient(left top,#A8828D,#7A7CA2);  
-  background: linear-gradient(left top,#A8828D,#7A7CA2); 
-  /* background-image: '../../images/editbgview.jpg'; */
+  background: linear-gradient(left top,#A8828D,#7A7CA2);  */
 }
 
 .liucheng-bgview{

@@ -34,7 +34,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "蜜源live",
+    "navigationBarTitleText": "蜜直播",
     "navigationBarTextStyle":"black",
     "enablePullDownRefresh":false
   },
@@ -49,7 +49,7 @@
       
       {
         "pagePath": "pages/main/main",
-        "text": "蜜圈",
+        "text": "拍友圈",
         "selectedIconPath": "images/newsB.png",
         "iconPath": "images/newsA.png"
       },
