@@ -5,6 +5,7 @@ const app = getApp()
 
 Page({
   data: {
+    ismanager: false,
     nickName: '',
     avatarUrl: '',
     showGetUser: 'swipershow',
@@ -21,12 +22,11 @@ Page({
     that.setData({
       showGetUser: tempUs
     });
-    var that = this
     //调用应用实例的方法获取全局数据
     that.setData({
       userInfo: app.globalData.userInfo
     })
-    // getuserMsg(that.data.userInfo)
+    loadmanager(that)
     
   },
   //添加  
@@ -49,7 +49,13 @@ Page({
   mybooking: function (e) {
     var that = this
     wx.navigateTo({
-      url: '../../pages/mybooking/mybooking'
+      url: "../../pages/mybooking/mybooking?tag=" + 'mybooking'
+    })
+  },
+  dealbooking: function (e) {
+    var that = this
+    wx.navigateTo({
+      url: '../../pages/mybooking/mybooking?tag=' + 'dealbooking'
     })
   },
   //我的动态 
@@ -62,45 +68,25 @@ Page({
 
 }) 
 
-var getuserMsg = function (userInfo) {
-  // var UId = app.globalData.loginData.openid
-  // var NiName = app.globalData.userInfo.nickName
-  // var headUrl = app.globalData.userInfo.avatarUrl
-  // var that = this
-  var UId = app.globalData.openid
 
-  var NiName = userInfo.nickName
-  var headUrl = userInfo.avatarUrl
-  // console.log(userInfo.nickName)
-
-  if (app.globalData.loginData != null && UId != null){
-    // console.log("用户！")
-    // console.log(app.globalData.loginData)
-    console.log("用户信息！")
-    console.log(app.globalData.userInfo)
-    if (app.globalData.userInfo == null){
-      NiName = '0'
-      headUrl = '0'
-    }
-    // console.log(UId + NiName + headUrl)
-    // 添加注册用户
-    wx.request({
-      url: 'https://www.jdxlrx.com/phpmysql/saveUserMsg.php',
-      data: {
-        userId: UId,
-        nickName: NiName,
-        avatarUrl: headUrl
-      },
-      //POST请求要添加下面的header设置
-      method: 'POST',
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
-      success: res => {
-        //openid:"o0buV5DEk-B1i8DpbgYvItK60qqM"
-        // if (that.loginDataReadyCallback) {
-        //   that.loginDataReadyCallback(res)
-        // }
+// 是否管理员
+var loadmanager = function (that) {
+  var url = app.requestismanagerUrl;
+  wx.request({
+    url: url,
+    data: {
+      user_id: app.globalData.openid
+    },
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    method: 'POST',
+    success: function (res) {
+      if (res.data['code'] == 0) {
+        that.setData({
+          ismanager: res.data['manager'] == '1' ? true : false
+        });
       }
-    })
-  }
-  
+    }
+  });
 }

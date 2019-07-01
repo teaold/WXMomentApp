@@ -89,7 +89,8 @@ color: transparent;
 
  .bghead
  {
-   height: 250rpx;
+   width: 100vw;
+   height: 56.25vw;
    background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
    /* background: red; */
    /* overflow:hidden; */

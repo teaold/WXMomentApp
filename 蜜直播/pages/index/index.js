@@ -11,7 +11,6 @@ Page({
     interval: 5000,
     duration: 1000,
     loadfail:false,
-    authenphoto: '0', //是否认证拍手
     homedata: {}, //首页加载数据
     
 // ('title' => '在线直播','icon' => 'menuliveA.png','rightbtn' => '1','data' => $datalive,'datacount' => count($datalive))
@@ -33,13 +32,14 @@ Page({
   },
   // 认证成功
   didcertpicman: function() {
-    this.setData({
-      authenphoto: '1'
-    })
+    app.globalData.userInfo.authenticate = '1'
   },
   // 拍手认证
   photomancheckA: function(e) {
-    if (this.data.authenphoto == '1') {
+    console.log(app.globalData.userInfo)
+    var user_auth = app.globalData.userInfo.authenticate
+    console.log(user_auth)
+    if (user_auth == 1) {
       wx.navigateTo({
         url: '../paishouInfo/paishouInfo'
       })
@@ -52,7 +52,7 @@ Page({
   },
   // 拍手 新手
   photomancheckB: function(e) {
-    if (this.data.authenphoto == '1') {
+    if (app.globalData.userInfo.authenticate == '1') {
       wx.navigateTo({
         url: '../paishouInfo/paishouInfo'
       })
@@ -61,6 +61,12 @@ Page({
         url: '../photograLow/photograLow'
       })
     }
+  },
+  // 录课预约
+  photomancheckE: function (e) {
+    wx.navigateTo({
+      url: '../courseREC/index'
+    })
   },
   // 拍摄 预约
   photomancheckC: function(e) {
@@ -176,7 +182,9 @@ Page({
     var that = this
 
     GetList(that)
-    GetBannerpics(that)
+    // GetBannerpics(that)
+    GetBanner(that)
+
     loginuser(that)
     if (app.globalData.userInfo) {
       this.setData({
@@ -244,7 +252,6 @@ var GetList = function(that) {
       // console.log(res)
       if (res.data['code'] == 0) {
         that.setData({
-          authenphoto: res.data['authenphoto'],
           homedata: res.data['data']
         });
       }
@@ -365,7 +372,7 @@ var registerser = function(that) {
       success: function(res) {
         // console.log(lb.data)
         if (res.data['code'] == '0') {
-          that.data.authenphoto = res.data['data']['authenticate'];
+          app.globalData.userInfo = res.data['data']
         }
         that.setData({
           loadfail: false

@@ -98,7 +98,9 @@ Page({
             title: res.data['msg'],
           })
           if (res.data['code'] == '0') {
-            wx.navigateBack();
+            wx.redirectTo({
+              url: '../../pages/msgsuccess/msgsuccess',
+            })
           }
         },
         fail: function (res) {

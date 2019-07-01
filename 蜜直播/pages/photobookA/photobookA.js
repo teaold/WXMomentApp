@@ -7,7 +7,7 @@ Page({
    */
   data: {
     checkData: {},
-
+    bookdata: '',
     payname: '预 约',
 
     dates: '2018-01-08',
@@ -42,7 +42,9 @@ Page({
   /**
    * 监听登录按钮
    */
-  listenerLogin: function () {
+  formSubmit: function (e) {
+  //listenerLogin: function () {
+    this.data.checkData['street'] = "china";
     // console.log(specialStr)
     var sendData = this.data.checkData
     var telRule = /^1[2-9]\d{9}$/, nameRule = /^[\u2E80-\u9FFF]+$/
@@ -52,10 +54,12 @@ Page({
       this.showMessage('请输入手机号码')
     } else if (!telRule.test(sendData['phone'])) {
       this.showMessage('手机号码格式不正确')
-    } else if (this.data.provinceSelIndex == '') {
-      this.showMessage('请选择所在地区')
-    } else if (sendData['street'] == undefined || sendData['street'] == '') {
-      this.showMessage('请输入详细地点')
+    } 
+    // else if (this.data.provinceSelIndex == '') {
+    //   this.showMessage('请选择所在地区')
+    // } 
+    else if (sendData['street'] == undefined || sendData['street'] == '') {
+      this.showMessage('请输入详细地址')
     } else {
       
       var pindex = this.data.provinceSelIndex;
@@ -63,7 +67,14 @@ Page({
       var dindex = this.data.districtSelIndex;
       var address = this.data.provinceName[pindex] + this.data.cityName[cindex] + this.data.districtName[dindex];
 
-      sendData['address'] = address;
+      sendData['address'] = '';
+
+      //模板信息
+      var formID = e.detail.formId;
+      sendData['form_id'] = formID;
+      sendData['keyword1'] = " 拍摄预约";
+      sendData['keyword2'] = sendData['name'] + '提交了预约申请,请尽快处理哦!'
+      sendData['keyword3'] = '联系电话:' + sendData['phone'];
       sendData['user_id'] = app.globalData.openid;
       sendData['type'] = 'photo';
 
@@ -85,29 +96,19 @@ Page({
         header: { "Content-Type": "application/x-www-form-urlencoded" },
         success: function (res) {
 
-          that.setData({
-            hidden: true
-          });
           wx.hideLoading()
-          // wx.showToast({
-          //   title: res.data['msg'],
-          // })
           if (res.data['code'] == '0') {
-            wx.showModal({
-              content: '预约成功, 我们会第一时间联系您!请勿重复预约哦',
-              success: function (res) {
-                if (res.confirm) {
-                  wx.navigateBack();
-                }
-              }
+            that.setData({
+              bookdata: sendData
             })
+            //发送模板信息
+            that.submitTemplateMsg();
+            that.msgShowPage(true);//成功
           }
         },
         fail: function (res) {
           wx.hideLoading()
-          wx.showToast({
-            title: '网络错误,请稍后再试',
-          })
+          that.msgShowPage(false);//失败
 
         },
 
@@ -117,6 +118,44 @@ Page({
 
       });
     }
+  },
+  /**
+   * 更新支付状态, 同时发送模板信息
+   */
+  submitTemplateMsg: function () {
+    var send_data = this.data.bookdata;
+    var url1 = app.sendtemplatemessageUrl;
+    wx.request({
+      url: url1,
+      data: send_data,
+      //POST请求要添加下面的header设置
+      method: 'POST',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: function (res) {
+        wx.hideLoading()
+        console.log(res)
+      },
+      fail: function (res) {
+      },
+      complete: function (res) {
+
+      }
+    });
+
+  },
+  msgShowPage: function (state) {
+    if (state == true) {
+      wx.redirectTo({
+        url: '../../pages/msgsuccess/msgsuccess',
+      })
+    } else {
+      wx.redirectTo({
+        url: '../../pages/msgsuccess/msg_fail',
+      })
+    }
+
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数

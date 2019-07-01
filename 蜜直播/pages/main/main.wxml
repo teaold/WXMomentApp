@@ -16,7 +16,7 @@
 <!--</view>  -->
 
   <!--背景小图标-->
-  <view class="bghead"  mode='aspectFill' style="background-image: url({{mombgimg}})">
+  <view class="bghead" bindtap='photomancheckA'  mode='aspectFill' style="background-image: url({{mombgimg}})">
       <!-- <image class="baseimg" src="../../images/bg.jpg" mode="aspectFill"></image> -->
 
       <!-- <view class="headimg" > -->

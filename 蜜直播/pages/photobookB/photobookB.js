@@ -90,13 +90,8 @@ Page({
           //   title: res.data['msg'],
           // })
           if (res.data['code'] == '0') {
-            wx.showModal({
-              content: '预约成功, 我们会第一时间联系您!请勿重复预约哦',
-              success: function (res) {
-                if (res.confirm) {
-                  wx.navigateBack();
-                }
-              }
+            wx.redirectTo({
+              url: '../../pages/msgsuccess/msgsuccess',
             })
           }
         },

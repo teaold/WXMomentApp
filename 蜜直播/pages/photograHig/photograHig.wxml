@@ -16,8 +16,9 @@
 <template is="ItemSelectSix" data="{{important:'1'}}" />
   
 <!-- 所在城市 -->
-<template is="ItemSelectCity" data="{{provName:provinceName[provinceSelIndex],McityName:cityName[citySelIndex] , MdistrictName:districtName[districtSelIndex],important:'1'}}" />
+<!-- <template is="ItemSelectCity" data="{{provName:provinceName[provinceSelIndex],McityName:cityName[citySelIndex] , MdistrictName:districtName[districtSelIndex],important:'1'}}" /> -->
 
+ <template is="msgItemfrom" data="{{msgname:'所在城市',funcname:'listenerDetailAddrInput',inputtype:'text'}}" />
 
 <template is="msgItemfrom" data="{{msgname:'拍龄（单位：年）',important:'1',funcname:'listenerPhotoAgeInput',inputtype:'number'}}" />
 

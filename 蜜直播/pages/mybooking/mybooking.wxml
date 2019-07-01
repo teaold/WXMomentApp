@@ -1,17 +1,27 @@
 <view class='bgview'>
 <import src="../mybooking/mybookvm.wxml" />
-<block wx:for="{{list.live}}">
-    <template is="msgItem2" data="{{msg1:'直播预约',msg2:'姓名 : '+ item.name ,msg3:'电话 : '+ item.phone ,msg4:'活动主题 : '+ item.topicname ,msg5:'活动时间 : '+ item.topictime ,msg6:'活动地址 : '+ item.topicaddr ,msg7:'机位需求 : '+ item.machinenum ,msg8:'支付 : '+ (item.pay == 'yes' ? '已支付(已支付账单为准)' : '免费预约'),msg9:'直播咨询：微信(同手机号): 13918340690 - QQ:3443026025',msg10:item.statename,class1:'stateclass' + item.state}}" />
+<block wx:for="{{list}}">
+  <block wx:if="{{item.type == 'live'}}">
+    <template is="msgItem2" data="{{msg1:'直播预约',time:'预约时间 : '+ item.time,msg0:'单位 : '+ item.unit,msg2:'姓名 : '+ item.name ,msg3:'电话 : '+ item.phone ,msg4:'活动主题 : '+ item.topicname ,msg5:'活动时间 : '+ item.topictime ,msg6:'活动地址 : '+ item.topicaddr ,msg7:'机位需求 : '+ item.machinenum ,price:item.price,msg8:item.pay,ordernum:item.ordernum,msg9:'直播咨询：微信(同手机号): 13918340690 - QQ:3443026025',msg10:item.statename,class1:'stateclass' + item.state,model:item,ismanager:ismanager,mybook:mybookingpage}}" />
+</block>
+
+<block wx:if="{{item.type == 'course'}}">
+<template is="msgItem" data="{{msg1:'录课预约',time:'预约时间 : '+ item.time,msg2:'姓名 : '+ item.name ,msg3:'电话 : '+ item.phone ,msg4:'单位 : '+ item.unit ,msg5:'服务类型：课程录制、直播预告片、宣传片、活动摄影、单品拍摄(我们给到您的是低于市场价30%的报价）',msg6:item.statename,class1:'stateclass' + item.state,model:item,ismanager:ismanager,mybook:mybookingpage}}" />
 
 </block>
 
-<block wx:for="{{list.photo}}">
-   <template is="msgItem" data="{{msg1:'拍摄预约',msg2:'姓名 : '+ item.name ,msg3:'电话 : '+ item.phone ,msg4:'预约地址 : '+ item.address + item.street ,msg5:'服务类型：直播预告片、宣传片、活动摄影、单品拍摄(我们给到您的是低于市场价30%的报价）',msg6:item.statename,class1:'stateclass' + item.state}}" />
+<block wx:if="{{item.type == 'photo'}}">
+<template is="msgItem" data="{{msg1:'拍摄预约',time:'预约时间 : '+ item.time,msg2:'姓名 : '+ item.name ,msg3:'电话 : '+ item.phone ,msg4:'预约地址 : '+ item.street ,msg5:'服务类型：直播预告片、宣传片、活动摄影、单品拍摄(我们给到您的是低于市场价30%的报价）',msg6:item.statename,class1:'stateclass' + item.state,model:item,ismanager:ismanager,mybook:mybookingpage}}" />
+
+</block>
+<block wx:if="{{item.type == 'active'}}">
+   <template is="msgItem" data="{{msg1:'活动策划预约',time:'预约时间 : '+ item.time,msg2:'姓名 : '+ item.name ,msg3:'电话 : '+ item.phone ,msg4:'预约地址 : '+ item.address + item.street ,msg5:'服务类型：直播预告片、宣传片、活动摄影、单品拍摄(我们给到您的是低于市场价30%的报价）',msg6:item.statename,class1:'stateclass' + item.state,model:item,ismanager:ismanager,mybook:mybookingpage}}" />
 </block>
 
-<block wx:for="{{list.active}}">
-   <template is="msgItem" data="{{msg1:'活动策划预约',msg2:'姓名 : '+ item.name ,msg3:'电话 : '+ item.phone ,msg4:'预约地址 : '+ item.address + item.street ,msg5:'服务类型：直播预告片、宣传片、活动摄影、单品拍摄(我们给到您的是低于市场价30%的报价）',msg6:item.statename,class1:'stateclass' + item.state}}" />
 </block>
+
+
+
 <!-- 
   <template is="msgItem" data="{{msg1:'拍摄预约',msg2:'姓名 : 不不不',msg3:'电话 : 13072122220',msg4:'预约地址 : 上海市',msg5:'服务类型：直播预告片、宣传片、活动摄影、单品拍摄(我们给到您的是低于市场价30%的报价）',msg6:'待确认'}}" />
 

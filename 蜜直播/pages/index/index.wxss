@@ -9,6 +9,13 @@
   height: 56.25vw;
 }
 
+
+.swiper image {
+  width: 100%;
+  height: auto;
+}
+
+
 .slide-image{
   width: 100%;
 }
@@ -182,8 +189,8 @@
   margin-bottom: 10px;
 }
 .lives-right-img{
-  width: 15px;
-	height: 15px;
+  width: 20px;
+	height: 20px;
   position: absolute;
   right:5px;
   bottom: 5px;

@@ -9,7 +9,8 @@ Page({
   data: {
     weburl: "",
     list: [],
-
+    ismanager:false,
+    mybookingpage:"0"
   },
 
   /**
@@ -17,9 +18,56 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    that.setData({
+      mybookingpage: options.tag
+    });
+    console.log(options.tag)
     GetList(that)
   },
-  
+  //确认
+  checkbooking: function (e) {
+    console.log('已联系客户,确认预约已完成?')
+    var that = this
+    var model = e.currentTarget.dataset.model
+    wx.showModal({
+      content: '已联系客户,确认预约已完成?',
+      success: function(res) {
+        if (res.confirm) {
+          var url = app.requestcheckbookingUrl;
+          wx.request({
+            url: url,
+            data: {
+              user_id: app.globalData.openid,
+              book_id: model.id
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded',
+            },
+            method: 'POST',
+            success: function (res) {
+              if (res.data['code'] == 0) {
+                GetList(that)
+              }
+            }
+          });
+        }
+      }
+    })
+  },
+  checkcall: function (e) {
+    var that = this
+    var model = e.currentTarget.dataset.model
+    // console.log(e)
+    wx.makePhoneCall({
+      phoneNumber: model.phone,
+      success: function () {
+        console.log("拨打电话成功！")
+      },
+      fail: function () {
+        console.log("拨打电话失败！")
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -74,27 +122,23 @@ Page({
 // 我的预约列表
 var GetList = function (that) {
   var url = app.requestuserlivebookUrl;
-  that.setData({
-    hidden: false
-  });
+  var manager_page = that.data.mybookingpage == "dealbooking" ? '1' : '0';
   wx.request({
     url: url,
     data: {
-      user_id: app.globalData.openid
+      user_id: app.globalData.openid,
+      managerpage: manager_page
     },
     success: function (res) {
-      // var l = []
-      // for (var i in res.data['data']) {
-      //   l.push(res.data['data'][i])
-      // }
-      // console.log(l)
-      that.setData({
-        list: res.data['data']
-      });
+      if (res.data['code'] == 0) {
+        console.log(res)
+        that.setData({
+          list: res.data['data'],
+          ismanager: res.data['manager'] == '1' ? true :false
 
-      that.setData({
-        hidden: true
-      });
+        });
+        console.log(that.data.ismanager)
+      }
     }
   });
 }

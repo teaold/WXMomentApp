@@ -106,6 +106,23 @@ letter-spacing: 1px;
   letter-spacing: 1px;
   padding-top: 10px;
 }
+/* 管理员 拨打电话 */
+.stateclass8{
+  background-color: #EFEFF4;
+  color: #09BB07;
+}
+/* 管理员确认 */
+.stateclass9{
+  margin-top: 10px;
+  background-color: #09BB07;
+  color: white;
+}
+/* 管理员 已处理 */
+.stateclass10{
+  margin-top: 10px;
+  background-color: #A8ACB2;
+  color: white;
+}
 /* 待审核 */
 .stateclass0{
   background-color: #f3d278;

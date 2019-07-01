@@ -97,7 +97,7 @@ var GetList = function (that) {
       // for (var i in res.data['data']) {
       //   l.push(res.data['data'][i])
       // }
-      // console.log(l)
+      console.log(res)
       if (res.data['code'] == 0) {
         that.setData({
           psmodel: res.data['data']

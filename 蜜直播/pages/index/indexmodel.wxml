@@ -33,7 +33,9 @@
               <image class="lives-img" mode='aspectFill' src='{{item.picurl}}' mode='aspectFit' />
          </block>
          <block wx:else>
-              <image class="lives-img" mode='aspectFill' src='{{item.picurl}}' mode='aspectFill' />
+         <image-loader default-image='../images/placebannar.jpg' default-class="lives-img" mode='aspectFill' original-image="{{item.picurl}}" width="100%" height="90px" />
+
+              <!-- <image class="lives-img" mode='aspectFill' src='{{item.picurl}}' mode='aspectFill' /> -->
          </block>
           
           <!-- {{item.type == "item" ? aspectFit : aspectFill}} -->

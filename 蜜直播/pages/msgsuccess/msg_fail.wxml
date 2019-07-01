@@ -1,0 +1,22 @@
+<view class="page">
+    <view class="weui-msg">
+        <view class="weui-msg__icon-area">
+            <icon type="warn" size="93"></icon>
+        </view>
+        <view class="weui-msg__text-area">
+            <view class="weui-msg__title">支付失败</view>
+            <view class="weui-msg__desc">定金支付失败,请重新预约,如有支付问题,请联系:微信(同手机号): 13918340690 - QQ:3443026025</view>
+        </view>
+        <view class="weui-msg__opr-area">
+            <view class="weui-btn-area">
+                <button class="weui-btn"  bindtap='homeback'  type="primary">返回首页</button>
+                <!-- <button class="weui-btn" type="default">辅助操作</button> -->
+            </view>
+        </view>
+        <view class="weui-msg__extra-area">
+            <view class="weui-footer">
+                
+            </view>
+        </view>
+    </view>
+</view>

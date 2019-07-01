@@ -59,6 +59,9 @@ Page({
   listenerWXNumInput: function (e) {
     this.data.checkData['weixin'] = e.detail.value;
   },
+  listenerDetailAddrInput: function (e) {
+    this.data.checkData['address'] = e.detail.value;
+  },
   sexChange: function (e) {// 性别
     this.data.checkData['sexArr'] = e.detail.value;
   },
@@ -98,9 +101,11 @@ Page({
     // }
     else if (sendData['sexArr'] == undefined || sendData['sexArr'] == '') {
       this.showMessage('请选择性别')
-    } else if (this.data.provinceSelIndex == '') {
-      this.showMessage('请选择所在地区')
-    } else if (sendData['photoAge'] == undefined || sendData['photoAge'] == '') {
+    }
+    else if (sendData['address'] == undefined || sendData['address'] == '') {
+      this.showMessage('请输入所在城市')
+    }
+    else if (sendData['photoAge'] == undefined || sendData['photoAge'] == '') {
       this.showMessage('请输入拍龄')
     } else if (sendData['specialArr'] == undefined || sendData['specialArr'] == '') {
       this.showMessage('请选择专长领域')
@@ -164,15 +169,15 @@ Page({
         sendData['worklink'] = "未填写";
       }
 
-        if (this.data.provinceSelIndex == '') {
-          this.showMessage('请选择所在地区')
-        } else {
-          var pindex = this.data.provinceSelIndex;
-          var cindex = this.data.citySelIndex;
-          var dindex = this.data.districtSelIndex;
-          var address = this.data.provinceName[pindex] + this.data.cityName[cindex] + this.data.districtName[dindex];
+        // if (this.data.provinceSelIndex == '') {
+        //   this.showMessage('请选择所在地区')
+        // } else {
+        //   var pindex = this.data.provinceSelIndex;
+        //   var cindex = this.data.citySelIndex;
+        //   var dindex = this.data.districtSelIndex;
+        //   var address = this.data.provinceName[pindex] + this.data.cityName[cindex] + this.data.districtName[dindex];
 
-          sendData['address'] = address;
+        //   sendData['address'] = address;
           sendData['user_id'] = app.globalData.openid;
           sendData['type'] = 'old';
 
@@ -210,7 +215,9 @@ Page({
                   prePage.didcertpicman()
                 }
 
-                wx.navigateBack();
+                wx.redirectTo({
+                  url: '../../pages/msgsuccess/msgsuccess',
+                })
               }
             },
             fail: function (res) {
@@ -227,7 +234,7 @@ Page({
 
           });
 
-        }
+        // }
     }
   },
 

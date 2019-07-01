@@ -1,0 +1,2 @@
+<image wx:if='{{!finishLoadFlag}}' mode='{{mode}}' src='{{defaultImage}}' style='{{width ? "width:" + width : ""}};{{height ? "height:" + height : ""}}' class='{{defaultClass}}'/>
+<image mode='{{mode}}' class='{{defaultClass}} {{finishLoadFlag ? "" : "before-load"}}' src='{{originalImage}}' bindload='finishLoad' style='{{finishLoadFlag && width ? "width:" + width : ""}};{{finishLoadFlag && height ? "height:" + height : ""}}' />

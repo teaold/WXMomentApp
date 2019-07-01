@@ -3,81 +3,113 @@
 （如是首次，显示首次直播优惠券，需考虑如何区分首次使用）
 直播咨询：13918340690（微信）qq:3443026025
  -->
-<view class='homepage'>
+<!-- <template name="msginput">
+  <view class="weui-cells__title">{{title}}<text class='input-title-tag'>*</text></view>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+              <input class="weui-input" bindinput="{{funcName}}" placeholder="{{placehold}}" />
+          </view>
+      </view>
+  </view>
+</template>
 
-<!--间隔线  -->
-<view  style="flex:1;height:2px;background-color:#DCE3D7"></view>
-<view  style="flex:1;height:50px;background-color:white"></view>
 
-<!--style的优先级比class高会覆盖和class相同属性-->
-<text class='input-title'>姓名</text>
-<text class='input-title-tag'>*</text>
-<view class="inputView" >
+
+<view class="page" >
+ <view class="page__bd">
+ 
+ <block wx:for-items="{{list}}" wx:key="{{item.title}}">
+    <template is="msginput" data="{{title:item.title,placehold:item.placehold,funcName:item.funcName}}" />
+
+ </block>
+
+ </view>
+</view> -->
+
+
+
+
+<form bindsubmit="formSubmit" report-submit='1' bindreset="formReset">
+
+  <view class='homepage'>
+
+    <!--间隔线  -->
+    <view style="flex:1;height:2px;background-color:#DCE3D7"></view>
+    <view style="flex:1;height:50px;background-color:white"></view>
+
+    <!--style的优先级比class高会覆盖和class相同属性-->
+    <text class='input-title'>单位名称</text>
+    <text class='input-title-tag'>*</text>
+    <view class="inputView">
+      <input class="input" type="text" placeholder="请输入单位名称" placeholder-style="color: #D3D3D3" bindinput="listenerUnitInput" />
+    </view>
+
+    <text class='input-title'>联系人</text>
+    <text class='input-title-tag'>*</text>
+    <view class="inputView">
       <input class="input" type="text" placeholder="请输入姓名" placeholder-style="color: #D3D3D3" bindinput="listenerNameInput" />
-</view>
+    </view>
 
-<text class='input-title'>电话</text>
-<text class='input-title-tag'>*</text>
-<view class="inputView" >
+    <text class='input-title'>联系电话</text>
+    <text class='input-title-tag'>*</text>
+    <view class="inputView">
       <input class="input" type="number" placeholder="请输入电话" placeholder-style="color: #D3D3D3" bindinput="listenerPhoneInput" />
-</view>
+    </view>
 
-<text class='input-title'>活动主题</text>
-<text class='input-title-tag'>*</text>
-<view class="inputView" >
+    <text class='input-title'>活动主题</text>
+    <text class='input-title-tag'>*</text>
+    <view class="inputView">
       <input class="input" type="text" placeholder="请输入活动主题" placeholder-style="color: #D3D3D3" bindinput="listenerThemeInput" />
-</view>
+    </view>
 
-<text class='input-title'>活动时间</text>
-<text class='input-title-tag'>*</text>
-<!-- <view class="inputView" >
+    <text class='input-title'>活动时间</text>
+    <text class='input-title-tag'>*</text>
+    <!-- <view class="inputView" >
       <input class="input" type="digit" placeholder="请输入活动时间" placeholder-style="color: #D3D3D3" bindinput="listenerPhoneInput" />
 </view> -->
 
-  <picker mode="date" value="{{date}}" start="2018-01-01" end="2028-1-23" bindchange="bindDateChange"> 
-    <view class="section">  
-  <image class="rili_img" src='../../images/rili.png' mode='aspectFill' />
-    
-      <text class='data-time'>{{dates}}</text>
+    <picker mode="date" value="{{date}}" start="2018-01-01" end="2028-1-23" bindchange="bindDateChange">
+      <view class="section">
+        <image class="rili_img" src='../../images/rili.png' mode='aspectFill' />
+
+        <text class='data-time'>{{dates}}</text>
       </view>
-  </picker>  
+    </picker>
 
 
-<text class='input-title'>活动地点</text>
-<text class='input-title-tag'>*</text>
-<view class="inputView" >
+    <text class='input-title'>活动地点</text>
+    <text class='input-title-tag'>*</text>
+    <view class="inputView">
       <input class="input" type="text" placeholder="请输入活动地点" placeholder-style="color: #D3D3D3" bindinput="listenerDetailAddrInput" />
-</view>
-
-<text class='input-title'>机位需求</text>
-<text class='input-title-tag'>*</text>
-<!-- <text class='input-tips'>机位价格:单机位：3500元/次；双机位：5000元/次；多机位：联系后付款</text> -->
-<radio-group bindchange="radioChange" >
-    <!-- <label  wx:for="{{cartArr}}"> -->
-    <view class="layout_horizontal">
-         <view class="checkbox-view">
-              <radio class='checkbox-box' value="1"></radio>
-              <text class='checkbox-msg'>单机位</text>
-         </view>
-         <view class="checkbox-view">
-              <radio class='checkbox-box' value="2"></radio>
-              <text class='checkbox-msg'>双机位</text>
-         </view>
-         <view class="checkbox-view">
-              <radio class='checkbox-box' value="3"></radio>
-              <text class='checkbox-msg'>多机位</text>
-         </view>
     </view>
-</radio-group>
 
-<text class='input-tips'>直播咨询：</text>
-<text class='input-tips'>微信(同手机号): 13918340690 - QQ:3443026025</text>
+    <!-- <text class='input-title'>机位需求</text>
+    <text class='input-title-tag'>*</text> -->
+    <!-- <text class='input-tips'>机位价格:单机位：3500元/次；双机位：5000元/次；多机位：联系后付款</text> -->
+    <!-- <radio-group bindchange="radioChange">
+      <view class="layout_horizontal">
+        <block wx:for-items="{{machineList}}" wx:key="{{item.value}}">
+          <view class="checkbox-view">
+          <radio class='checkbox-box' value="{{item.value}}" checked='{{item.checked}}'></radio>
+          <text class='checkbox-msg'>{{item.name}}</text>
+        </view>
 
+        </block>
 
-<button class="playbtn" type="primary" bindtap="listenerLogin">{{payname}}</button>
+      </view>
+    </radio-group> -->
 
-<view class="blankView"></view>
+    <text class='input-tips'>直播咨询：</text>
+    <text class='input-tips'>微信(同手机号): 13918340690 - QQ:3443026025</text>
 
-</view>
+    <text class='input-tips'>{{paymessage}}</text>
+
+    <button hidden='{{machineList.length == 0}}' class="playbtn" type="primary" form-type='submit'>{{payname}}</button>
+
+    <view class="blankView"></view>
+
+  </view>
+</form>
 
 <view class="message {{showMessage ? 'fade-in' : ''}}" hidden="{{!showMessage}}">{{messageContent}}</view>

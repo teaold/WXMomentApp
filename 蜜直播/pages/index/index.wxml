@@ -4,41 +4,46 @@
       <image class='defaultimg' src='../../images/nonetwork.png'></image>
       <button class='beginBtn' bindtap='reloadhomedata'>加载失败,重新加载</button>
     </view>
-    
+
   </view>
 </template>
 
 <block wx:if='{{loadfail}}'>
-  <template is="msgblank"  />
+  <template is="msgblank" />
 </block>
-  <block wx:else>
-<!--index.wxml-->
-<view class='homepage'>
+<block wx:else>
+  <!--index.wxml-->
+  <view class='homepage'>
 
-<!-- <swiper indicator-dots="{{indicatorDots}}"
-  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-  <block wx:for="{{imgUrls}}" wx:for-item="item" for:key="key">
-    <swiper-item>
-       <view bindtap='bannerpage' data-model='{{item}}' class="swiper-item slide-image-view" style='background-image: url({{item.picurl}})'></view>
-      
-    </swiper-item>
-  </block>
-</swiper> -->
+    <view class='swiper'>
+      <swiper indicator-dots="{{indicatorDots}}" vertical="{{vertical}}" autoplay="{{autoplay}}" duration="{{duration}}" interval='{{interval}}' bindchange="bindchange" circular="{{circular}}" style="height:50.0vw;width: 100vw;">
+        <block wx:for='{{imgUrls}}' wx:key="{{index}}">
+          <swiper-item>
 
-<block wx:for="{{imgUrls}}" wx:for-item="item" for:key="key">
-    <view bindtap='livebooking' data-model='{{item}}' class="bannerpic slide-image-view" style='background-image: url({{item}})'></view>
-</block>
-<!-- <image  bindtap='bannerpage' data-model='{{item}}' src="{{item.picurl}}" class="slide-image" mode='aspectFit'/> -->
+          <image-loader default-image='../images/placebannar.jpg' mode='widthFix' original-image="{{item.picurl}}" width="100vw" height="50.0vw" />
 
-<!--间隔线  -->
-<view  style="flex:1;height:2px;background-color:#DCE3D7"></view>
+            <!-- <image src="{{item.picurl}}" data-id='{{index}}' class="slide-image" mode="widthFix" bindload="imageLoad" /> -->
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
 
-<view  style="flex:1;height:15px;background-color:white"></view>
-<!-- <view class='menu_photo_bg'> -->
+<!-- 背景填充显示图片 -->
+    <!-- <block wx:for="{{imgUrls}}" wx:for-item="item" for:key="key">
+    <view bindtap='livebooking' data-model='{{item}}' class="bannerpic slide-image-view" style='background-image: url({{item.picurl}})'></view>
+</block> -->
+
+    <!-- <image  bindtap='bannerpage' data-model='{{item}}' src="{{item.picurl}}" class="slide-image" mode='aspectFit'/> -->
+
+    <!--间隔线  -->
+    <view style="flex:1;height:2px;background-color:#DCE3D7"></view>
+
+    <view style="flex:1;height:15px;background-color:white"></view>
+    <!-- <view class='menu_photo_bg'> -->
 
 
-  <!-- 菜单 头 -->
-  <!-- <view class='menu_photo'>
+    <!-- 菜单 头 -->
+    <!-- <view class='menu_photo'>
       <image class="photo_left_img" src='../../images/lineleft.png' mode='aspectFill' />
       <text class="menu_name">拍手认证</text>
       <image class="photo_mid_img" src='../../images/linemid.png' mode='aspectFill' />
@@ -46,46 +51,45 @@
       <image class="photo_right_img" src='../../images/lineright.png' mode='aspectFill' />
         
   </view> -->
-  <!-- 拍手菜单 -->
-  <view class="layout_horizontal photo-bgview">
-    <view class="photo-conten-view" bindtap='livebooking'>
-            <image class="photo-img" src='../../images/huodongch.png' mode='aspectFill' />
-            <text class="lives-name photo-name">直播预约</text>
+    <!-- 拍手菜单 -->
+    <view class="layout_horizontal photo-bgview">
+      <view class="photo-conten-view" bindtap='livebooking'>
+        <image class="photo-img" src='../../images/huodongch.png' mode='aspectFill' />
+        <text class="lives-name photo-name">直播预约</text>
+      </view>
+
+      <view class="photo-conten-view" bindtap='photomancheckC'>
+        <image class="photo-img" src='../../images/huodong.png' mode='aspectFill' />
+        <text class="lives-name photo-name">拍摄预约</text>
+      </view>
+
+      <view class="photo-conten-view" bindtap='photomancheckE'>
+        <image class="photo-img" src='../../images/paishouA.png' mode='aspectFill' />
+        <text class="lives-name photo-name">录课预约</text>
+      </view>
+
+      <view class="photo-conten-view" bindtap='calling'>
+        <image class="photo-img" src='../../images/phonenum.png' mode='aspectFill' />
+        <text class="lives-name photo-name">小蜜助手</text>
+      </view>
+
     </view>
 
-    <view class="photo-conten-view" bindtap='photomancheckA'>
-            <image class="photo-img" src='../../images/paishouA.png' mode='aspectFill' />
-            <text class="lives-name photo-name">拍手入驻</text>
-    
-    </view>
 
-    <view class="photo-conten-view" bindtap='photomancheckC'>
-            <image class="photo-img" src='../../images/huodong.png' mode='aspectFill' />
-            <text class="lives-name photo-name">拍摄预约</text>
-    </view>
+    <!-- 在线直播 -->
+    <import src="../index/indexmodel.wxml" />
 
-    <view class="photo-conten-view" bindtap='calling'>
-            <image class="photo-img" src='../../images/phonenum.png' mode='aspectFill' />
-            <text class="lives-name photo-name">小蜜助手</text>
-    </view>
-    
-  </view>
+    <block wx:for="{{homedata}}" wx:for-item="item" for:key="key">
 
+      <block wx:if="{{item.datacount > 0}}">
+        <template is="liveItem" data="{{menutitle:item.title,leftImg:'../../images/'+ item.icon ,rightBtn:item.rightbtn,rightFunc:'livebooking',rightImg:'../../images/booking.png',listdata:item.data}}" />
+      </block>
 
-<!-- 在线直播 -->
- <import src="../index/indexmodel.wxml" />
-
-<block  wx:for="{{homedata}}" wx:for-item="item" for:key="key">
-    
-    <block wx:if="{{item.datacount > 0}}">
-          <template is="liveItem" data="{{menutitle:item.title,leftImg:'../../images/'+ item.icon ,rightBtn:item.rightbtn,rightFunc:'livebooking',rightImg:'../../images/booking.png',listdata:item.data}}" />
     </block>
-    
-</block>
-  
 
-<view  style="flex:1;height:15px;background-color:white"></view>
 
-</view>
+    <view style="flex:1;height:15px;background-color:white"></view>
+
+  </view>
 
 </block>

@@ -16,6 +16,7 @@
     "pages/fromdemo/fromdemo",
     "pages/photograHig/photograHig",
     "pages/photograLow/photograLow",
+    "pages/courseREC/index",
     "pages/addComment/addComment",
     "pages/addPingLun/addPingLun",
     "pages/address/address",
@@ -28,13 +29,16 @@
     "pages/paishouInfo/paishouInfo",
     "pages/bill/bill",
     "pages/userinfo/userinfo",
-    "pages/player/player"
+    "pages/player/player",
+    "pages/msgsuccess/msgsuccess",
+    "pages/msgsuccess/msg_fail"
+    
     
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "蜜直播",
+    "navigationBarTitleText": "蜜源Live",
     "navigationBarTextStyle":"black",
     "enablePullDownRefresh":false
   },
@@ -47,12 +51,6 @@
         "iconPath": "images/homeA.png"
       },
       
-      {
-        "pagePath": "pages/main/main",
-        "text": "拍友圈",
-        "selectedIconPath": "images/newsB.png",
-        "iconPath": "images/newsA.png"
-      },
       {
         "pagePath": "pages/my/my",
         "text": "我的",

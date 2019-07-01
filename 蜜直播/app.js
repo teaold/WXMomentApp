@@ -58,7 +58,8 @@ App({
   globalData:{
     openid: null,
     session_key: null,
-    userInfo:null
+    userInfo:null,
+    authenphoto: '0', //是否认证拍手
     // userInfo: {openId:'1',nickName:'波波'}
   },
   requestLoginUrl: baseUrl + 'userlogin',
@@ -71,7 +72,8 @@ App({
   requestDelMomentUrl: baseUrl + 'delemoment',
   requestDetailMomentUrl: baseUrl + 'momentdetail',
   requestAddCommentUrl: baseUrl + 'addComment',
-  requestliveUrl: baseUrl +'livebacklist',
+  requestliveUrl: baseUrl +'livelist',
+  requestlivebookingpriceUrl: baseUrl + 'livebookingprice', 
   requestBannerUrl: baseUrl +'banner',
   requestBannerpicUrl: baseUrl + 'bannerpics',
   requestcouponUrl: baseUrl +'couponlist',
@@ -80,8 +82,12 @@ App({
   requestaddLikeUrl: baseUrl + 'addLike',
   requestlivebookingUrl: baseUrl + 'livebooking',
   requestcertyphotomanUrl: baseUrl + 'certyphotoman',
-  requestuserlivebookUrl: baseUrl + 'userlivebooklist',
+  requestuserlivebookUrl: baseUrl + 'userbookinglist',
+  requestcheckbookingUrl: baseUrl + 'checkbooking', 
+  requestismanagerUrl: baseUrl + 'ismanager',
   requestcertyphotomanInfoUrl: baseUrl + 'certyphotomanInfo',
+  sendtemplatemessageUrl: baseUrl + 'sendtemplatemessage',
+  
   userId:null,
   // http://47.52.142.116/friend/pengyuquan.php
 })

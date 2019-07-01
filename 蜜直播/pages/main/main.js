@@ -13,6 +13,8 @@ Page({
     page:1, // 页码值
     nomore:false,
 
+    willPush:false, //是否即将推送页面
+
     cz_flag:false, // 控制点赞评论按钮
     cz_right:0, // 点赞评论定位right
     cz_top:80, // 点赞评论定位top
@@ -86,12 +88,36 @@ Page({
       resultData: dataList
     })
   },
+  // 认证成功
+  didcertpicman: function () {
+    app.globalData.userInfo.authenticate = '1'
+  },
+  // 拍手认证
+  photomancheckA: function (e) {
+    if (!this.data.willPush){
+      var user_auth = app.globalData.userInfo.authenticate
+      console.log(user_auth)
+      if (user_auth == 1) {
+        wx.navigateTo({
+          url: '../paishouInfo/paishouInfo'
+        })
+      } else {
+        wx.navigateTo({
+          url: '../photograHig/photograHig'
+        })
+      }
+    }
+  },
   onReady: function () {
     // 页面渲染完成
   },
   onShow: function () {
     // 页面显示
     console.log('页面显示')
+    //允许推送页面
+    this.setData({
+      willPush: false
+    })
   },
   onHide: function () {
     // 页面隐藏
@@ -135,7 +161,7 @@ Page({
           if (that.data.page == 1){
             that.setData({
               resultData: res.data.data,
-              mombgimg: res.data.bgimg
+              mombgimg:res.data.bgimg
             })
           } else {
             var tempdata = that.data.resultData
@@ -149,7 +175,7 @@ Page({
             }
             that.setData({
               resultData: tempdata,
-              mombgimg: res.data.bgimg
+              mombgimg:res.data.bgimg
             })
           }
           
@@ -310,6 +336,9 @@ Page({
   },
   bindAdd: function(){// 跳转朋友圈
     var that = this
+    that.setData({
+      willPush:true
+    })
     // 用户朋友圈输入
     wx.showActionSheet({
       itemList: ['发布'],
@@ -326,6 +355,13 @@ Page({
             })
           }    
         }
+      },
+      complete: function(){
+        console.log('complete')
+        //允许推送页面
+        that.setData({
+          willPush: false
+        })
       }
     })
   },

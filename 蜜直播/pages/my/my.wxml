@@ -20,17 +20,23 @@
   <image class='msgArrow' src='../../images/jt.png'></image>
 </view>
 
-<view class='msgListView' bindtap='mymoment'>
-  <image class='msgIcon' src='../../images/dongtai.png'></image>
-  <text class='MsgTxt' >我的动态</text>
+<view hidden='{{!ismanager}}' class='msgListView' bindtap='dealbooking'>
+  <image class='msgIcon' src='../../images/huodong.png'></image>
+  <text class='MsgTxt' >预约管理</text>
   <image class='msgArrow' src='../../images/jt.png'></image>
 </view>
 
-<view class='msgListView' bindtap='coupon'>
+<!-- <view class='msgListView' bindtap='mymoment'>
+  <image class='msgIcon' src='../../images/dongtai.png'></image>
+  <text class='MsgTxt' >我的动态</text>
+  <image class='msgArrow' src='../../images/jt.png'></image>
+</view> -->
+
+<!-- <view class='msgListView' bindtap='coupon'>
   <image class='msgIcon' src='../../images/youhui.png'></image>
   <text class='MsgTxt' >我的优惠券</text>
   <image class='msgArrow' src='../../images/jt.png'></image>
-</view>
+</view> -->
 
 <view class='msgListView' bindtap='settingInfo'>
   <image class='msgIcon' src='../../images/setting.png'></image>

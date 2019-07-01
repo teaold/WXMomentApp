@@ -18,7 +18,7 @@
     <image class='defaultimg' src='../../images/launchdefault.jpg'></image>
   </view>
   
-  <text class='MsgTxt MsgTxt2' >蜜直播</text>
+  <text class='MsgTxt MsgTxt2' >蜜源Live</text>
   <text class='MsgTxt' >在线直播,预约,回看</text>
   <text class='MsgTxt' >拍手认证</text>
   <text class='MsgTxt' >拍摄预约</text>
@@ -33,7 +33,7 @@
     class="beginBtn"
     hidden='{{isauthorize}}'
     bindgetuserinfo="bindGetUserInfo"
->进入蜜直播</button>
+>进入蜜源Live</button>
 
 
 </view>
